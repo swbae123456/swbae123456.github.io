@@ -222,7 +222,7 @@
     font-size:12.5px;font-weight:800;margin-top:1px;font-variant-numeric:tabular-nums;
   }
   .shop-name{flex:1 1 auto;min-width:0}
-  .shop-name b{display:block;font-size:16px;font-weight:800;line-height:1.35;letter-spacing:-.03em}
+  .shop-name b{display:block;font-size:16.5px;font-weight:800;line-height:1.35;letter-spacing:-.03em}
   .shop-name .ja{display:block;font-size:13px;color:var(--muted);font-weight:600;margin-top:2px;letter-spacing:0}
   .shop-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
   .tag{
@@ -255,7 +255,7 @@
   .price-list{display:flex;flex-direction:column;gap:9px}
   .pcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px;box-shadow:var(--shadow)}
   .pcard-head{display:flex;align-items:baseline;gap:8px}
-  .pcard-head b{font-size:16px;font-weight:800;letter-spacing:-.03em;line-height:1.34}
+  .pcard-head b{font-size:16.5px;font-weight:800;letter-spacing:-.03em;line-height:1.34}
   .pcard-head .cat{
     margin-left:auto;flex:0 0 auto;font-size:11.5px;font-weight:800;color:#7c5a24;
     background:#f7f1e6;border:1px solid #ecdfc8;border-radius:999px;padding:3px 8px;line-height:1.3;
@@ -319,6 +319,7 @@
   .res ul{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid rgba(28,25,23,.07);padding-top:9px}
   .res li{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;line-height:1.7;color:var(--ink-2)}
   .res li span:first-child{color:var(--muted);font-weight:700;font-size:13px}
+  .res .res-note{margin:10px 0 0;padding-top:8px;border-top:1px solid rgba(28,25,23,.07);font-size:12px;line-height:1.6;color:var(--muted)}
   .res li span:last-child{font-family:var(--num);font-variant-numeric:tabular-nums;font-weight:800;text-align:right}
 
   /* prep tab */
@@ -1056,7 +1057,7 @@
           '<span class="tag walk">' + esc(st) + ' · ' + esc(walk) + '</span>' +
           tfTag +
         '</div>' +
-        '<p class="shop-hours"><span class="lb">' + esc(t('hoursL')) + '</span><span class="vv">' + esc(lang === 'ko' ? s.h : s.hEn) + '</span></p>' +
+        '<p class="shop-hours"><span class="lb">' + esc(t('hoursL')) + '</span><span class="vv">' + esc(lang === 'ko' ? s.h : s.hEn).split(' · ').map(function (x) { return '<span style="white-space:nowrap">' + x + '</span>'; }).join(' · ') + '</span></p>' +
         '<p class="shop-hl">' + esc(lang === 'ko' ? s.hl : s.hlEn) + '</p>' +
         '<div class="shop-actions">' +
           '<button type="button" class="btn" data-copy="' + esc(s.ja) + '">' +
@@ -1162,7 +1163,7 @@
           '<li><span>' + esc(t('resUsd')) + '</span><span>$' + fmt(totalUSD, 2) + ' / $400</span></li>' +
           '<li><span>' + esc(t('resFreeVol')) + '</span><span>' + fmt(2 - totalL, 2) + 'L</span></li>' +
           '<li><span>' + esc(t('resFreeUsd')) + '</span><span>$' + fmt(400 - totalUSD, 2) + '</span></li>' +
-        '</ul>';
+        '</ul><p class="res-note">' + esc(t('resNote')) + '</p>';
       return;
     }
 
@@ -1200,7 +1201,7 @@
         '<li><span>' + esc(t('resVat')) + '</span><span>' + moneyKRW(vat) + '</span></li>' +
         '<li><span>' + esc(t('resCut')) + '</span><span>−' + moneyKRW(cut) + '</span></li>' +
         '<li><span>' + esc(t('resTotal')) + '</span><span>' + moneyKRW(bottlesKRW + taxSum - cut) + '</span></li>' +
-      '</ul>';
+      '</ul><p class="res-note">' + esc(t('resNote')) + '</p>';
   }
 
   /* ------------------------------------------------------------------ prep / tips / rules */
@@ -1348,10 +1349,14 @@
   for (var si = 0; si < segBtns.length; si++) {
     segBtns[si].onclick = function () {
       var c = this.getAttribute('data-cur');
+      var v = parseFloat(($('inPrice').value || '').replace(/,/g, ''));
+      if (!isNaN(v) && v > 0 && c !== inputCur) {
+        var krw = krwFrom(v, inputCur);
+        var conv = c === 'KRW' ? krw : (c === 'JPY' ? jpy(krw) : krw / rate.KRW);
+        $('inPrice').value = String(Math.round(conv));
+      }
       inputCur = c;
       for (var j = 0; j < segBtns.length; j++) segBtns[j].classList.toggle('is-active', segBtns[j] === this);
-      var v = parseFloat(($('inPrice').value || '').replace(/,/g, ''));
-      if (!isNaN(v)) $('inPrice').value = String(v);
       calc();
     };
   }
