@@ -494,7 +494,7 @@
       <p id="footSources"></p>
       <p id="footDisclaimer"></p>
       <p id="footPrivacy"></p>
-      <p><a href="/">jpsave.com</a> · <a href="/Japan-mounjaro-helper/">일본 마운자로 방문 도우미</a></p>
+      <p><a href="/">jpsave.com</a> · <a href="/Japan-mounjaro-helper/" id="footJmhLink">일본 마운자로 방문 도우미</a></p>
     </footer>
   </main>
 
@@ -579,7 +579,8 @@
       noPsa: '이 카드는 검증된 PSA 10 시세가 없습니다.',
       footSources: '자료: TCGdex API(TCGplayer 시장가) · PriceCharting(맨카드·PSA 10) · ExchangeRate-API(환율). 가격 기준 2026-11-28 07:16 KST.',
       footDisclaimer: '카드 가격은 공개 시세이며 실제 거래가·등급 판정과 다를 수 있습니다. 이 사이트는 판매·중개·감정을 하지 않고 투자 권유도 하지 않습니다.',
-      footPrivacy: '입력한 금액·보관함은 브라우저 안에서만 계산되고 서버로 전송되지 않습니다. 방문 통계는 GoatCounter(익명 카운터)로 집계합니다.',
+      footPrivacy: '입력한 금액·보관함은 브라우저 안에서만 계산되고 서버로 전송되지 않습니다. 방문 통계는 GoatCounter(익명 카운터)로 집계합니다. 카드 이미지는 TCGdex에서 불러옵니다.',
+      footJmh: '일본 마운자로 방문 도우미',
       loading: '시세 데이터를 불러오는 중입니다…',
       loadFail: '시세 데이터를 불러오지 못했습니다. 잠시 뒤 새로고침해 주세요.',
       retry: '다시 시도',
@@ -595,7 +596,7 @@
       heroBig: "Today's biggest movers",
       heroSub: "Percent moves computed from PriceCharting's published change since its last update (ungraded).",
       baseNote: '<b>Day-1 baseline saved (2026-11-28).</b> The percentages here are PriceCharting\'s change since its last update. Our own 24h change will be computed against this baseline from the next daily refresh.',
-      statTracked: 'cards with change', statCards: 'cards tracked', statSets: 'sets',
+      statTracked: 'cards with change', statCards: 'cards', statSets: 'sets',
       segUp: 'Top 10 gainers', segDown: 'Top 10 losers',
       tabMovers: 'Movers', tabRank: 'Ranking', tabPsa: 'PSA', tabFx: 'FX', tabBag: 'Portfolio',
       rankTitle: 'Price ranking by set', rankSub: 'Filter by year, set, name',
@@ -631,7 +632,8 @@
       noPsa: 'No verified PSA 10 price for this card.',
       footSources: 'Sources: TCGdex API (TCGplayer market), PriceCharting (raw & PSA 10), ExchangeRate-API (FX). Prices as of 2026-11-28 07:16 KST.',
       footDisclaimer: 'Prices are public market data and may differ from actual sales or grades. This site does not sell, broker or grade cards, and is not investment advice.',
-      footPrivacy: 'Amounts you type and your portfolio stay in your browser. Traffic is counted anonymously with GoatCounter.',
+      footPrivacy: 'Amounts you type and your portfolio stay in your browser. Traffic is counted anonymously with GoatCounter. Card images load from TCGdex.',
+      footJmh: 'Japan Mounjaro Helper',
       loading: 'Loading price data…',
       loadFail: 'Could not load the price data. Please refresh in a moment.',
       retry: 'Retry',
@@ -747,6 +749,7 @@
     $('footSources').textContent = t('footSources');
     $('footDisclaimer').textContent = t('footDisclaimer');
     $('footPrivacy').textContent = t('footPrivacy');
+    $('footJmhLink').textContent = t('footJmh');
     $('fxFromSeg').children[0].textContent = t('fxFromJPY');
     $('fxFromSeg').children[1].textContent = t('fxFromKRW');
     $('fxFromSeg').children[2].textContent = t('fxFromUSD');
@@ -768,7 +771,7 @@
 
   function boot() {
     state.lang = detectLang();
-    state.cur = load('pcr_cur', 'KRW');
+    state.cur = load('pcr_cur', null) || (state.lang === 'ko' ? 'KRW' : 'USD');
     state.bag = load('pcr_bag', []);
     if (!Array.isArray(state.bag)) state.bag = [];
     Array.prototype.forEach.call(document.querySelectorAll('.cur-btn'), function (b) {
@@ -850,7 +853,7 @@
     if (!list.length) { wrap.appendChild(el('div', 'card pad small muted', esc(t('empty')))); return; }
     list.forEach(function (c, i) {
       var badge = pctBadge(c.pc.rawChgPct);
-      var psaLine = c.pc.psa10ChgPct != null ? '<span class="tag">PSA 10 ' + (c.pc.psa10ChgPct > 0 ? '+' : '') + nf(c.pc.psa10ChgPct, 1) + '%</span>' : '';
+      var psaLine = (c.pc.psa10ChgPct != null && Math.abs(c.pc.psa10ChgPct) >= 0.05) ? '<span class="tag">PSA 10 ' + (c.pc.psa10ChgPct > 0 ? '+' : '') + nf(c.pc.psa10ChgPct, 1) + '%</span>' : '';
       wrap.appendChild(cardRow(c, { rank: i + 1, priceUsd: c.pc.raw, badge: badge + psaLine }));
     });
   }
