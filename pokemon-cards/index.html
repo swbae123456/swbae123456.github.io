@@ -107,9 +107,17 @@
   .page-bg::after{
     content:"";position:absolute;inset:0;
     background:
-      url("pikachu-bg.png") no-repeat right calc(50% - 336px) top 92px/340px auto,
-      url("pikachu-bg.png") no-repeat left calc(50% - 350px) bottom 6px/280px auto;
+      url("pikachu-bg.png") no-repeat right -96px top 92px/340px auto,
+      url("pikachu-bg.png") no-repeat left -110px bottom 6px/280px auto;
     opacity:.18;
+  }
+  /* wide screens: keep the art beside the 480px column instead of the far window edge */
+  @media (min-width:560px){
+    .page-bg::after{
+      background:
+        url("pikachu-bg.png") no-repeat right calc(50% - 336px) top 92px/340px auto,
+        url("pikachu-bg.png") no-repeat left calc(50% - 350px) bottom 6px/280px auto;
+    }
   }
   @media (min-width:560px){
     .shell{box-shadow:0 0 0 1px rgba(15,23,42,.05),0 18px 60px rgba(15,23,42,.12)}
