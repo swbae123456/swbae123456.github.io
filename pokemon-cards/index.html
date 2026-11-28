@@ -294,6 +294,11 @@
   .qty button{border:0;background:#f8fafc;width:26px;height:26px;font-size:14px;font-weight:800;color:var(--ink-2);cursor:pointer;font-family:var(--font);line-height:1}
   .qty span{width:26px;text-align:center;font-size:12px;font-weight:800;font-variant-numeric:tabular-nums}
   .bag-item .sum{flex:0 0 auto;text-align:right;font-size:12px;font-weight:800;letter-spacing:-.02em;min-width:74px;font-variant-numeric:tabular-nums}
+  .gchip{
+    margin-top:4px;border:1px solid var(--line);background:#f8fafc;border-radius:999px;padding:2px 8px;
+    font-family:var(--font);font-size:9.5px;font-weight:800;color:var(--ink-2);cursor:pointer;letter-spacing:-.01em;
+  }
+  .gchip.is-on{background:var(--brand);border-color:var(--brand);color:#fff}
   .bag-item .del{border:0;background:transparent;color:#cbd5e1;cursor:pointer;padding:2px;flex:0 0 auto}
 
   /* tabbar */
@@ -564,7 +569,7 @@
       fxTip: '일본샵 표시가는 보통 세금 포함(税込)입니다. 한국 중고 시세는 KREAM에서, 일본 중고는 Buyee(야후옥션)에서 검색해 비교해 보세요. 카드 상세 화면에 검색 링크가 있습니다.',
       bagTitle: '내 카드 보관함', bagSub: '이 기기에만 저장',
       bagTotalK: '보관함 총액 · 맨카드 기준', bagItems: function (n) { return n + '종'; },
-      bagNote: '보관함은 이 브라우저(localStorage)에만 저장되고 서버로 보내지 않습니다. 가격은 기준일 스냅샷이며, PSA 10 보유분은 카드 상세의 PSA 10 값으로 따로 계산합니다.',
+      bagNote: '보관함은 이 브라우저(localStorage)에만 저장되고 서버로 보내지 않습니다. 가격은 기준일 스냅샷입니다. 카드 이름 아래 [맨카드]/[PSA 10]을 눌러 등급 보유분으로 바꾸면 총액이 그 시세로 다시 계산됩니다.',
       bagEmpty: '아직 담은 카드가 없습니다. 랭킹에서 카드를 눌러 [보관함에 담기]를 누르면 시세 합계가 자동으로 계산됩니다.',
       bagClear: '보관함 비우기',
       addBag: '보관함에 담기', inBag: '보관함에 있음 · 수량 조절은 보관함 탭에서',
@@ -617,7 +622,7 @@
       fxTip: 'Japanese shop prices usually include tax (税込). Compare Korean used prices on KREAM and Japanese listings on Buyee (Yahoo Auctions); the card detail panel has the search links.',
       bagTitle: 'My portfolio', bagSub: 'stored on this device',
       bagTotalK: 'Portfolio total · raw prices', bagItems: function (n) { return n + ' items'; },
-      bagNote: 'The portfolio is saved in this browser (localStorage) and never uploaded. Values use the snapshot prices; PSA 10 holdings are valued separately at the PSA 10 price in the card detail.',
+      bagNote: 'The portfolio is saved in this browser (localStorage) and never uploaded. Values use the snapshot prices. Tap the [Raw]/[PSA 10] chip under a card name to value that holding at its graded price.',
       bagEmpty: 'Nothing saved yet. Open a card in Ranking and press "Add to portfolio" — the total is summed for you.',
       bagClear: 'Clear portfolio',
       addBag: 'Add to portfolio', inBag: 'In your portfolio — adjust quantity in the Portfolio tab',
@@ -1049,12 +1054,12 @@
   function renderBag() {
     var rows = bagJoined();
     var totalUsd = rows.reduce(function (s, r) { return s + (r.unit || 0) * r.it.qty; }, 0);
-    var psaUsd = rows.reduce(function (s, r) { return s + (r.it.grade === 'psa' && r.c.pc && r.c.pc.psa10 ? r.c.pc.psa10 : 0) * r.it.qty; }, 0);
+    var graded = rows.filter(function (r) { return r.it.grade === 'psa'; }).length;
     var count = rows.reduce(function (s, r) { return s + r.it.qty; }, 0);
     $('bagTotal').textContent = money(totalUsd);
     $('bagAlts').innerHTML = '<span>' + nf(count) + (state.lang === 'ko' ? '장' : ' cards') + '</span>' +
-      '<span>' + (state.lang === 'ko' ? 'PSA 10 기준 ' : 'at PSA 10 ') + money(psaUsd) + '</span>' +
-      '<span>' + money(totalUsd, 'USD') + '</span>';
+      '<span>' + money(totalUsd, 'USD') + '</span>' +
+      (graded ? '<span>' + (state.lang === 'ko' ? 'PSA 10 ' + graded + '종 포함' : graded + ' graded') + '</span>' : '');
     var wrap = $('bagRows');
     wrap.innerHTML = '';
     $('bagClear').hidden = !rows.length;
@@ -1066,7 +1071,9 @@
       d.innerHTML =
         '<span class="thumb" style="width:38px;height:54px"><img loading="lazy" decoding="async" width="38" height="54" src="' + esc(r.c.img || '') + '" alt=""></span>' +
         '<span style="flex:1 1 auto;min-width:0"><span class="nm">' + esc(r.c.n) + '</span>' +
-        '<span class="sub">' + esc(s.name || r.c.set) + ' · #' + esc(r.c.num) + (r.it.grade === 'psa' ? ' · PSA 10' : '') + '</span></span>' +
+        '<span class="sub">' + esc(s.name || r.c.set) + ' · #' + esc(r.c.num) + '</span>' +
+        (r.c.pc && r.c.pc.psa10 ? '<button class="gchip' + (r.it.grade === 'psa' ? ' is-on' : '') + '" type="button" data-baggrade="' + esc(r.c.id) + '">' + esc(r.it.grade === 'psa' ? t('psa10') : t('raw')) + '</button>' : '') +
+        '</span>' +
         '<span class="qty"><button type="button" data-bagq="-1" data-id="' + esc(r.c.id) + '" aria-label="-">−</button><span>' + r.it.qty + '</span><button type="button" data-bagq="1" data-id="' + esc(r.c.id) + '" aria-label="+">+</button></span>' +
         '<span class="sum">' + money((r.unit || 0) * r.it.qty) + '</span>' +
         '<button class="del" type="button" data-bagdel="' + esc(r.c.id) + '" aria-label="remove"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
@@ -1092,7 +1099,7 @@
       '<p class="m">' + esc(t('detailVar')) + ': ' + esc(c.var || '') + ' · ' + esc(c.src === 'PC' ? t('srcPC') : t('srcTC')) + '</p>' +
       '</div><button class="close" type="button" data-close aria-label="close">✕</button></div>';
     html += '<div class="pblock">' +
-      '<div><span>' + esc(t('detailPrice')) + '</span><b>' + money(c.usd) + '</b></div>' +
+      '<div><span>USD · ' + esc(t('srcTC')) + '</span><b>' + money(c.usd, 'USD') + '</b></div>' +
       '<div><span>KRW</span><b>' + fmtCur(c.usd * RATES.KRW, 'KRW') + '</b></div>' +
       '<div><span>JPY</span><b>' + fmtCur(c.usd * RATES.JPY, 'JPY') + '</b></div>' +
       '</div>';
@@ -1173,6 +1180,12 @@
     if (q) {
       var bid = q.getAttribute('data-id'), delta = Number(q.getAttribute('data-bagq'));
       state.bag.forEach(function (x) { if (x.id === bid) x.qty = Math.max(1, x.qty + delta); });
+      save('pcr_bag', state.bag); renderBag(); return;
+    }
+    var gr = tgt.closest ? tgt.closest('[data-baggrade]') : null;
+    if (gr) {
+      var gid = gr.getAttribute('data-baggrade');
+      state.bag.forEach(function (x) { if (x.id === gid) x.grade = (x.grade === 'psa' ? 'raw' : 'psa'); });
       save('pcr_bag', state.bag); renderBag(); return;
     }
     var del = tgt.closest ? tgt.closest('[data-bagdel]') : null;
