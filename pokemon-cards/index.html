@@ -12,6 +12,8 @@
 <link rel="alternate" hreflang="ko" href="https://jpsave.com/pokemon-cards/">
 <link rel="alternate" hreflang="en" href="https://jpsave.com/pokemon-cards/?lang=en">
 <link rel="alternate" hreflang="x-default" href="https://jpsave.com/pokemon-cards/">
+<link rel="preconnect" href="https://assets.tcgdex.net" crossorigin>
+<link rel="dns-prefetch" href="https://assets.tcgdex.net">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="포켓몬 카드샵 방문 도우미">
 <meta property="og:title" content="포켓몬 카드샵 방문 도우미 — 일본 카드숍 23곳·팩별 시세·PSA 10">
@@ -224,7 +226,13 @@
     width:64px;height:90px;flex:0 0 auto;border-radius:9px;overflow:hidden;background:#f1f4fa;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 1px 3px rgba(15,23,42,.16),0 0 0 1px rgba(15,23,42,.07);
+    background-image:linear-gradient(100deg,#eef1f8 0%,#f8faff 42%,#eef1f8 84%);
+    background-size:240% 100%;background-repeat:no-repeat;background-position:0% 0;
+    animation:thumbShimmer 1.6s linear infinite alternate;
   }
+  @keyframes thumbShimmer{from{background-position:0% 0}to{background-position:100% 0}}
+  .thumb.is-loaded{animation:none;background:#fff;background-image:none}
+  @media (prefers-reduced-motion:reduce){.thumb{animation:none}}
   .thumb img{width:100%;height:100%;object-fit:cover;display:block}
   .row .body{flex:1 1 auto;min-width:0}
   .row .body > span{display:block}
@@ -1124,6 +1132,20 @@
     return { up: up, down: down, total: list.length };
   }
 
+  /* stop the thumbnail shimmer as soon as the picture has painted (hit, miss or placeholder) */
+  function markThumb(scope) {
+    var im = scope && scope.querySelector ? scope.querySelector('.thumb img') : null;
+    if (!im) return;
+    var done = function () { if (im.parentNode && im.parentNode.classList) im.parentNode.classList.add('is-loaded'); };
+    if (im.complete) done();
+    else { im.addEventListener('load', done); im.addEventListener('error', done); }
+  }
+  function thumbImg(priority, src, w, h) {
+    return '<span class="thumb"' + (w === 64 ? '' : ' style="width:' + w + 'px;height:' + h + 'px"') + '><img ' +
+      (priority ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"') +
+      ' decoding="async" width="' + w + '" height="' + h + '" src="' + esc(src) + '" alt=""></span>';
+  }
+
   function cardRow(c, opts) {
     opts = opts || {};
     var s = setsById[c.set] || {};
@@ -1135,11 +1157,12 @@
     btn.setAttribute('data-card', c.id);
     btn.innerHTML =
       (opts.rank ? '<span class="rank' + (opts.rank <= 3 ? ' t' + opts.rank : '') + '">' + opts.rank + '</span>' : '') +
-      '<span class="thumb"><img loading="lazy" decoding="async" width="64" height="90" src="' + esc(c.img || IMG_PH) + '" alt=""></span>' +
+      thumbImg(!!opts.priority, c.img || IMG_PH, 64, 90) +
       '<span class="body"><span class="nm">' + esc(c.n) + '</span>' +
       '<span class="meta">' + meta + '</span>' +
       '<span class="px">' + money(price) + '<small>' + smallMoney(price) + '</small></span></span>' +
       '<span class="right">' + (opts.badge || '') + (opts.tag ? '<span class="tag">' + esc(opts.tag) + '</span>' : '') + '</span>';
+    markThumb(btn);
     return btn;
   }
 
@@ -1158,7 +1181,7 @@
       var tone = state.moverDir === 'down' ? 'lose' : 'gain';
       var badge = pctBadge(c.pc.rawChgPct, tone === 'lose' ? 'lose' : 'gain');
       var psaLine = (c.pc.psa10ChgPct != null && Math.abs(c.pc.psa10ChgPct) >= 0.05) ? '<span class="tag">PSA 10 ' + (c.pc.psa10ChgPct > 0 ? '+' : '') + nf(c.pc.psa10ChgPct, 1) + '%</span>' : '';
-      wrap.appendChild(cardRow(c, { rank: i + 1, priceUsd: c.pc.raw, badge: badge + psaLine, tone: tone }));
+      wrap.appendChild(cardRow(c, { rank: i + 1, priceUsd: c.pc.raw, badge: badge + psaLine, tone: tone, priority: i < 6 }));
     });
   }
 
@@ -1234,7 +1257,7 @@
     wrap.innerHTML = '';
     if (!list.length) { wrap.appendChild(el('div', 'card pad small muted', esc(t('empty')))); }
     shown.forEach(function (c, i) {
-      wrap.appendChild(cardRow(c, { rank: i + 1, tag: c.src === 'PC' ? t('srcPC') : '', tone: 'rk', topRank: true }));
+      wrap.appendChild(cardRow(c, { rank: i + 1, tag: c.src === 'PC' ? t('srcPC') : '', tone: 'rk', topRank: true, priority: i < 6 }));
     });
     var more = $('rankMore');
     if (list.length > state.rankLimit) {
@@ -1273,7 +1296,7 @@
       b.type = 'button'; b.className = 'psa-row'; b.setAttribute('data-card', c.id);
       b.innerHTML =
         '<span class="rank' + (i < 3 ? ' t' + (i + 1) : '') + '">' + (i + 1) + '</span>' +
-        '<span class="thumb"><img loading="lazy" decoding="async" width="64" height="90" src="' + esc(c.img || IMG_PH) + '" alt=""></span>' +
+        thumbImg(i < 6, c.img || IMG_PH, 64, 90) +
         '<span class="body">' +
         '<span class="nm">' + esc(c.n) + '</span>' +
         '<span class="meta">' + esc(s.name || c.set) + '<span class="dot">·</span>' + (s.year || '') + '<span class="dot">·</span>#' + esc(c.num) + '</span>' +
@@ -1286,6 +1309,7 @@
           '<span class="arw">→</span>' +
           '<span class="cell psa"><span class="lbl">' + esc(t('psa10')) + '</span><span class="v">' + moneyC(c.pc.psa10) + '</span></span>' +
         '</span>';
+      markThumb(b);
       wrap.appendChild(b);
     });
     var more = $('psaMore');
@@ -1358,7 +1382,7 @@
       var d = document.createElement('div');
       d.className = 'bag-item';
       d.innerHTML =
-        '<span class="thumb" style="width:38px;height:54px"><img loading="lazy" decoding="async" width="38" height="54" src="' + esc(r.c.img || IMG_PH) + '" alt=""></span>' +
+        thumbImg(false, r.c.img || IMG_PH, 38, 54) +
         '<span style="flex:1 1 auto;min-width:0"><span class="nm">' + esc(r.c.n) + '</span>' +
         '<span class="sub">' + esc(s.name || r.c.set) + ' · #' + esc(r.c.num) + '</span>' +
         (r.c.pc && r.c.pc.psa10 ? '<button class="gchip' + (r.it.grade === 'psa' ? ' is-on' : '') + '" type="button" data-baggrade="' + esc(r.c.id) + '">' + esc(r.it.grade === 'psa' ? t('psa10') : t('raw')) + '</button>' : '') +
@@ -1366,6 +1390,7 @@
         '<span class="qty"><button type="button" data-bagq="-1" data-id="' + esc(r.c.id) + '" aria-label="-">−</button><span>' + r.it.qty + '</span><button type="button" data-bagq="1" data-id="' + esc(r.c.id) + '" aria-label="+">+</button></span>' +
         '<span class="sum">' + money((r.unit || 0) * r.it.qty) + '</span>' +
         '<button class="del" type="button" data-bagdel="' + esc(r.c.id) + '" aria-label="remove"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+      markThumb(d);
       wrap.appendChild(d);
     });
   }
