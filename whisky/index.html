@@ -1633,6 +1633,8 @@
     $('pillShops').innerHTML = esc(t('pillShops')) + ' <b>' + SHOPS.length + '</b>';
     $('shopSearch').placeholder = t('shopSearch');
     $('priceSearch').placeholder = t('priceSearch');
+    $('shopReset').textContent = t('reset');
+    $('priceReset').textContent = t('reset');
     $('priceSub').textContent = (l === 'ko' ? '100엔 = ₩' : '100 JPY = ₩') + fmt(rate.KRW / rate.JPY * 100);
     $('statLimit').textContent = '2L';
     $('langKo').classList.toggle('is-active', l === 'ko');
