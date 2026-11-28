@@ -92,14 +92,26 @@
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;padding:0}
   body{
-    font-family:var(--font);background:var(--bg);color:var(--ink);
+    font-family:var(--font);color:var(--ink);
     font-size:15px;line-height:1.5;letter-spacing:-.01em;
+    background:#fdf8ea;
     -webkit-font-smoothing:antialiased;
   }
   [hidden]{display:none!important}
-  .shell{max-width:480px;margin:0 auto;min-height:100vh;position:relative;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+  .shell{max-width:480px;margin:0 auto;min-height:100vh;position:relative;z-index:1;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+  /* page backdrop: warm pastel gradient + a very faint Pikachu peeking behind the white cards */
+  .page-bg{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:linear-gradient(168deg,#fef7e3 0%,#fdfaf1 32%,#f6f3fb 64%,#ece9fa 100%);
+  }
+  .page-bg::after{
+    content:"";position:absolute;inset:0;
+    background:
+      url("pikachu-bg.png") no-repeat right -96px top 92px/340px auto,
+      url("pikachu-bg.png") no-repeat left -110px bottom 6px/280px auto;
+    opacity:.18;
+  }
   @media (min-width:560px){
-    body{background:#e9ecf5}
     .shell{box-shadow:0 0 0 1px rgba(15,23,42,.05),0 18px 60px rgba(15,23,42,.12)}
   }
 
@@ -430,6 +442,7 @@
 </style>
 </head>
 <body>
+<div class="page-bg" aria-hidden="true"></div>
 <div class="shell">
   <header class="app-header">
     <div class="brand">
