@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#4338ca">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<title>포켓몬 카드 시세 레이더 — 팩별 가격 랭킹·PSA 10 비교·환율 계산기</title>
+<meta name="description" content="1999~2026 포켓몬 카드 팩 28종·3,750장의 TCGplayer 시세와 PriceCharting 맨카드·PSA 10 가격을 팩별·연도별로 비교합니다. 오늘의 급등·급락, 일판·한판·영판 환율 계산기, 내 카드 보관함까지 무료로.">
+<link rel="canonical" href="https://jpsave.com/pokemon-cards/">
+<link rel="alternate" hreflang="ko" href="https://jpsave.com/pokemon-cards/">
+<link rel="alternate" hreflang="en" href="https://jpsave.com/pokemon-cards/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://jpsave.com/pokemon-cards/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="포켓몬 카드 시세 레이더">
+<meta property="og:title" content="포켓몬 카드 시세 레이더 — 팩별 가격 랭킹·PSA 10 비교·환율 계산기">
+<meta property="og:description" content="포켓몬 카드 3,750장 실시간 시세. 팩별·연도별 랭킹, PSA 10과 맨카드 비교, 일판·한판·영판 환율 계산기.">
+<meta property="og:url" content="https://jpsave.com/pokemon-cards/">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://jpsave.com/pokemon-cards/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="포켓몬 카드 시세 레이더 — 팩별 랭킹·PSA 10·환율">
+<meta name="twitter:description" content="1999~2026 팩 28종 3,750장 시세 랭킹 · PSA 10 비교 · 일판·한판·영판 환율 계산.">
+<meta name="twitter:image" content="https://jpsave.com/pokemon-cards/icon-512.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="카드 레이더">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" href="icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://jpsave.com/pokemon-cards/#webapp",
+      "name": "포켓몬 카드 시세 레이더",
+      "alternateName": "Pokémon Card Price & Ranking Radar",
+      "url": "https://jpsave.com/pokemon-cards/",
+      "description": "포켓몬 카드 팩 28종·3,750장의 공개 시세를 팩별·연도별로 비교하고, 맨카드와 PSA 10 가격 차이, 일판·한판·영판 환율을 한 화면에서 확인하는 무료 정보 도구.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (web browser)",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": ["ko", "en"],
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+      "image": "https://jpsave.com/pokemon-cards/icon-512.png"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://jpsave.com/pokemon-cards/#dataset",
+      "name": "포켓몬 카드 시세 스냅샷 (2026-11-28)",
+      "description": "TCGdex API(TCGplayer 시장가)와 PriceCharting(맨카드·PSA 10) 공개 값으로 만든 포켓몬 카드 가격 데이터셋.",
+      "url": "https://jpsave.com/pokemon-cards/cards.json",
+      "creator": { "@type": "Organization", "name": "jpsave.com" },
+      "isAccessibleForFree": true,
+      "license": "https://www.pricecharting.com/ and https://tcgdex.dev/ 공개 데이터"
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#f5f6fb;
+    --card:#ffffff;
+    --ink:#0f172a;
+    --ink-2:#334155;
+    --muted:#64748b;
+    --line:#e3e8f0;
+    --line-2:#f1f4f9;
+    --brand:#4338ca;
+    --brand-2:#3730a3;
+    --brand-soft:#eef2ff;
+    --gold:#f59e0b;
+    --gold-bg:#fef3c7;
+    --up:#dc2626;
+    --up-bg:#fee2e2;
+    --down:#2563eb;
+    --down-bg:#dbeafe;
+    --tile:#f8fafc;
+    --tile-line:#e6ebf3;
+    --radius:20px;
+    --radius-sm:12px;
+    --shadow:0 1px 2px rgba(15,23,42,.04),0 8px 22px rgba(15,23,42,.05);
+    --font:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:var(--font);background:var(--bg);color:var(--ink);
+    font-size:15px;line-height:1.5;letter-spacing:-.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  [hidden]{display:none!important}
+  .shell{max-width:480px;margin:0 auto;min-height:100vh;position:relative;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+  @media (min-width:560px){
+    body{background:#e9ecf5}
+    .shell{box-shadow:0 0 0 1px rgba(15,23,42,.05),0 18px 60px rgba(15,23,42,.12)}
+  }
+
+  /* ---------- header ---------- */
+  .app-header{
+    position:sticky;top:0;z-index:30;
+    background:rgba(255,255,255,.97);
+    backdrop-filter:saturate(160%) blur(12px);-webkit-backdrop-filter:saturate(160%) blur(12px);
+    border-bottom:1px solid var(--line);
+    padding:12px 15px 9px;
+  }
+  .brand{display:flex;align-items:center;gap:10px}
+  .logo{
+    width:38px;height:38px;border-radius:12px;flex:0 0 auto;
+    background:linear-gradient(145deg,#4f46e5,#312e81);
+    display:flex;align-items:center;justify-content:center;color:#fff;
+    box-shadow:0 3px 10px rgba(67,56,202,.28);
+  }
+  .brand-text{flex:1 1 auto;min-width:0}
+  .brand h1{font-size:16.5px;line-height:1.22;margin:0;letter-spacing:-.035em;font-weight:800}
+  .brand p{margin:1px 0 0;font-size:11px;color:var(--muted);letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lang-switch{flex:0 0 auto;display:flex;gap:2px;background:#f1f3f9;border:1px solid var(--line);padding:3px;border-radius:999px}
+  .lang-btn{border:0;background:transparent;font-family:var(--font);font-size:11px;font-weight:800;color:var(--muted);padding:5px 8px;border-radius:999px;cursor:pointer;line-height:1.1;min-width:34px}
+  .lang-btn.is-active{background:#fff;color:var(--brand-2);box-shadow:0 1px 4px rgba(15,23,42,.14)}
+  .lang-btn:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+
+  .head-row{display:flex;align-items:center;gap:6px;margin-top:9px}
+  .pill{font-size:10.5px;font-weight:700;color:var(--muted);background:#f4f6fb;border:1px solid var(--line);border-radius:999px;padding:4px 8px;white-space:nowrap}
+  .pill b{color:var(--ink-2);font-weight:800}
+  .cur-switch{margin-left:auto;display:flex;gap:2px;background:#f1f3f9;border:1px solid var(--line);padding:2px;border-radius:999px}
+  .cur-btn{border:0;background:transparent;font-family:var(--font);font-size:10.5px;font-weight:800;color:var(--muted);padding:4px 8px;border-radius:999px;cursor:pointer}
+  .cur-btn.is-active{background:var(--brand);color:#fff}
+
+  /* ---------- layout ---------- */
+  main{padding:13px 14px 0}
+  .panel{animation:fade .18s ease}
+  @keyframes fade{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}
+  .section-title{display:flex;align-items:baseline;gap:8px;margin:2px 0 10px}
+  .section-title h2{font-size:16px;margin:0;letter-spacing:-.035em;font-weight:800}
+  .section-title span{font-size:11px;color:var(--muted);font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .pad{padding:15px 15px}
+  .muted{color:var(--muted)}
+  .small{font-size:11.5px;line-height:1.6}
+
+  /* hero */
+  .hero{
+    background:linear-gradient(150deg,#4338ca 0%,#312e81 62%,#1e1b4b 100%);
+    color:#fff;border-radius:var(--radius);padding:16px 16px 14px;position:relative;overflow:hidden;
+    box-shadow:0 10px 26px rgba(49,46,129,.22);
+  }
+  .hero::after{content:"";position:absolute;right:-46px;top:-46px;width:150px;height:150px;border-radius:50%;border:14px solid rgba(255,255,255,.09)}
+  .hero .k{font-size:10.5px;font-weight:800;letter-spacing:.06em;color:#c7d2fe;text-transform:uppercase}
+  .hero .big{font-size:23px;font-weight:800;letter-spacing:-.04em;margin:3px 0 2px;line-height:1.2}
+  .hero .sub{font-size:11.5px;color:#dbe1ff;line-height:1.55}
+  .hero .stats{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
+  .hero .stat{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.16);border-radius:11px;padding:6px 9px;min-width:0}
+  .hero .stat b{display:block;font-size:13px;font-weight:800;letter-spacing:-.02em}
+  .hero .stat span{font-size:9.5px;color:#c7d2fe;font-weight:700}
+
+  .note{
+    display:flex;gap:8px;background:#fffbeb;border:1px solid #fde68a;border-radius:14px;
+    padding:10px 11px;margin-top:11px;font-size:11.5px;line-height:1.62;color:#78350f;
+  }
+  .note b{color:#92400e}
+  .note .ic{flex:0 0 auto;color:#d97706;margin-top:1px}
+
+  /* segmented */
+  .seg{display:flex;gap:4px;background:#eef1f8;border-radius:13px;padding:3px;margin:11px 0 10px}
+  .seg button{
+    flex:1;border:0;background:transparent;font-family:var(--font);font-size:12.5px;font-weight:800;
+    color:var(--muted);padding:8px 4px;border-radius:11px;cursor:pointer;letter-spacing:-.02em;
+  }
+  .seg button.is-active{background:#fff;color:var(--brand-2);box-shadow:0 1px 5px rgba(15,23,42,.12)}
+  .seg button.is-active.up{color:var(--up)}
+  .seg button.is-active.down{color:var(--down)}
+
+  /* card rows */
+  .rows{display:flex;flex-direction:column;gap:8px}
+  .row{
+    display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);
+    border-radius:16px;padding:9px 11px;box-shadow:0 1px 2px rgba(15,23,42,.03);
+    cursor:pointer;text-align:left;width:100%;font-family:var(--font);
+  }
+  .row:active{background:#fafbff}
+  .row:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+  .thumb{
+    width:44px;height:62px;flex:0 0 auto;border-radius:7px;overflow:hidden;background:#eef1f8;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .row .body{flex:1 1 auto;min-width:0}
+  .row .body > span{display:block}
+  .psa-row .body > span{display:block}
+  .bag-item .nm, .bag-item .sub{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row .nm{font-size:13.5px;font-weight:800;letter-spacing:-.025em;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row .meta{font-size:10.5px;color:var(--muted);margin:1px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+  .row .meta .dot{opacity:.45;margin:0 3px}
+  .row .px{margin:3px 0 0;font-size:14px;font-weight:800;letter-spacing:-.03em}
+  .row .px small{font-size:10.5px;color:var(--muted);font-weight:700;letter-spacing:0;margin-left:5px}
+  .row .right{flex:0 0 auto;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+  .badge{
+    font-size:11.5px;font-weight:800;letter-spacing:-.02em;border-radius:8px;padding:3px 6px;white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+  .badge.up{color:var(--up);background:var(--up-bg)}
+  .badge.down{color:var(--down);background:var(--down-bg)}
+  .badge.flat{color:var(--muted);background:#f1f5f9}
+  .rank{
+    flex:0 0 auto;width:22px;text-align:center;font-size:12.5px;font-weight:800;color:#94a3b8;
+    font-variant-numeric:tabular-nums;letter-spacing:-.04em;
+  }
+  .rank.t1{color:#b45309}
+  .rank.t2{color:#475569}
+  .rank.t3{color:#9a3412}
+  .tag{font-size:9.5px;font-weight:800;color:var(--muted);background:#f4f6fb;border:1px solid var(--line);border-radius:6px;padding:2px 5px;letter-spacing:0}
+
+  /* filter bar */
+  .filters{display:flex;gap:7px;margin-bottom:9px}
+  .search{position:relative;flex:1 1 auto}
+  .search input{
+    width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;
+    padding:10px 12px 10px 33px;font-family:var(--font);font-size:13px;color:var(--ink);
+    -webkit-appearance:none;
+  }
+  .search input:focus{outline:2px solid var(--brand-soft);border-color:var(--brand)}
+  .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted)}
+  select.sel{
+    border:1px solid var(--line);background:#fff;border-radius:12px;padding:0 9px;height:40px;
+    font-family:var(--font);font-size:12px;font-weight:700;color:var(--ink-2);max-width:44%;
+  }
+  .chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{
+    flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;
+    padding:6px 11px;font-family:var(--font);font-size:11.5px;font-weight:800;color:var(--ink-2);
+    cursor:pointer;letter-spacing:-.02em;white-space:nowrap;
+  }
+  .chip.is-active{background:var(--brand);border-color:var(--brand);color:#fff}
+  .count-line{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);margin:2px 2px 8px;font-weight:700}
+  .count-line button{border:0;background:transparent;color:var(--brand);font-family:var(--font);font-size:11px;font-weight:800;cursor:pointer;padding:0}
+  .more{
+    width:100%;margin-top:10px;border:1px solid var(--line);background:#fff;border-radius:14px;
+    padding:12px;font-family:var(--font);font-size:12.5px;font-weight:800;color:var(--brand-2);cursor:pointer;
+  }
+  .empty{padding:26px 16px;text-align:center;color:var(--muted);font-size:12.5px;line-height:1.7}
+
+  /* psa */
+  .psa-row{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 11px;cursor:pointer;width:100%;
+    text-align:left;font-family:var(--font);box-shadow:0 1px 2px rgba(15,23,42,.03);display:flex;gap:11px;align-items:flex-start;
+  }
+  .psa-row .mult{
+    margin-left:auto;flex:0 0 auto;text-align:right;
+  }
+  .psa-row .mult b{display:block;font-size:15px;font-weight:800;color:var(--brand-2);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .psa-row .mult span{font-size:9.5px;color:var(--muted);font-weight:800}
+  .cmp{display:flex;align-items:center;gap:6px;margin-top:5px;font-size:11.5px;font-weight:700;color:var(--ink-2);font-variant-numeric:tabular-nums}
+  .cmp .lbl{font-size:9.5px;color:var(--muted);font-weight:800;letter-spacing:.02em}
+  .cmp .arw{color:#cbd5e1}
+
+  /* fx */
+  .rate-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:11px}
+  .rate{background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px 12px;box-shadow:0 1px 2px rgba(15,23,42,.03)}
+  .rate span{display:block;font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.02em}
+  .rate b{display:block;font-size:16px;font-weight:800;letter-spacing:-.035em;margin-top:2px;font-variant-numeric:tabular-nums}
+  .rate i{font-style:normal;font-size:10.5px;color:var(--muted);font-weight:700}
+  .calc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
+  .calc .inp{display:flex;gap:7px;align-items:center}
+  .calc input{
+    flex:1 1 auto;min-width:0;border:1px solid var(--line);border-radius:12px;padding:11px 12px;
+    font-family:var(--font);font-size:17px;font-weight:800;letter-spacing:-.03em;color:var(--ink);
+    font-variant-numeric:tabular-nums;-webkit-appearance:none;
+  }
+  .calc input:focus{outline:2px solid var(--brand-soft);border-color:var(--brand)}
+  .calc .res{display:grid;gap:6px;margin-top:10px}
+  .calc .res div{display:flex;align-items:baseline;justify-content:space-between;background:var(--tile);border:1px solid var(--tile-line);border-radius:11px;padding:9px 11px}
+  .calc .res span{font-size:11px;font-weight:800;color:var(--muted)}
+  .calc .res b{font-size:16.5px;font-weight:800;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+
+  /* bag */
+  .bag-total{
+    background:linear-gradient(150deg,#4338ca,#312e81);color:#fff;border-radius:var(--radius);
+    padding:16px;box-shadow:0 10px 26px rgba(49,46,129,.2)
+  }
+  .bag-total .k{font-size:10.5px;font-weight:800;color:#c7d2fe;letter-spacing:.05em;text-transform:uppercase}
+  .bag-total .v{font-size:27px;font-weight:800;letter-spacing:-.045em;margin:2px 0 0;font-variant-numeric:tabular-nums}
+  .bag-total .alts{display:flex;gap:12px;margin-top:7px;font-size:11.5px;color:#dbe1ff;font-weight:700}
+  .bag-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:15px;padding:9px 10px}
+  .bag-item .nm{font-size:12.5px;font-weight:800;letter-spacing:-.025em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bag-item .sub{font-size:10px;color:var(--muted);font-weight:700;margin-top:1px}
+  .qty{display:flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:0 0 auto}
+  .qty button{border:0;background:#f8fafc;width:26px;height:26px;font-size:14px;font-weight:800;color:var(--ink-2);cursor:pointer;font-family:var(--font);line-height:1}
+  .qty span{width:26px;text-align:center;font-size:12px;font-weight:800;font-variant-numeric:tabular-nums}
+  .bag-item .sum{flex:0 0 auto;text-align:right;font-size:12px;font-weight:800;letter-spacing:-.02em;min-width:74px;font-variant-numeric:tabular-nums}
+  .bag-item .del{border:0;background:transparent;color:#cbd5e1;cursor:pointer;padding:2px;flex:0 0 auto}
+
+  /* tabbar */
+  .tabbar{
+    position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:40;
+    background:rgba(255,255,255,.98);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);
+    border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);gap:2px;
+    padding:6px 5px calc(6px + env(safe-area-inset-bottom));box-shadow:0 -6px 22px rgba(15,23,42,.05);
+  }
+  .tab{
+    border:0;background:transparent;padding:6px 1px 5px;border-radius:13px;display:flex;flex-direction:column;
+    align-items:center;gap:2px;font-size:9.5px;font-weight:800;color:#94a3b8;cursor:pointer;
+    font-family:var(--font);letter-spacing:-.03em;transition:background .16s,color .16s;
+  }
+  .tab svg{width:21px;height:21px}
+  .tab.is-active{background:var(--brand-soft);color:var(--brand-2)}
+  .tab:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:60;background:rgba(15,23,42,.5);display:flex;align-items:flex-end;justify-content:center}
+  @media (min-width:560px){.modal{align-items:center;padding:20px}}
+  .modal-card{
+    background:#fff;width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom));
+    max-height:90vh;overflow:auto;
+  }
+  @media (min-width:560px){.modal-card{border-radius:22px}}
+  .modal-head{display:flex;align-items:flex-start;gap:12px}
+  .modal-head img{width:96px;height:134px;border-radius:10px;object-fit:cover;background:#eef1f8;flex:0 0 auto}
+  .modal-head h2{font-size:18px;margin:0;letter-spacing:-.04em;line-height:1.25}
+  .modal-head .m{font-size:11px;color:var(--muted);font-weight:700;margin:3px 0 0;line-height:1.5}
+  .modal-head .close{margin-left:auto;border:0;background:#f4f6fb;border-radius:999px;width:30px;height:30px;color:var(--ink-2);cursor:pointer;font-size:16px;line-height:1;flex:0 0 auto}
+  .pblock{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:13px 0}
+  .pblock div{background:var(--tile);border:1px solid var(--tile-line);border-radius:11px;padding:8px 9px}
+  .pblock span{display:block;font-size:9.5px;font-weight:800;color:var(--muted);letter-spacing:.02em}
+  .pblock b{display:block;font-size:13px;font-weight:800;letter-spacing:-.03em;margin-top:1px;font-variant-numeric:tabular-nums;word-break:break-all}
+  .mrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line-2);font-size:12px}
+  .mrow:last-child{border-bottom:0}
+  .mrow .l{color:var(--ink-2);font-weight:700;min-width:0}
+  .mrow .l em{display:block;font-style:normal;font-size:10px;color:var(--muted);font-weight:700;margin-top:1px}
+  .mrow .r{font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em;text-align:right;white-space:nowrap}
+  .links{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px}
+  .links a{
+    display:flex;align-items:center;justify-content:center;gap:5px;border:1px solid var(--line);border-radius:12px;
+    padding:9px 6px;font-size:11.5px;font-weight:800;color:var(--ink-2);text-decoration:none;background:#fff;
+  }
+  .links a:active{background:#f7f9ff}
+  .btn-primary{
+    display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:11px;
+    background:var(--brand);color:#fff;border:0;border-radius:14px;padding:13px;font-family:var(--font);
+    font-size:14px;font-weight:800;cursor:pointer;letter-spacing:-.02em;
+  }
+  .btn-primary:active{background:var(--brand-2)}
+  .btn-ghost{background:#fff;color:var(--ink-2);border:1px solid var(--line)}
+  .sect-m{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin:14px 0 4px}
+
+  /* toast */
+  .toast-wrap{position:fixed;left:0;right:0;bottom:calc(92px + env(safe-area-inset-bottom));z-index:70;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+  .toast{background:rgba(15,23,42,.94);color:#fff;font-size:12.5px;font-weight:700;padding:9px 14px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.24);opacity:0;transform:translateY(8px);transition:opacity .2s,transform .2s;max-width:88vw;text-align:center}
+  .toast.in{opacity:1;transform:none}
+
+  /* footer */
+  .site-foot{margin:18px 0 0;padding:14px 2px 0;border-top:1px solid var(--line);font-size:10.5px;line-height:1.75;color:var(--muted)}
+  .site-foot p{margin:0 0 5px}
+  .site-foot a{color:var(--brand-2);font-weight:700;text-decoration:none}
+  .skeleton{background:linear-gradient(90deg,#eef1f8 25%,#f7f9fc 37%,#eef1f8 63%);background-size:400% 100%;animation:sk 1.2s infinite;border-radius:9px}
+  @keyframes sk{0%{background-position:100% 50%}100%{background-position:0 50%}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="8.4"/><path d="M12 3.6a4.4 4.4 0 0 0 0 8.8 4.4 4.4 0 0 1 0 8.8"/><path d="M3.6 12h16.8"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1 id="brandTitle">포켓몬 카드 시세 레이더</h1>
+        <p id="brandSub">팩별 랭킹 · PSA 10 비교 · 일판·한판 환율</p>
+      </div>
+      <div class="lang-switch" role="group" aria-label="언어">
+        <button class="lang-btn is-active" id="langKo" type="button">KO</button>
+        <button class="lang-btn" id="langEn" type="button">EN</button>
+      </div>
+    </div>
+    <div class="head-row">
+      <span class="pill" id="pillDate">기준 <b>2026-11-28</b></span>
+      <span class="pill" id="pillCards">카드 <b>—</b></span>
+      <div class="cur-switch" role="group" aria-label="통화">
+        <button class="cur-btn is-active" data-cur="KRW" type="button">원</button>
+        <button class="cur-btn" data-cur="USD" type="button">$</button>
+        <button class="cur-btn" data-cur="JPY" type="button">¥</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel" id="panel-movers" role="tabpanel" aria-labelledby="tab-movers">
+      <div class="hero">
+        <p class="k" id="heroK">Today's Radar</p>
+        <p class="big" id="heroBig">오늘의 급등 · 급락</p>
+        <p class="sub" id="heroSub">PriceCharting이 직전 업데이트 대비 공개한 맨카드 가격 차이로 계산했습니다.</p>
+        <div class="stats" id="heroStats"></div>
+      </div>
+      <div class="note" id="baseNote">
+        <span class="ic" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>
+        </span>
+        <span id="baseNoteText"></span>
+      </div>
+      <div class="seg" role="group" aria-label="급등 급락">
+        <button id="segUp" class="is-active up" type="button">급등 TOP 10</button>
+        <button id="segDown" type="button">급락 TOP 10</button>
+      </div>
+      <div class="rows" id="moverRows"></div>
+    </section>
+
+    <section class="panel" id="panel-rank" role="tabpanel" aria-labelledby="tab-rank" hidden>
+      <div class="section-title"><h2 id="rankTitle">팩별 가격 랭킹</h2><span id="rankSub"></span></div>
+      <div class="filters">
+        <label class="search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+          <input type="search" id="rankSearch" placeholder="카드 이름 검색 (예: Charizard)" autocomplete="off" enterkeyhint="search">
+        </label>
+        <select class="sel" id="rankSort" aria-label="정렬"></select>
+      </div>
+      <div class="chips" id="eraChips"></div>
+      <div class="filters">
+        <select class="sel" id="setSelect" aria-label="팩 선택" style="max-width:100%;width:100%"></select>
+      </div>
+      <div class="count-line"><span id="rankCount"></span><button type="button" id="rankReset">초기화</button></div>
+      <div class="rows" id="rankRows"></div>
+      <button class="more" id="rankMore" type="button" hidden></button>
+    </section>
+
+    <section class="panel" id="panel-psa" role="tabpanel" aria-labelledby="tab-psa" hidden>
+      <div class="section-title"><h2 id="psaTitle">PSA 10 vs 맨카드</h2><span id="psaSub"></span></div>
+      <div class="note">
+        <span class="ic" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="m12 3 2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.4l6.1-.8z"/></svg>
+        </span>
+        <span id="psaNote"></span>
+      </div>
+      <div class="filters">
+        <label class="search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+          <input type="search" id="psaSearch" placeholder="카드 이름 검색" autocomplete="off">
+        </label>
+        <select class="sel" id="psaSort" aria-label="정렬"></select>
+      </div>
+      <div class="count-line"><span id="psaCount"></span></div>
+      <div class="rows" id="psaRows"></div>
+      <button class="more" id="psaMore" type="button" hidden></button>
+    </section>
+
+    <section class="panel" id="panel-fx" role="tabpanel" aria-labelledby="tab-fx" hidden>
+      <div class="section-title"><h2 id="fxTitle">일판 · 한판 · 영판 환율</h2><span id="fxSub"></span></div>
+      <div class="rate-grid" id="rateGrid"></div>
+      <div class="calc">
+        <div class="seg" style="margin-top:0" id="fxFromSeg" role="group" aria-label="기준 통화">
+          <button type="button" data-from="JPY" class="is-active">일본 엔</button>
+          <button type="button" data-from="KRW">한국 원</button>
+          <button type="button" data-from="USD">미국 달러</button>
+        </div>
+        <div class="inp">
+          <input id="fxAmount" type="text" inputmode="decimal" value="10,000" aria-label="금액">
+        </div>
+        <div class="chips" style="padding-top:8px" id="fxPresets"></div>
+        <div class="res" id="fxRes"></div>
+      </div>
+      <div class="note" style="margin-top:11px">
+        <span class="ic" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        </span>
+        <span id="fxTip"></span>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-bag" role="tabpanel" aria-labelledby="tab-bag" hidden>
+      <div class="section-title"><h2 id="bagTitle">내 카드 보관함</h2><span id="bagSub"></span></div>
+      <div class="bag-total">
+        <p class="k" id="bagTotalK">보관함 총액 · 맨카드 기준</p>
+        <p class="v" id="bagTotal">0원</p>
+        <div class="alts" id="bagAlts"></div>
+      </div>
+      <div class="note" style="margin-top:11px">
+        <span class="ic" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        </span>
+        <span id="bagNote"></span>
+      </div>
+      <div class="rows" id="bagRows" style="margin-top:11px"></div>
+      <button class="more" id="bagClear" type="button" hidden></button>
+    </section>
+
+    <footer class="site-foot">
+      <p id="footSources"></p>
+      <p id="footDisclaimer"></p>
+      <p id="footPrivacy"></p>
+      <p><a href="/">jpsave.com</a> · <a href="/Japan-mounjaro-helper/">일본 마운자로 방문 도우미</a></p>
+    </footer>
+  </main>
+
+  <nav class="tabbar" role="tablist" aria-label="주요 메뉴">
+    <button class="tab is-active" role="tab" id="tab-movers" data-tab="movers" aria-selected="true" aria-controls="panel-movers" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 3 5-7 4 4"/><path d="M3 21h18"/></svg>
+      <span data-t="tabMovers">급등락</span>
+    </button>
+    <button class="tab" role="tab" id="tab-rank" data-tab="rank" aria-selected="false" aria-controls="panel-rank" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><rect x="4" y="12" width="4.2" height="6" rx="1.2"/><rect x="9.9" y="8" width="4.2" height="10" rx="1.2"/><rect x="15.8" y="4" width="4.2" height="14" rx="1.2"/></svg>
+      <span data-t="tabRank">랭킹</span>
+    </button>
+    <button class="tab" role="tab" id="tab-psa" data-tab="psa" aria-selected="false" aria-controls="panel-psa" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V7z"/><path d="m9 12 2 2 4-4"/></svg>
+      <span data-t="tabPsa">PSA</span>
+    </button>
+    <button class="tab" role="tab" id="tab-fx" data-tab="fx" aria-selected="false" aria-controls="panel-fx" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h13l-3-3"/><path d="M21 16H8l3 3"/></svg>
+      <span data-t="tabFx">환율</span>
+    </button>
+    <button class="tab" role="tab" id="tab-bag" data-tab="bag" aria-selected="false" aria-controls="panel-bag" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+      <span data-t="tabBag">보관함</span>
+    </button>
+  </nav>
+</div>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-label="카드 상세">
+  <div class="modal-card" id="modalCard"></div>
+</div>
+<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+
+<script data-goatcounter="https://swbae12345.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------ text */
+  var T = {
+    ko: {
+      brandTitle: '포켓몬 카드 시세 레이더',
+      brandSub: '팩별 랭킹 · PSA 10 비교 · 일판·한판 환율',
+      pillDate: '기준', pillCards: '카드',
+      heroK: "Today's Radar",
+      heroBig: '오늘의 급등 · 급락',
+      heroSub: 'PriceCharting이 직전 업데이트 대비 공개한 맨카드 가격 차이로 계산했습니다.',
+      baseNote: '<b>기준선 Day 1 저장(2026-11-28).</b> 지금 보는 %는 PriceCharting 직전 업데이트 대비 변동이고, 우리 사이트의 일별 24시간 변동은 이 기준선과 비교해 다음 갱신부터 표시됩니다.',
+      statTracked: '변동 추적 카드', statCards: '수집 카드', statSets: '팩',
+      segUp: '급등 TOP 10', segDown: '급락 TOP 10',
+      tabMovers: '급등락', tabRank: '랭킹', tabPsa: 'PSA', tabFx: '환율', tabBag: '보관함',
+      rankTitle: '팩별 가격 랭킹', rankSub: '연도·팩·이름으로 찾기',
+      searchPh: '카드 이름 검색 (예: Charizard)',
+      sortPrice: '가격 높은순', sortPriceAsc: '가격 낮은순', sortName: '이름순', sortYear: '연도순',
+      eraAll: '전체 연도',
+      setAll: '모든 팩',
+      count: function (n) { return n.toLocaleString('ko-KR') + '장'; },
+      reset: '초기화',
+      more: function (n) { return n + '장 더 보기'; },
+      empty: '조건에 맞는 카드가 없습니다. 검색어나 팩을 바꿔 보세요.',
+      psaTitle: 'PSA 10 vs 맨카드', psaSub: '검증된 등급 시세만',
+      psaNote: 'PSA 10 가격은 PriceCharting이 공개한 등급 시세만 표시합니다. 값이 없는 카드는 목록에서 빠집니다. 맨카드(Raw)는 같은 출처의 Ungraded 가격입니다.',
+      psaSortMult: '배수 높은순', psaSortPsa: 'PSA 10 가격순', psaSortGap: '차액 큰순',
+      fxTitle: '일판 · 한판 · 영판 환율', fxSub: '실시간 환율로 계산',
+      fxRate: '환율', fxFetched: '불러오는 중', fxLive: '실시간', fxSaved: '저장된 값',
+      fxFromJPY: '일본 엔', fxFromKRW: '한국 원', fxFromUSD: '미국 달러',
+      fxTip: '일본샵 표시가는 보통 세금 포함(税込)입니다. 한국 중고 시세는 KREAM에서, 일본 중고는 Buyee(야후옥션)에서 검색해 비교해 보세요. 카드 상세 화면에 검색 링크가 있습니다.',
+      bagTitle: '내 카드 보관함', bagSub: '이 기기에만 저장',
+      bagTotalK: '보관함 총액 · 맨카드 기준', bagItems: function (n) { return n + '종'; },
+      bagNote: '보관함은 이 브라우저(localStorage)에만 저장되고 서버로 보내지 않습니다. 가격은 기준일 스냅샷이며, PSA 10 보유분은 카드 상세의 PSA 10 값으로 따로 계산합니다.',
+      bagEmpty: '아직 담은 카드가 없습니다. 랭킹에서 카드를 눌러 [보관함에 담기]를 누르면 시세 합계가 자동으로 계산됩니다.',
+      bagClear: '보관함 비우기',
+      addBag: '보관함에 담기', inBag: '보관함에 있음 · 수량 조절은 보관함 탭에서',
+      addedToast: '보관함에 담았습니다',
+      removedToast: '보관함에서 뺐습니다',
+      detailPrice: 'TCGplayer 시장가', detailVar: '프린트',
+      sectPsa: '등급 시세 (PriceCharting)', sectVar: '다른 프린트', sectLinks: '시세 참고 링크',
+      raw: '맨카드', grade9: '등급 9', psa10: 'PSA 10', mult: '배수', gap: '차액',
+      rawChg: '맨카드 변동', psaChg: 'PSA 10 변동',
+      linkKream: 'KREAM 검색', linkEbay: 'eBay 검색', linkBuyee: 'Buyee(일본)', linkPc: 'PriceCharting',
+      srcTC: 'TCGplayer', srcPC: 'PriceCharting',
+      noPsa: '이 카드는 검증된 PSA 10 시세가 없습니다.',
+      footSources: '자료: TCGdex API(TCGplayer 시장가) · PriceCharting(맨카드·PSA 10) · ExchangeRate-API(환율). 가격 기준 2026-11-28 07:16 KST.',
+      footDisclaimer: '카드 가격은 공개 시세이며 실제 거래가·등급 판정과 다를 수 있습니다. 이 사이트는 판매·중개·감정을 하지 않고 투자 권유도 하지 않습니다.',
+      footPrivacy: '입력한 금액·보관함은 브라우저 안에서만 계산되고 서버로 전송되지 않습니다. 방문 통계는 GoatCounter(익명 카운터)로 집계합니다.',
+      loading: '시세 데이터를 불러오는 중입니다…',
+      loadFail: '시세 데이터를 불러오지 못했습니다. 잠시 뒤 새로고침해 주세요.',
+      retry: '다시 시도',
+      up: '급등', down: '급락',
+      unitUsd: '달러', unitJpy: '엔', unitKrw: '원',
+      fxQuick: '빠른 금액', fxCardTo: '카드 시세 빠른 변환'
+    },
+    en: {
+      brandTitle: 'Pokémon Card Price Radar',
+      brandSub: 'Set rankings · PSA 10 vs raw · JPY/KRW/USD',
+      pillDate: 'As of', pillCards: 'Cards',
+      heroK: "Today's Radar",
+      heroBig: "Today's biggest movers",
+      heroSub: "Percent moves computed from PriceCharting's published change since its last update (ungraded).",
+      baseNote: '<b>Day-1 baseline saved (2026-11-28).</b> The percentages here are PriceCharting\'s change since its last update. Our own 24h change will be computed against this baseline from the next daily refresh.',
+      statTracked: 'cards with change', statCards: 'cards tracked', statSets: 'sets',
+      segUp: 'Top 10 gainers', segDown: 'Top 10 losers',
+      tabMovers: 'Movers', tabRank: 'Ranking', tabPsa: 'PSA', tabFx: 'FX', tabBag: 'Portfolio',
+      rankTitle: 'Price ranking by set', rankSub: 'Filter by year, set, name',
+      searchPh: 'Search card name (e.g. Charizard)',
+      sortPrice: 'Price: high to low', sortPriceAsc: 'Price: low to high', sortName: 'Name', sortYear: 'Year',
+      eraAll: 'All years',
+      setAll: 'All sets',
+      count: function (n) { return n.toLocaleString('en-US') + ' cards'; },
+      reset: 'Reset',
+      more: function (n) { return 'Show ' + n + ' more'; },
+      empty: 'No cards match. Try another name or set.',
+      psaTitle: 'PSA 10 vs raw', psaSub: 'verified grade prices only',
+      psaNote: 'PSA 10 prices come only from PriceCharting\'s published graded values. Cards without them are left out. Raw is the same source\'s Ungraded price.',
+      psaSortMult: 'Multiplier', psaSortPsa: 'PSA 10 price', psaSortGap: 'Gap',
+      fxTitle: 'JPY · KRW · USD', fxSub: 'live exchange rates',
+      fxRate: 'Rate', fxFetched: 'loading', fxLive: 'live', fxSaved: 'saved',
+      fxFromJPY: 'Japanese yen', fxFromKRW: 'Korean won', fxFromUSD: 'US dollar',
+      fxTip: 'Japanese shop prices usually include tax (税込). Compare Korean used prices on KREAM and Japanese listings on Buyee (Yahoo Auctions); the card detail panel has the search links.',
+      bagTitle: 'My portfolio', bagSub: 'stored on this device',
+      bagTotalK: 'Portfolio total · raw prices', bagItems: function (n) { return n + ' items'; },
+      bagNote: 'The portfolio is saved in this browser (localStorage) and never uploaded. Values use the snapshot prices; PSA 10 holdings are valued separately at the PSA 10 price in the card detail.',
+      bagEmpty: 'Nothing saved yet. Open a card in Ranking and press "Add to portfolio" — the total is summed for you.',
+      bagClear: 'Clear portfolio',
+      addBag: 'Add to portfolio', inBag: 'In your portfolio — adjust quantity in the Portfolio tab',
+      addedToast: 'Added to portfolio',
+      removedToast: 'Removed from portfolio',
+      detailPrice: 'TCGplayer market', detailVar: 'Print',
+      sectPsa: 'Graded prices (PriceCharting)', sectVar: 'Other prints', sectLinks: 'Price reference links',
+      raw: 'Raw', grade9: 'Grade 9', psa10: 'PSA 10', mult: 'multiplier', gap: 'gap',
+      rawChg: 'Raw change', psaChg: 'PSA 10 change',
+      linkKream: 'KREAM search', linkEbay: 'eBay search', linkBuyee: 'Buyee (Japan)', linkPc: 'PriceCharting',
+      srcTC: 'TCGplayer', srcPC: 'PriceCharting',
+      noPsa: 'No verified PSA 10 price for this card.',
+      footSources: 'Sources: TCGdex API (TCGplayer market), PriceCharting (raw & PSA 10), ExchangeRate-API (FX). Prices as of 2026-11-28 07:16 KST.',
+      footDisclaimer: 'Prices are public market data and may differ from actual sales or grades. This site does not sell, broker or grade cards, and is not investment advice.',
+      footPrivacy: 'Amounts you type and your portfolio stay in your browser. Traffic is counted anonymously with GoatCounter.',
+      loading: 'Loading price data…',
+      loadFail: 'Could not load the price data. Please refresh in a moment.',
+      retry: 'Retry',
+      up: 'up', down: 'down',
+      unitUsd: 'USD', unitJpy: 'JPY', unitKrw: 'KRW',
+      fxQuick: 'Quick amounts', fxCardTo: 'Convert card prices'
+    }
+  };
+
+  var state = {
+    lang: 'ko', cur: 'KRW', tab: 'movers', moverDir: 'up',
+    rankQ: '', era: 'all', set: 'all', sort: 'price', rankLimit: 40,
+    psaQ: '', psaSort: 'mult', psaLimit: 30,
+    fxFrom: 'JPY', fxAmount: 10000,
+    bag: []
+  };
+  var DATA = null, RATES = { KRW: 1350, JPY: 155 }, FX_TS = '', FX_LIVE = false;
+  var setsById = {}, cardsById = {}, bySet = {};
+
+  /* --------------------------------------------------------------- helpers */
+  function t(k) { var v = T[state.lang][k]; return v === undefined ? (T.ko[k] || k) : v; }
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, html) { var d = document.createElement(tag); if (cls) d.className = cls; if (html != null) d.innerHTML = html; return d; }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+  function nf(n, d) {
+    if (n == null || isNaN(n)) return '—';
+    var o = { minimumFractionDigits: d || 0, maximumFractionDigits: d == null ? 0 : d };
+    return Number(n).toLocaleString(state.lang === 'ko' ? 'ko-KR' : 'en-US', o);
+  }
+  function usdTo(usd, cur) {
+    if (usd == null) return null;
+    if (cur === 'KRW') return usd * RATES.KRW;
+    if (cur === 'JPY') return usd * RATES.JPY;
+    return usd;
+  }
+  function money(usd, cur, opts) {
+    if (usd == null) return '—';
+    cur = cur || state.cur;
+    var v = usdTo(usd, cur);
+    if (cur === 'KRW') {
+      if (opts && opts.compact && v >= 10000) return nf(Math.round(v / 1000)) + '천원';
+      return nf(Math.round(v)) + '원';
+    }
+    if (cur === 'JPY') return '¥' + nf(Math.round(v));
+    var d = v >= 100 ? 0 : 2;
+    return '$' + nf(v, d);
+  }
+  function smallMoney(usd) {
+    var parts = [];
+    if (state.cur !== 'KRW') parts.push(nf(Math.round(usd * RATES.KRW)) + '원');
+    if (state.cur !== 'USD') parts.push('$' + nf(usd, usd >= 100 ? 0 : 2));
+    if (state.cur !== 'JPY') parts.push('¥' + nf(Math.round(usd * RATES.JPY)));
+    return parts.join(' · ');
+  }
+  function pctBadge(p, dir) {
+    if (p == null) return '';
+    var cls = p > 0 ? 'up' : (p < 0 ? 'down' : 'flat');
+    var sign = p > 0 ? '+' : '';
+    return '<span class="badge ' + cls + '">' + sign + nf(p, 1) + '%</span>';
+  }
+  function toast(msg) {
+    var w = $('toastWrap'), d = el('div', 'toast', esc(msg));
+    w.appendChild(d);
+    requestAnimationFrame(function () { d.classList.add('in'); });
+    setTimeout(function () { d.classList.remove('in'); setTimeout(function () { d.remove(); }, 250); }, 1900);
+  }
+  function save(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { } }
+  function load(key, fallback) { try { var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; } }
+
+  /* ------------------------------------------------------------------ boot */
+  function detectLang() {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'en' || q === 'ko') return q;
+    var saved = load('pcr_lang', null);
+    if (saved === 'en' || saved === 'ko') return saved;
+    var nav = (navigator.language || '').toLowerCase();
+    return nav.indexOf('ko') === 0 ? 'ko' : 'en';
+  }
+
+  function applyLang(lang, fromUser) {
+    state.lang = lang;
+    document.documentElement.lang = lang;
+    document.title = lang === 'ko'
+      ? '포켓몬 카드 시세 레이더 — 팩별 가격 랭킹·PSA 10 비교·환율 계산기'
+      : 'Pokémon Card Price Radar — set rankings, PSA 10 vs raw, JPY/KRW/USD';
+    $('brandTitle').textContent = t('brandTitle');
+    $('brandSub').textContent = t('brandSub');
+    $('langKo').classList.toggle('is-active', lang === 'ko');
+    $('langEn').classList.toggle('is-active', lang === 'en');
+    $('pillDate').innerHTML = t('pillDate') + ' <b>' + (DATA ? DATA.meta.snapshot : '2026-11-28') + '</b>';
+    $('heroK').textContent = t('heroK');
+    $('heroBig').textContent = t('heroBig');
+    $('heroSub').textContent = t('heroSub');
+    $('baseNoteText').innerHTML = t('baseNote');
+    $('segUp').textContent = t('segUp');
+    $('segDown').textContent = t('segDown');
+    $('rankTitle').textContent = t('rankTitle');
+    $('rankSub').textContent = t('rankSub');
+    $('rankSearch').placeholder = t('searchPh');
+    $('psaSearch').placeholder = t('searchPh');
+    $('rankReset').textContent = t('reset');
+    $('psaTitle').textContent = t('psaTitle');
+    $('psaSub').textContent = t('psaSub');
+    $('psaNote').textContent = t('psaNote');
+    $('fxTitle').textContent = t('fxTitle');
+    $('fxSub').textContent = t('fxSub');
+    $('fxTip').textContent = t('fxTip');
+    $('bagTitle').textContent = t('bagTitle');
+    $('bagSub').textContent = t('bagSub');
+    $('bagTotalK').textContent = t('bagTotalK');
+    $('bagNote').textContent = t('bagNote');
+    $('bagClear').textContent = t('bagClear');
+    $('footSources').textContent = t('footSources');
+    $('footDisclaimer').textContent = t('footDisclaimer');
+    $('footPrivacy').textContent = t('footPrivacy');
+    $('fxFromSeg').children[0].textContent = t('fxFromJPY');
+    $('fxFromSeg').children[1].textContent = t('fxFromKRW');
+    $('fxFromSeg').children[2].textContent = t('fxFromUSD');
+    Array.prototype.forEach.call(document.querySelectorAll('.tab span[data-t]'), function (s) { s.textContent = t(s.getAttribute('data-t')); });
+
+    if (DATA) {
+      $('pillCards').innerHTML = t('pillCards') + ' <b>' + nf(DATA.meta.cardCount) + '</b>';
+      buildEraChips(); buildSetSelect(); buildSortSelects();
+      renderMovers(); renderRank(); renderPsa(); renderFx(); renderBag();
+    }
+    if (fromUser) {
+      save('pcr_lang', lang);
+      try {
+        var u = new URL(location.href);
+        if (u.searchParams.get('lang')) { u.searchParams.set('lang', lang); history.replaceState(null, '', u.toString()); }
+      } catch (e) { }
+    }
+  }
+
+  function boot() {
+    state.lang = detectLang();
+    state.cur = load('pcr_cur', 'KRW');
+    state.bag = load('pcr_bag', []);
+    if (!Array.isArray(state.bag)) state.bag = [];
+    Array.prototype.forEach.call(document.querySelectorAll('.cur-btn'), function (b) {
+      b.classList.toggle('is-active', b.getAttribute('data-cur') === state.cur);
+    });
+    applyLang(state.lang, false);
+    $('moverRows').innerHTML = '<div class="card pad small muted">' + esc(t('loading')) + '</div>';
+
+    fetch('cards.json', { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (d) {
+        DATA = d;
+        (d.cards || []).forEach(function (c) { cardsById[c.id] = c; (bySet[c.set] = bySet[c.set] || []).push(c); });
+        Object.keys(d.sets).forEach(function (k) { setsById[k] = d.sets[k]; });
+        if (d.meta && d.meta.fx && d.meta.fx.rates) {
+          RATES.KRW = d.meta.fx.rates.KRW; RATES.JPY = d.meta.fx.rates.JPY;
+          FX_TS = d.meta.fx.updated || ''; FX_LIVE = false;
+        }
+        applyLang(state.lang, false);
+        refreshFxRate();
+      })
+      .catch(function () {
+        $('moverRows').innerHTML = '<div class="card pad small" style="color:#b91c1c">' + esc(t('loadFail')) +
+          ' <button class="more" style="margin-top:8px" onclick="location.reload()">' + esc(t('retry')) + '</button></div>';
+      });
+  }
+
+  function refreshFxRate() {
+    fetch('https://open.er-api.com/v6/latest/USD')
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (j && j.result === 'success' && j.rates && j.rates.KRW && j.rates.JPY) {
+          RATES.KRW = j.rates.KRW; RATES.JPY = j.rates.JPY; FX_TS = j.time_last_update_utc || ''; FX_LIVE = true;
+          renderFx(); renderMovers(); renderRank(); renderPsa(); renderBag();
+        }
+      })
+      .catch(function () { });
+  }
+
+  /* --------------------------------------------------------------- movers */
+  function movers() {
+    var list = (DATA.cards || []).filter(function (c) {
+      return c.pc && c.pc.rawChgPct != null && c.pc.raw != null && c.pc.raw >= 5;
+    });
+    var up = list.filter(function (c) { return c.pc.rawChgPct > 0; }).sort(function (a, b) { return b.pc.rawChgPct - a.pc.rawChgPct; });
+    var down = list.filter(function (c) { return c.pc.rawChgPct < 0; }).sort(function (a, b) { return a.pc.rawChgPct - b.pc.rawChgPct; });
+    return { up: up, down: down, total: list.length };
+  }
+
+  function cardRow(c, opts) {
+    opts = opts || {};
+    var s = setsById[c.set] || {};
+    var meta = esc(s.name || c.set) + '<span class="dot">·</span>' + (s.year || '') + '<span class="dot">·</span>#' + esc(c.num);
+    var price = opts.priceUsd != null ? opts.priceUsd : c.usd;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'row';
+    btn.setAttribute('data-card', c.id);
+    btn.innerHTML =
+      (opts.rank ? '<span class="rank' + (opts.rank <= 3 ? ' t' + opts.rank : '') + '">' + opts.rank + '</span>' : '') +
+      '<span class="thumb"><img loading="lazy" decoding="async" width="44" height="62" src="' + esc(c.img || '') + '" alt=""></span>' +
+      '<span class="body"><span class="nm">' + esc(c.n) + '</span>' +
+      '<span class="meta">' + meta + '</span>' +
+      '<span class="px">' + money(price) + '<small>' + smallMoney(price) + '</small></span></span>' +
+      '<span class="right">' + (opts.badge || '') + (opts.tag ? '<span class="tag">' + esc(opts.tag) + '</span>' : '') + '</span>';
+    return btn;
+  }
+
+  function renderMovers() {
+    if (!DATA) return;
+    var m = movers();
+    $('heroStats').innerHTML =
+      '<div class="stat"><b>' + nf(m.total) + '</b><span>' + esc(t('statTracked')) + '</span></div>' +
+      '<div class="stat"><b>' + nf(DATA.meta.cardCount) + '</b><span>' + esc(t('statCards')) + '</span></div>' +
+      '<div class="stat"><b>' + nf(DATA.meta.setCount) + '</b><span>' + esc(t('statSets')) + '</span></div>';
+    var list = (state.moverDir === 'up' ? m.up : m.down).slice(0, 10);
+    var wrap = $('moverRows');
+    wrap.innerHTML = '';
+    if (!list.length) { wrap.appendChild(el('div', 'card pad small muted', esc(t('empty')))); return; }
+    list.forEach(function (c, i) {
+      var badge = pctBadge(c.pc.rawChgPct);
+      var psaLine = c.pc.psa10ChgPct != null ? '<span class="tag">PSA 10 ' + (c.pc.psa10ChgPct > 0 ? '+' : '') + nf(c.pc.psa10ChgPct, 1) + '%</span>' : '';
+      wrap.appendChild(cardRow(c, { rank: i + 1, priceUsd: c.pc.raw, badge: badge + psaLine }));
+    });
+  }
+
+  /* -------------------------------------------------------------- ranking */
+  function eras() {
+    var seen = {}, list = [];
+    Object.keys(setsById).forEach(function (k) {
+      var s = setsById[k];
+      if (!seen[s.era]) { seen[s.era] = true; list.push({ key: s.era, label: s.era }); }
+    });
+    return list;
+  }
+  function buildEraChips() {
+    var box = $('eraChips');
+    box.innerHTML = '';
+    var all = el('button', 'chip' + (state.era === 'all' ? ' is-active' : ''), esc(t('eraAll')));
+    all.type = 'button';
+    all.onclick = function () { state.era = 'all'; state.rankLimit = 40; buildEraChips(); renderRank(); };
+    box.appendChild(all);
+    eras().forEach(function (e) {
+      var b = el('button', 'chip' + (state.era === e.key ? ' is-active' : ''), esc(e.label));
+      b.type = 'button';
+      b.onclick = function () { state.era = e.key; state.rankLimit = 40; buildEraChips(); renderRank(); };
+      box.appendChild(b);
+    });
+  }
+  function buildSetSelect() {
+    var sel = $('setSelect');
+    sel.innerHTML = '';
+    var o0 = document.createElement('option'); o0.value = 'all'; o0.textContent = t('setAll'); sel.appendChild(o0);
+    var ids = Object.keys(setsById).sort(function (a, b) { return (setsById[a].year || 0) - (setsById[b].year || 0); });
+    ids.forEach(function (id) {
+      var s = setsById[id];
+      if (state.era !== 'all' && s.era !== state.era) return;
+      var o = document.createElement('option');
+      o.value = id;
+      o.textContent = (s.year ? s.year + ' · ' : '') + s.name;
+      sel.appendChild(o);
+    });
+    sel.value = state.set;
+    if (sel.value !== state.set) { state.set = 'all'; sel.value = 'all'; }
+  }
+  function buildSortSelects() {
+    var r = $('rankSort');
+    r.innerHTML = '<option value="price">' + esc(t('sortPrice')) + '</option><option value="priceAsc">' + esc(t('sortPriceAsc')) + '</option><option value="name">' + esc(t('sortName')) + '</option><option value="year">' + esc(t('sortYear')) + '</option>';
+    r.value = state.sort;
+    var p = $('psaSort');
+    p.innerHTML = '<option value="mult">' + esc(t('psaSortMult')) + '</option><option value="psa">' + esc(t('psaSortPsa')) + '</option><option value="gap">' + esc(t('psaSortGap')) + '</option>';
+    p.value = state.psaSort;
+  }
+
+  function rankFiltered() {
+    var q = state.rankQ.trim().toLowerCase();
+    var list = (DATA.cards || []).filter(function (c) {
+      if (state.set !== 'all') { if (c.set !== state.set) return false; }
+      if (state.era !== 'all') { var s = setsById[c.set]; if (!s || s.era !== state.era) return false; }
+      if (q && c.n.toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+    if (state.sort === 'price') list.sort(function (a, b) { return b.usd - a.usd; });
+    else if (state.sort === 'priceAsc') list.sort(function (a, b) { return a.usd - b.usd; });
+    else if (state.sort === 'name') list.sort(function (a, b) { return a.n.localeCompare(b.n); });
+    else list.sort(function (a, b) { return ((setsById[b.set] || {}).year || 0) - ((setsById[a.set] || {}).year || 0) || b.usd - a.usd; });
+    return list;
+  }
+
+  function renderRank() {
+    if (!DATA) return;
+    var list = rankFiltered();
+    var shown = list.slice(0, state.rankLimit);
+    $('rankCount').textContent = t('count')(list.length);
+    var wrap = $('rankRows');
+    wrap.innerHTML = '';
+    if (!list.length) { wrap.appendChild(el('div', 'card pad small muted', esc(t('empty')))); }
+    shown.forEach(function (c, i) {
+      wrap.appendChild(cardRow(c, { rank: i + 1, tag: c.src === 'PC' ? t('srcPC') : '' }));
+    });
+    var more = $('rankMore');
+    if (list.length > state.rankLimit) {
+      more.hidden = false;
+      more.textContent = t('more')(Math.min(60, list.length - state.rankLimit));
+    } else { more.hidden = true; }
+  }
+
+  /* ------------------------------------------------------------------ psa */
+  function psaList() {
+    var q = state.psaQ.trim().toLowerCase();
+    var list = (DATA.cards || []).filter(function (c) {
+      if (!c.pc || !c.pc.psa10 || !c.pc.raw) return false;
+      if (q && c.n.toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+    list.forEach(function (c) { c._mult = c.pc.psa10 / c.pc.raw; });
+    if (state.psaSort === 'psa') list.sort(function (a, b) { return b.pc.psa10 - a.pc.psa10; });
+    else if (state.psaSort === 'gap') list.sort(function (a, b) { return (b.pc.psa10 - b.pc.raw) - (a.pc.psa10 - a.pc.raw); });
+    else list.sort(function (a, b) { return b._mult - a._mult; });
+    return list;
+  }
+
+  function renderPsa() {
+    if (!DATA) return;
+    var list = psaList();
+    $('psaCount').textContent = t('count')(list.length);
+    var wrap = $('psaRows');
+    wrap.innerHTML = '';
+    if (!list.length) { wrap.appendChild(el('div', 'card pad small muted', esc(t('empty')))); return; }
+    list.slice(0, state.psaLimit).forEach(function (c, i) {
+      var s = setsById[c.set] || {};
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'psa-row'; b.setAttribute('data-card', c.id);
+      b.innerHTML =
+        '<span class="rank' + (i < 3 ? ' t' + (i + 1) : '') + '">' + (i + 1) + '</span>' +
+        '<span class="thumb"><img loading="lazy" decoding="async" width="44" height="62" src="' + esc(c.img || '') + '" alt=""></span>' +
+        '<span class="body" style="flex:1 1 auto;min-width:0">' +
+        '<span class="nm">' + esc(c.n) + '</span>' +
+        '<span class="meta">' + esc(s.name || c.set) + '<span class="dot">·</span>' + (s.year || '') + '<span class="dot">·</span>#' + esc(c.num) + '</span>' +
+        '<span class="cmp"><span class="lbl">' + esc(t('raw')) + '</span>' + money(c.pc.raw) + '<span class="arw">→</span><span class="lbl">' + esc(t('psa10')) + '</span>' + money(c.pc.psa10) + '</span>' +
+        '</span>' +
+        '<span class="mult"><b>×' + nf(c._mult, 2) + '</b><span>' + esc(t('mult')) + '</span></span>';
+      wrap.appendChild(b);
+    });
+    var more = $('psaMore');
+    if (list.length > state.psaLimit) { more.hidden = false; more.textContent = t('more')(Math.min(60, list.length - state.psaLimit)); }
+    else more.hidden = true;
+  }
+
+  /* ------------------------------------------------------------------- fx */
+  function fmtCur(v, cur) {
+    if (v == null || isNaN(v)) return '—';
+    if (cur === 'KRW') return nf(Math.round(v)) + '원';
+    if (cur === 'JPY') return '¥' + nf(Math.round(v));
+    return '$' + nf(v, 2);
+  }
+  function renderFx() {
+    var k = RATES.KRW, j = RATES.JPY;
+    $('rateGrid').innerHTML =
+      '<div class="rate"><span>USD → KRW</span><b>' + nf(Math.round(k)) + '원</b><i>1달러</i></div>' +
+      '<div class="rate"><span>USD → JPY</span><b>¥' + nf(Math.round(j)) + '</b><i>1달러</i></div>' +
+      '<div class="rate"><span>100 JPY → KRW</span><b>' + nf(Math.round(k / j * 100)) + '원</b><i>100엔</i></div>' +
+      '<div class="rate"><span>JPY → KRW</span><b>' + nf(k / j * 1, 2) + '원</b><i>1엔 · ' + (FX_LIVE ? t('fxLive') : t('fxSaved')) + '</i></div>';
+    var amt = Number(String(state.fxAmount).replace(/[^0-9.]/g, '')) || 0;
+    var usd;
+    if (state.fxFrom === 'KRW') usd = amt / k;
+    else if (state.fxFrom === 'JPY') usd = amt / j;
+    else usd = amt;
+    var rows = [];
+    if (state.fxFrom !== 'KRW') rows.push(['KRW', usd * k]);
+    if (state.fxFrom !== 'JPY') rows.push(['JPY', usd * j]);
+    if (state.fxFrom !== 'USD') rows.push(['USD', usd]);
+    $('fxRes').innerHTML = rows.map(function (r) {
+      var label = r[0] === 'KRW' ? '한국 원 (KRW)' : (r[0] === 'JPY' ? '일본 엔 (JPY)' : '미국 달러 (USD)');
+      return '<div><span>' + esc(label) + '</span><b>' + fmtCur(r[1], r[0]) + '</b></div>';
+    }).join('');
+    var presets = state.fxFrom === 'JPY' ? [1000, 5000, 10000, 30000, 50000] : (state.fxFrom === 'KRW' ? [10000, 30000, 50000, 100000] : [10, 50, 100, 500]);
+    $('fxPresets').innerHTML = presets.map(function (p) {
+      return '<button class="chip" type="button" data-fx="' + p + '">' + (state.fxFrom === 'KRW' ? nf(p) + '원' : (state.fxFrom === 'JPY' ? '¥' + nf(p) : '$' + nf(p))) + '</button>';
+    }).join('');
+  }
+
+  /* ------------------------------------------------------------------ bag */
+  function bagJoined() {
+    return state.bag.map(function (it) {
+      var c = cardsById[it.id];
+      if (!c) return null;
+      var unit = it.grade === 'psa' && c.pc && c.pc.psa10 ? c.pc.psa10 : c.usd;
+      return { it: it, c: c, unit: unit };
+    }).filter(Boolean);
+  }
+  function addToBag(id) {
+    var found = state.bag.filter(function (x) { return x.id === id; })[0];
+    if (found) { found.qty += 1; } else { state.bag.push({ id: id, qty: 1, grade: 'raw' }); }
+    save('pcr_bag', state.bag); renderBag(); toast(t('addedToast'));
+  }
+  function renderBag() {
+    var rows = bagJoined();
+    var totalUsd = rows.reduce(function (s, r) { return s + (r.unit || 0) * r.it.qty; }, 0);
+    var psaUsd = rows.reduce(function (s, r) { return s + (r.it.grade === 'psa' && r.c.pc && r.c.pc.psa10 ? r.c.pc.psa10 : 0) * r.it.qty; }, 0);
+    var count = rows.reduce(function (s, r) { return s + r.it.qty; }, 0);
+    $('bagTotal').textContent = money(totalUsd);
+    $('bagAlts').innerHTML = '<span>' + nf(count) + (state.lang === 'ko' ? '장' : ' cards') + '</span>' +
+      '<span>' + (state.lang === 'ko' ? 'PSA 10 기준 ' : 'at PSA 10 ') + money(psaUsd) + '</span>' +
+      '<span>' + money(totalUsd, 'USD') + '</span>';
+    var wrap = $('bagRows');
+    wrap.innerHTML = '';
+    $('bagClear').hidden = !rows.length;
+    if (!rows.length) { wrap.appendChild(el('div', 'card pad small muted', esc(t('bagEmpty')))); return; }
+    rows.forEach(function (r) {
+      var s = setsById[r.c.set] || {};
+      var d = document.createElement('div');
+      d.className = 'bag-item';
+      d.innerHTML =
+        '<span class="thumb" style="width:38px;height:54px"><img loading="lazy" decoding="async" width="38" height="54" src="' + esc(r.c.img || '') + '" alt=""></span>' +
+        '<span style="flex:1 1 auto;min-width:0"><span class="nm">' + esc(r.c.n) + '</span>' +
+        '<span class="sub">' + esc(s.name || r.c.set) + ' · #' + esc(r.c.num) + (r.it.grade === 'psa' ? ' · PSA 10' : '') + '</span></span>' +
+        '<span class="qty"><button type="button" data-bagq="-1" data-id="' + esc(r.c.id) + '" aria-label="-">−</button><span>' + r.it.qty + '</span><button type="button" data-bagq="1" data-id="' + esc(r.c.id) + '" aria-label="+">+</button></span>' +
+        '<span class="sum">' + money((r.unit || 0) * r.it.qty) + '</span>' +
+        '<button class="del" type="button" data-bagdel="' + esc(r.c.id) + '" aria-label="remove"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+      wrap.appendChild(d);
+    });
+  }
+
+  /* ---------------------------------------------------------------- modal */
+  function openCard(id) {
+    var c = cardsById[id];
+    if (!c) return;
+    var s = setsById[c.set] || {};
+    var kream = 'https://kream.co.kr/search?keyword=' + encodeURIComponent(c.n + ' 포켓몬 카드');
+    var ebay = 'https://www.ebay.com/sch/i.html?_nkw=' + encodeURIComponent(c.n + ' ' + (s.name || '') + ' pokemon');
+    var buyee = 'https://buyee.jp/item/search/query/' + encodeURIComponent(c.n + ' ポケモンカード') + '?sort=endTimeFast';
+    var pcUrl = (c.pc && c.pc.url) || ('https://www.pricecharting.com/search-products?q=' + encodeURIComponent(c.n + ' ' + (s.name || '')));
+    var inBag = state.bag.some(function (x) { return x.id === c.id; });
+    var html = '';
+    html += '<div class="modal-head">' +
+      '<img src="' + esc(c.imgh || c.img || '') + '" alt="">' +
+      '<div style="min-width:0"><h2>' + esc(c.n) + '</h2>' +
+      '<p class="m">' + esc(s.name || c.set) + ' · ' + (s.year || '') + ' · #' + esc(c.num) + (c.rarity ? ' · ' + esc(c.rarity) : '') + '</p>' +
+      '<p class="m">' + esc(t('detailVar')) + ': ' + esc(c.var || '') + ' · ' + esc(c.src === 'PC' ? t('srcPC') : t('srcTC')) + '</p>' +
+      '</div><button class="close" type="button" data-close aria-label="close">✕</button></div>';
+    html += '<div class="pblock">' +
+      '<div><span>' + esc(t('detailPrice')) + '</span><b>' + money(c.usd) + '</b></div>' +
+      '<div><span>KRW</span><b>' + fmtCur(c.usd * RATES.KRW, 'KRW') + '</b></div>' +
+      '<div><span>JPY</span><b>' + fmtCur(c.usd * RATES.JPY, 'JPY') + '</b></div>' +
+      '</div>';
+    if (c.pc) {
+      html += '<p class="sect-m">' + esc(t('sectPsa')) + '</p>';
+      html += '<div class="mrow"><span class="l">' + esc(t('raw')) + '<em>Ungraded</em></span><span class="r">' + money(c.pc.raw) + '</span></div>';
+      if (c.pc.g9) html += '<div class="mrow"><span class="l">' + esc(t('grade9')) + '<em>Grade 9</em></span><span class="r">' + money(c.pc.g9) + '</span></div>';
+      if (c.pc.psa10) html += '<div class="mrow"><span class="l">' + esc(t('psa10')) + '<em>' + (c.pc.raw ? '×' + nf(c.pc.psa10 / c.pc.raw, 2) + ' · ' + t('gap') + ' ' + money(c.pc.psa10 - c.pc.raw) : '') + '</em></span><span class="r">' + money(c.pc.psa10) + '</span></div>';
+      if (c.pc.rawChgPct != null) html += '<div class="mrow"><span class="l">' + esc(t('rawChg')) + '<em>PriceCharting</em></span><span class="r">' + pctBadge(c.pc.rawChgPct) + '</span></div>';
+      if (c.pc.psa10ChgPct != null) html += '<div class="mrow"><span class="l">' + esc(t('psaChg')) + '<em>PriceCharting</em></span><span class="r">' + pctBadge(c.pc.psa10ChgPct) + '</span></div>';
+    } else {
+      html += '<p class="small muted" style="margin:10px 0 0">' + esc(t('noPsa')) + '</p>';
+    }
+    if (c.vs && c.vs.length) {
+      html += '<p class="sect-m">' + esc(t('sectVar')) + '</p>';
+      c.vs.forEach(function (v) {
+        html += '<div class="mrow"><span class="l">' + esc(v.l) + '</span><span class="r">' + money(v.usd) + '</span></div>';
+      });
+    }
+    html += '<p class="sect-m">' + esc(t('sectLinks')) + '</p>';
+    html += '<div class="links">' +
+      '<a href="' + esc(kream) + '" target="_blank" rel="noopener nofollow">' + esc(t('linkKream')) + '</a>' +
+      '<a href="' + esc(ebay) + '" target="_blank" rel="noopener nofollow">' + esc(t('linkEbay')) + '</a>' +
+      '<a href="' + esc(buyee) + '" target="_blank" rel="noopener nofollow">' + esc(t('linkBuyee')) + '</a>' +
+      '<a href="' + esc(pcUrl) + '" target="_blank" rel="noopener nofollow">' + esc(t('linkPc')) + '</a>' +
+      '</div>';
+    html += '<button class="btn-primary" type="button" data-add="' + esc(c.id) + '">' + esc(inBag ? t('inBag') : t('addBag')) + '</button>';
+    $('modalCard').innerHTML = html;
+    $('modal').hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCard() { $('modal').hidden = true; document.body.style.overflow = ''; }
+
+  /* ---------------------------------------------------------------- tabs */
+  function setTab(tab) {
+    state.tab = tab;
+    ['movers', 'rank', 'psa', 'fx', 'bag'].forEach(function (k) {
+      var p = $('panel-' + k), b = $('tab-' + k);
+      if (!p) return;
+      var on = k === tab;
+      p.hidden = !on;
+      if (b) { b.classList.toggle('is-active', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); }
+    });
+    if (tab === 'rank') { buildSetSelect(); renderRank(); }
+    if (tab === 'psa') renderPsa();
+    if (tab === 'fx') renderFx();
+    if (tab === 'bag') renderBag();
+    window.scrollTo(0, 0);
+  }
+
+  /* --------------------------------------------------------------- events */
+  document.addEventListener('click', function (e) {
+    var tgt = e.target;
+    var cardBtn = tgt.closest ? tgt.closest('[data-card]') : null;
+    if (cardBtn) { openCard(cardBtn.getAttribute('data-card')); return; }
+    var closeBtn = tgt.closest ? tgt.closest('[data-close]') : null;
+    if (closeBtn) { closeCard(); return; }
+    var addBtn = tgt.closest ? tgt.closest('[data-add]') : null;
+    if (addBtn) { var id = addBtn.getAttribute('data-add'); closeCard(); addToBag(id); return; }
+    var tabBtn = tgt.closest ? tgt.closest('.tab') : null;
+    if (tabBtn) { setTab(tabBtn.getAttribute('data-tab')); return; }
+    var curBtn = tgt.closest ? tgt.closest('.cur-btn') : null;
+    if (curBtn) {
+      state.cur = curBtn.getAttribute('data-cur'); save('pcr_cur', state.cur);
+      Array.prototype.forEach.call(document.querySelectorAll('.cur-btn'), function (b) { b.classList.toggle('is-active', b === curBtn); });
+      renderMovers(); renderRank(); renderPsa(); renderFx(); renderBag(); return;
+    }
+    var fxBtn = tgt.closest ? tgt.closest('[data-fx]') : null;
+    if (fxBtn) { state.fxAmount = Number(fxBtn.getAttribute('data-fx')); $('fxAmount').value = nf(state.fxAmount); renderFx(); return; }
+    var fromBtn = tgt.closest ? tgt.closest('[data-from]') : null;
+    if (fromBtn) {
+      state.fxFrom = fromBtn.getAttribute('data-from');
+      Array.prototype.forEach.call($('fxFromSeg').children, function (b) { b.classList.toggle('is-active', b === fromBtn); });
+      var preset = state.fxFrom === 'JPY' ? 10000 : (state.fxFrom === 'KRW' ? 50000 : 100);
+      state.fxAmount = preset; $('fxAmount').value = nf(preset); renderFx(); return;
+    }
+    var q = tgt.closest ? tgt.closest('[data-bagq]') : null;
+    if (q) {
+      var bid = q.getAttribute('data-id'), delta = Number(q.getAttribute('data-bagq'));
+      state.bag.forEach(function (x) { if (x.id === bid) x.qty = Math.max(1, x.qty + delta); });
+      save('pcr_bag', state.bag); renderBag(); return;
+    }
+    var del = tgt.closest ? tgt.closest('[data-bagdel]') : null;
+    if (del) {
+      var did = del.getAttribute('data-bagdel');
+      state.bag = state.bag.filter(function (x) { return x.id !== did; });
+      save('pcr_bag', state.bag); renderBag(); toast(t('removedToast')); return;
+    }
+  });
+
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('modal').hidden) closeCard(); });
+
+  $('langKo').onclick = function () { applyLang('ko', true); };
+  $('langEn').onclick = function () { applyLang('en', true); };
+  $('segUp').onclick = function () { state.moverDir = 'up'; $('segUp').classList.add('is-active'); $('segDown').classList.remove('is-active'); renderMovers(); };
+  $('segDown').onclick = function () { state.moverDir = 'down'; $('segDown').classList.add('is-active'); $('segDown').classList.add('down'); $('segUp').classList.remove('is-active'); renderMovers(); };
+  $('rankSearch').oninput = function (e) { state.rankQ = e.target.value; state.rankLimit = 40; renderRank(); };
+  $('psaSearch').oninput = function (e) { state.psaQ = e.target.value; state.psaLimit = 30; renderPsa(); };
+  $('rankSort').onchange = function (e) { state.sort = e.target.value; renderRank(); };
+  $('psaSort').onchange = function (e) { state.psaSort = e.target.value; renderPsa(); };
+  $('setSelect').onchange = function (e) { state.set = e.target.value; state.rankLimit = 40; renderRank(); };
+  $('rankReset').onclick = function () {
+    state.rankQ = ''; state.era = 'all'; state.set = 'all'; state.sort = 'price'; state.rankLimit = 40;
+    $('rankSearch').value = ''; $('rankSort').value = 'price';
+    buildEraChips(); buildSetSelect(); renderRank();
+  };
+  $('rankMore').onclick = function () { state.rankLimit += 60; renderRank(); };
+  $('psaMore').onclick = function () { state.psaLimit += 60; renderPsa(); };
+  $('bagClear').onclick = function () { state.bag = []; save('pcr_bag', state.bag); renderBag(); };
+  $('fxAmount').oninput = function (e) {
+    var raw = e.target.value.replace(/[^0-9.]/g, '');
+    state.fxAmount = raw ? Number(raw) : 0;
+    renderFx();
+  };
+  $('modal').addEventListener('click', function (e) { if (e.target === $('modal')) closeCard(); });
+
+  window.PCR = { state: state, T: T, get data() { return DATA; } };
+  boot();
+})();
+</script>
+</body>
+</html>

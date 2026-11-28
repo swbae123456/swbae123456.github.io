@@ -1,0 +1,15 @@
+{
+  "name": "포켓몬 카드 시세 레이더",
+  "short_name": "카드 레이더",
+  "description": "포켓몬 카드 팩별 가격 랭킹 · PSA 10 비교 · 일판·한판 환율 계산기",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f6fb",
+  "theme_color": "#4338ca",
+  "icons": [
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

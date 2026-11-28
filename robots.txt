@@ -1,4 +1,4 @@
-# swbae123456.github.io — 루트 사이트
+# jpsave.com — 루트 사이트
 # 정보 안내 사이트입니다. 모든 검색 크롤러의 수집을 허용합니다.
 
 User-agent: *
@@ -10,4 +10,5 @@ Allow: /
 User-agent: Daum
 Allow: /
 
-Sitemap: https://swbae123456.github.io/Japan-mounjaro-helper/sitemap.xml
+Sitemap: https://jpsave.com/sitemap.xml
+Sitemap: https://jpsave.com/Japan-mounjaro-helper/sitemap.xml
