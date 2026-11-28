@@ -301,6 +301,10 @@
   .gchip.is-on{background:var(--brand);border-color:var(--brand);color:#fff}
   .bag-item .del{border:0;background:transparent;color:#cbd5e1;cursor:pointer;padding:2px;flex:0 0 auto}
 
+  .refbox{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 13px;box-shadow:var(--shadow)}
+  .refbox .sect-m{margin:0 0 7px}
+  .refbox .links{margin-top:0}
+
   /* tabbar */
   .tabbar{
     position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:40;
@@ -493,6 +497,11 @@
       </div>
       <div class="rows" id="bagRows" style="margin-top:11px"></div>
       <button class="more" id="bagClear" type="button" hidden></button>
+      <div class="refbox">
+        <p class="sect-m" id="refTitle">카드 준비물 · 중고 시세 검색</p>
+        <div class="links" id="refLinks"></div>
+        <p class="small muted" id="refNote" style="margin:8px 0 0"></p>
+      </div>
     </section>
 
     <footer class="site-foot">
@@ -573,6 +582,9 @@
       bagNote: '보관함은 이 브라우저(localStorage)에만 저장되고 서버로 보내지 않습니다. 가격은 기준일 스냅샷입니다. 카드 이름 아래 [맨카드]/[PSA 10]을 눌러 등급 보유분으로 바꾸면 총액이 그 시세로 다시 계산됩니다.',
       bagEmpty: '아직 담은 카드가 없습니다. 랭킹에서 카드를 눌러 [보관함에 담기]를 누르면 시세 합계가 자동으로 계산됩니다.',
       bagClear: '보관함 비우기',
+      refTitle: '카드 준비물 · 중고 시세 검색',
+      refSleeve: '쿠팡 슬리브', refToploader: '쿠팡 탑로더', refBinder: '쿠팡 바인더', refKream: 'KREAM 시세',
+      refNote: '쿠팡·KREAM 검색으로 바로 넘어가는 일반 링크입니다. 제휴(파트너스) 링크가 아니라서 구매해도 저희가 수수료를 받지 않습니다.',
       addBag: '보관함에 담기', inBag: '보관함에 있음 · 수량 조절은 보관함 탭에서',
       addedToast: '보관함에 담았습니다',
       removedToast: '보관함에서 뺐습니다',
@@ -627,6 +639,9 @@
       bagNote: 'The portfolio is saved in this browser (localStorage) and never uploaded. Values use the snapshot prices. Tap the [Raw]/[PSA 10] chip under a card name to value that holding at its graded price.',
       bagEmpty: 'Nothing saved yet. Open a card in Ranking and press "Add to portfolio" — the total is summed for you.',
       bagClear: 'Clear portfolio',
+      refTitle: 'Supplies & used-market search',
+      refSleeve: 'Coupang sleeves', refToploader: 'Coupang toploaders', refBinder: 'Coupang binder', refKream: 'KREAM prices',
+      refNote: 'Plain search links to Coupang and KREAM. They are not affiliate links, so we earn nothing if you buy.',
       addBag: 'Add to portfolio', inBag: 'In your portfolio — adjust quantity in the Portfolio tab',
       addedToast: 'Added to portfolio',
       removedToast: 'Removed from portfolio',
@@ -769,6 +784,13 @@
     $('bagTotalK').textContent = t('bagTotalK');
     $('bagNote').textContent = t('bagNote');
     $('bagClear').textContent = t('bagClear');
+    $('refTitle').textContent = t('refTitle');
+    $('refNote').textContent = t('refNote');
+    $('refLinks').innerHTML =
+      '<a href="https://www.coupang.com/np/search?q=' + encodeURIComponent('포켓몬 카드 슬리브') + '" target="_blank" rel="noopener nofollow">' + esc(t('refSleeve')) + '</a>' +
+      '<a href="https://www.coupang.com/np/search?q=' + encodeURIComponent('탑로더 고투명') + '" target="_blank" rel="noopener nofollow">' + esc(t('refToploader')) + '</a>' +
+      '<a href="https://www.coupang.com/np/search?q=' + encodeURIComponent('포켓몬 카드 바인더 9포켓') + '" target="_blank" rel="noopener nofollow">' + esc(t('refBinder')) + '</a>' +
+      '<a href="https://kream.co.kr/search?keyword=' + encodeURIComponent('포켓몬 카드') + '" target="_blank" rel="noopener nofollow">' + esc(t('refKream')) + '</a>';
     $('footSources').textContent = t('footSources');
     $('footDisclaimer').textContent = t('footDisclaimer');
     $('footPrivacy').textContent = t('footPrivacy');
