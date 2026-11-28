@@ -74,6 +74,7 @@
     --muted:#64748b;
     --line:#e3e8f0;
     --line-2:#f1f4f9;
+    --qs-h:35px;
     --brand:#4338ca;
     --brand-2:#3730a3;
     --brand-soft:#eef2ff;
@@ -127,7 +128,7 @@
 
   /* ---------- header ---------- */
   .app-header{
-    position:sticky;top:0;z-index:30;
+    position:sticky;top:calc(var(--qs-h) + env(safe-area-inset-top));z-index:30;
     background:rgba(255,255,255,.97);
     backdrop-filter:saturate(160%) blur(12px);-webkit-backdrop-filter:saturate(160%) blur(12px);
     border-bottom:1px solid var(--line);
@@ -149,6 +150,32 @@
   .lang-btn{border:0;background:transparent;font-family:var(--font);font-size:11px;font-weight:800;color:var(--muted);padding:5px 8px;border-radius:999px;cursor:pointer;line-height:1.1;min-width:34px}
   .lang-btn.is-active{background:#fff;color:var(--brand-2);box-shadow:0 1px 4px rgba(15,23,42,.14)}
   .lang-btn:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+
+  /* ---------- 상단 고정 퀵 스위처 — jpsave.com 네 곳을 1탭으로 이동 ---------- */
+  .qs-bar{
+    position:sticky;top:0;z-index:34;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+    padding:calc(5px + env(safe-area-inset-top)) 10px 5px;
+  }
+  .qs-row{
+    display:flex;align-items:center;gap:5px;
+    overflow-x:auto;overflow-y:hidden;
+    scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;
+  }
+  .qs-row::-webkit-scrollbar{display:none;height:0}
+  .qs-pill{
+    flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
+    height:24px;padding:0 9px;border-radius:999px;
+    font-family:var(--font);font-size:12px;font-weight:800;line-height:1;
+    letter-spacing:-.02em;white-space:nowrap;text-decoration:none;
+    color:var(--ink-2);background:#fff;border:1px solid var(--line);
+    transition:background .15s,border-color .15s,color .15s;
+  }
+  .qs-ico{font-size:11px;line-height:1;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif}
+  .qs-pill:active{transform:scale(.97)}
+  .qs-pill:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+  .qs-pill.is-active{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 2px 8px rgba(67,56,202,.22)}
 
   .head-row{display:flex;align-items:center;gap:6px;margin-top:9px;flex-wrap:wrap;row-gap:6px}
   .pill{font-size:10.5px;font-weight:700;color:var(--muted);background:#f4f6fb;border:1px solid var(--line);border-radius:999px;padding:4px 8px;white-space:nowrap}
@@ -522,6 +549,22 @@
 <body>
 <div class="page-bg" aria-hidden="true"></div>
 <div class="shell">
+  <nav class="qs-bar" aria-label="jpsave.com 사이트 이동" data-en-aria="jpsave.com site switcher">
+    <div class="qs-row">
+      <a class="qs-pill" href="https://jpsave.com/" data-qs-href="https://jpsave.com/">
+        <span class="qs-ico" aria-hidden="true">🏠</span><span class="qs-lbl" id="qsLblHome">홈</span>
+      </a>
+      <a class="qs-pill" href="https://jpsave.com/Japan-mounjaro-helper/" data-qs-href="https://jpsave.com/Japan-mounjaro-helper/">
+        <span class="qs-ico" aria-hidden="true">💉</span><span class="qs-lbl" id="qsLblJmh">마운자로</span>
+      </a>
+      <span class="qs-pill is-active" aria-current="page">
+        <span class="qs-ico" aria-hidden="true">🃏</span><span class="qs-lbl" id="qsLblPk">포켓몬</span>
+      </span>
+      <a class="qs-pill" href="https://jpsave.com/whisky/" data-qs-href="https://jpsave.com/whisky/">
+        <span class="qs-ico" aria-hidden="true">🥃</span><span class="qs-lbl" id="qsLblWhisky">위스키</span>
+      </a>
+    </div>
+  </nav>
   <header class="app-header">
     <div class="brand">
       <div class="logo" aria-hidden="true">
@@ -543,10 +586,6 @@
       </div>
     </div>
     <div class="head-row">
-      <a class="pill pill-link" id="pillHome" href="https://jpsave.com/">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20H4z"></path><path d="M9.5 20v-5h5v5"></path></svg>
-        <span id="pillHomeText">jpsave.com 홈</span>
-      </a>
       <span class="pill" id="pillDate">기준 <b>2026-11-28</b></span>
       <span class="pill" id="pillCards">카드 <b>—</b></span>
       <div class="cur-switch" role="group" aria-label="통화">
@@ -760,6 +799,7 @@
       brandTitle: '포켓몬 카드샵 방문 도우미',
       brandSub: '일본 카드숍 23곳 · 팩별 시세 · PSA 10',
       pillHome: 'jpsave.com 홈',
+      qsHome: '홈', qsJmh: '마운자로', qsPk: '포켓몬', qsWhisky: '위스키',
       crossKicker: '일본 여행 다른 도우미 · jpsave.com',
       crossTitle: '일본 마운자로 클리닉 11곳 비교 보기 →',
       pillDate: '기준', pillCards: '카드',
@@ -840,6 +880,7 @@
       brandTitle: 'Japan Pokémon Card Shop Helper',
       brandSub: '23 card shops · set prices · PSA 10',
       pillHome: 'jpsave.com',
+      qsHome: 'Home', qsJmh: 'Mounjaro', qsPk: 'Pokémon', qsWhisky: 'Whisky',
       crossKicker: 'More on jpsave.com',
       crossTitle: 'Japan Mounjaro Visit Helper (11 clinics) →',
       pillDate: 'As of', pillCards: 'Cards',
@@ -930,6 +971,16 @@
 
   /* --------------------------------------------------------------- helpers */
   function t(k) { var v = T[state.lang][k]; return v === undefined ? (T.ko[k] || k) : v; }
+  /* 상단 퀵 스위처 — KO/EN 문구와 ?lang= 을 맞춘다 */
+  function syncQs(lang) {
+    var map = { qsLblHome: 'qsHome', qsLblJmh: 'qsJmh', qsLblPk: 'qsPk', qsLblWhisky: 'qsWhisky' };
+    Object.keys(map).forEach(function (id) { var e = $(id); if (e) e.textContent = t(map[id]); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-qs-href]'), function (a) {
+      var base = a.getAttribute('data-qs-href');
+      if (!base) return;
+      a.setAttribute('href', lang === 'en' ? base + (base.indexOf('?') < 0 ? '?lang=en' : '&lang=en') : base);
+    });
+  }
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, html) { var d = document.createElement(tag); if (cls) d.className = cls; if (html != null) d.innerHTML = html; return d; }
   var IMG_PH = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 90" width="64" height="90"><rect width="64" height="90" rx="9" fill="#f1f4fa"/><circle cx="32" cy="45" r="15.5" fill="none" stroke="#c7d2fe" stroke-width="2.6"/><path d="M16.5 45h31" stroke="#c7d2fe" stroke-width="2.6"/><circle cx="32" cy="45" r="4.4" fill="#c7d2fe"/></svg>');
@@ -1013,7 +1064,7 @@
       : 'Japan Pokémon Card Shop Helper — 23 shops, set prices, PSA 10 vs raw, JPY/KRW/USD';
     $('brandTitle').textContent = t('brandTitle');
     $('brandSub').textContent = t('brandSub');
-    $('pillHomeText').textContent = t('pillHome');
+    syncQs(lang);
     $('langKo').classList.toggle('is-active', lang === 'ko');
     $('langEn').classList.toggle('is-active', lang === 'en');
     $('pillDate').innerHTML = t('pillDate') + ' <b>' + (DATA ? DATA.meta.snapshot : '2026-11-28') + '</b>';
