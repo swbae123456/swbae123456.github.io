@@ -148,9 +148,12 @@
   .lang-btn.is-active{background:#fff;color:var(--brand-2);box-shadow:0 1px 4px rgba(15,23,42,.14)}
   .lang-btn:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
 
-  .head-row{display:flex;align-items:center;gap:6px;margin-top:9px}
+  .head-row{display:flex;align-items:center;gap:6px;margin-top:9px;flex-wrap:wrap;row-gap:6px}
   .pill{font-size:10.5px;font-weight:700;color:var(--muted);background:#f4f6fb;border:1px solid var(--line);border-radius:999px;padding:4px 8px;white-space:nowrap}
   .pill b{color:var(--ink-2);font-weight:800}
+  .pill-link{display:inline-flex;align-items:center;gap:4px;color:var(--brand-2);background:var(--brand-soft);border-color:#d8dcf5;text-decoration:none}
+  .pill-link svg{width:11px;height:11px;flex:0 0 auto;opacity:.75}
+  .pill-link:active{transform:scale(.98)}
   .cur-switch{margin-left:auto;display:flex;gap:2px;background:#f1f3f9;border:1px solid var(--line);padding:2px;border-radius:999px}
   .cur-btn{border:0;background:transparent;font-family:var(--font);font-size:10.5px;font-weight:800;color:var(--muted);padding:4px 8px;border-radius:999px;cursor:pointer}
   .cur-btn.is-active{background:var(--brand);color:#fff}
@@ -445,6 +448,12 @@
   .site-foot{margin:18px 0 0;padding:14px 2px 0;border-top:1px solid var(--line);font-size:10.5px;line-height:1.75;color:var(--muted)}
   .site-foot p{margin:0 0 5px}
   .site-foot a{color:var(--brand-2);font-weight:700;text-decoration:none}
+  /* jpsave.com 다른 도우미 크로스링크 배너 */
+  .home-banner{display:block;margin:16px 0 0;padding:13px 15px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:var(--shadow);text-decoration:none;color:var(--ink);transition:transform .06s}
+  .home-banner-kicker{display:block;font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:-.01em}
+  .home-banner-title{display:block;margin-top:3px;font-size:13px;font-weight:800;color:var(--brand-2);letter-spacing:-.025em}
+  .home-banner:active{transform:scale(.995)}
+  .home-banner:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
   .skeleton{background:linear-gradient(90deg,#eef1f8 25%,#f7f9fc 37%,#eef1f8 63%);background-size:400% 100%;animation:sk 1.2s infinite;border-radius:9px}
   @keyframes sk{0%{background-position:100% 50%}100%{background-position:0 50%}}
 </style>
@@ -473,6 +482,10 @@
       </div>
     </div>
     <div class="head-row">
+      <a class="pill pill-link" id="pillHome" href="https://jpsave.com/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20H4z"></path><path d="M9.5 20v-5h5v5"></path></svg>
+        <span id="pillHomeText">jpsave.com 홈</span>
+      </a>
       <span class="pill" id="pillDate">기준 <b>2026-11-28</b></span>
       <span class="pill" id="pillCards">카드 <b>—</b></span>
       <div class="cur-switch" role="group" aria-label="통화">
@@ -606,6 +619,11 @@
       <div class="shop-rows" id="shopRows"></div>
     </section>
 
+    <a class="home-banner" id="crossBanner" href="https://jpsave.com/Japan-mounjaro-helper/">
+      <span class="home-banner-kicker" id="crossKicker">일본 여행 다른 도우미 · jpsave.com</span>
+      <span class="home-banner-title" id="crossTitle">일본 마운자로 클리닉 11곳 비교 보기 →</span>
+    </a>
+
     <footer class="site-foot">
       <p id="footSources"></p>
       <p id="footDisclaimer"></p>
@@ -662,6 +680,9 @@
     ko: {
       brandTitle: '포켓몬 카드 시세 레이더',
       brandSub: '팩별 랭킹 · PSA 10 · 일본 카드숍 23곳',
+      pillHome: 'jpsave.com 홈',
+      crossKicker: '일본 여행 다른 도우미 · jpsave.com',
+      crossTitle: '일본 마운자로 클리닉 11곳 비교 보기 →',
       pillDate: '기준', pillCards: '카드',
       heroK: "Today's Radar",
       heroBig: '오늘의 급등 · 급락',
@@ -730,6 +751,9 @@
     en: {
       brandTitle: 'Pokémon Card Price Radar',
       brandSub: 'Set rankings · PSA 10 · 23 card shops',
+      pillHome: 'jpsave.com',
+      crossKicker: 'More on jpsave.com',
+      crossTitle: 'Japan Mounjaro Visit Helper (11 clinics) →',
       pillDate: 'As of', pillCards: 'Cards',
       heroK: "Today's Radar",
       heroBig: "Today's biggest movers",
@@ -892,6 +916,7 @@
       : 'Pokémon Card Price Radar — set rankings, PSA 10 vs raw, JPY/KRW/USD';
     $('brandTitle').textContent = t('brandTitle');
     $('brandSub').textContent = t('brandSub');
+    $('pillHomeText').textContent = t('pillHome');
     $('langKo').classList.toggle('is-active', lang === 'ko');
     $('langEn').classList.toggle('is-active', lang === 'en');
     $('pillDate').innerHTML = t('pillDate') + ' <b>' + (DATA ? DATA.meta.snapshot : '2026-11-28') + '</b>';
@@ -928,6 +953,8 @@
     $('footDisclaimer').textContent = t('footDisclaimer');
     $('footPrivacy').textContent = t('footPrivacy');
     $('footJmhLink').textContent = t('footJmh');
+    $('crossKicker').textContent = t('crossKicker');
+    $('crossTitle').textContent = t('crossTitle');
     $('fxFromSeg').children[0].textContent = t('fxFromJPY');
     $('fxFromSeg').children[1].textContent = t('fxFromKRW');
     $('fxFromSeg').children[2].textContent = t('fxFromUSD');
