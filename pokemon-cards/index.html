@@ -259,8 +259,15 @@
   /* psa */
   .psa-row{
     background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 11px;cursor:pointer;width:100%;
-    text-align:left;font-family:var(--font);box-shadow:0 1px 2px rgba(15,23,42,.03);display:flex;gap:11px;align-items:flex-start;
+    text-align:left;font-family:var(--font);box-shadow:0 1px 2px rgba(15,23,42,.03);
+    display:grid;grid-template-columns:auto 44px minmax(0,1fr) auto;grid-template-areas:"rank thumb body mult" ". cmp cmp cmp";
+    column-gap:9px;row-gap:7px;align-items:start;
   }
+  .psa-row .rank{grid-area:rank;align-self:center}
+  .psa-row .thumb{grid-area:thumb}
+  .psa-row .body{grid-area:body;min-width:0}
+  .psa-row .mult{grid-area:mult;align-self:start}
+  .psa-row .cmp{grid-area:cmp;margin-top:0}
   .psa-row .mult{
     margin-left:auto;flex:0 0 auto;text-align:right;min-width:54px;
   }
@@ -1120,18 +1127,18 @@
       b.innerHTML =
         '<span class="rank' + (i < 3 ? ' t' + (i + 1) : '') + '">' + (i + 1) + '</span>' +
         '<span class="thumb"><img loading="lazy" decoding="async" width="44" height="62" src="' + esc(c.img || IMG_PH) + '" alt=""></span>' +
-        '<span class="body" style="flex:1 1 auto;min-width:0">' +
+        '<span class="body">' +
         '<span class="nm">' + esc(c.n) + '</span>' +
         '<span class="meta">' + esc(s.name || c.set) + '<span class="dot">·</span>' + (s.year || '') + '<span class="dot">·</span>#' + esc(c.num) + '</span>' +
+        '</span>' +
+        '<span class="mult">' + (c._mult <= 30
+          ? '<b>×' + nf(c._mult, 2) + '</b><span>' + esc(t('mult')) + '</span>'
+          : '<b class="thin">' + esc(t('thin')) + '</b>') + '</span>' +
         '<span class="cmp">' +
           '<span class="cell"><span class="lbl">' + esc(t('raw')) + '</span><span class="v">' + moneyC(c.pc.raw) + '</span></span>' +
           '<span class="arw">→</span>' +
           '<span class="cell"><span class="lbl">' + esc(t('psa10')) + '</span><span class="v">' + moneyC(c.pc.psa10) + '</span></span>' +
-        '</span>' +
-        '</span>' +
-        '<span class="mult">' + (c._mult <= 30
-          ? '<b>×' + nf(c._mult, 2) + '</b><span>' + esc(t('mult')) + '</span>'
-          : '<b class="thin">' + esc(t('thin')) + '</b>') + '</span>';
+        '</span>';
       wrap.appendChild(b);
     });
     var more = $('psaMore');
