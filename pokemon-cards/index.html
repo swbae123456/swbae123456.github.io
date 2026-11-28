@@ -556,7 +556,7 @@
       more: function (n) { return n + '장 더 보기'; },
       empty: '조건에 맞는 카드가 없습니다. 검색어나 팩을 바꿔 보세요.',
       psaTitle: 'PSA 10 vs 맨카드', psaSub: '검증된 등급 시세만',
-      psaNote: 'PSA 10 가격은 PriceCharting이 공개한 등급 시세만 표시합니다. 값이 없는 카드는 목록에서 빠집니다. 맨카드(Raw)는 같은 출처의 Ungraded 가격입니다.',
+      psaNote: 'PSA 10 가격은 PriceCharting이 공개한 등급 시세만 씁니다. 맨카드 $20 이상이면서 9등급의 20배를 넘지 않는 카드만 표시합니다(표본이 얇아 값이 벌어진 카드는 제외). 맨카드는 같은 출처의 Ungraded 가격이고, 실제 낙찰가와 차이가 클 수 있어 카드마다 PriceCharting 원문 링크를 답니다.',
       psaSortMult: '배수 높은순', psaSortPsa: 'PSA 10 가격순', psaSortGap: '차액 큰순',
       fxTitle: '일판 · 한판 · 영판 환율', fxSub: '실시간 환율로 계산',
       fxRate: '환율', fxFetched: '불러오는 중', fxLive: '실시간', fxSaved: '저장된 값',
@@ -609,7 +609,7 @@
       more: function (n) { return 'Show ' + n + ' more'; },
       empty: 'No cards match. Try another name or set.',
       psaTitle: 'PSA 10 vs raw', psaSub: 'verified grade prices only',
-      psaNote: 'PSA 10 prices come only from PriceCharting\'s published graded values. Cards without them are left out. Raw is the same source\'s Ungraded price.',
+      psaNote: 'PSA 10 prices come only from PriceCharting\'s published graded values. Listed cards are raw $20+ whose PSA 10 stays within 20x the Grade 9 price (thinly traded outliers are left out). Raw is the same source\'s Ungraded price, and each card links back to PriceCharting because graded values can differ from actual sales.',
       psaSortMult: 'Multiplier', psaSortPsa: 'PSA 10 price', psaSortGap: 'Gap',
       fxTitle: 'JPY · KRW · USD', fxSub: 'live exchange rates',
       fxRate: 'Rate', fxFetched: 'loading', fxLive: 'live', fxSaved: 'saved',
@@ -646,7 +646,7 @@
   var state = {
     lang: 'ko', cur: 'KRW', tab: 'movers', moverDir: 'up',
     rankQ: '', era: 'all', set: 'all', sort: 'price', rankLimit: 40,
-    psaQ: '', psaSort: 'mult', psaLimit: 30,
+    psaQ: '', psaSort: 'psa', psaLimit: 30,
     fxFrom: 'JPY', fxAmount: 10000,
     bag: []
   };
@@ -680,6 +680,22 @@
     if (cur === 'JPY') return '¥' + nf(Math.round(v));
     var d = v >= 100 ? 0 : 2;
     return '$' + nf(v, d);
+  }
+  function moneyC(usd, cur) {
+    if (usd == null) return '—';
+    cur = cur || state.cur;
+    var v = usdTo(usd, cur);
+    if (cur === 'KRW') {
+      if (v >= 1e8) return nf(v / 1e8, v >= 1e9 ? 0 : 2) + '억원';
+      if (v >= 1e4) return nf(Math.round(v / 1e4)) + '만원';
+      return nf(Math.round(v)) + '원';
+    }
+    if (cur === 'JPY') {
+      if (v >= 1e4) return '¥' + nf(Math.round(v / 1e4)) + (state.lang === 'ko' ? '만' : '万');
+      return '¥' + nf(Math.round(v));
+    }
+    if (v >= 1000) return '$' + nf(v / 1000, 1) + 'K';
+    return '$' + nf(v, 2);
   }
   function smallMoney(usd) {
     var parts = [];
@@ -944,6 +960,8 @@
     var q = state.psaQ.trim().toLowerCase();
     var list = (DATA.cards || []).filter(function (c) {
       if (!c.pc || !c.pc.psa10 || !c.pc.raw) return false;
+      if (c.pc.raw < 20) return false;                       // 등급 감정 대상이 아닌 잡카드 제외
+      if (c.pc.g9 && c.pc.psa10 > c.pc.g9 * 20) return false; // 표본이 얇아 벌어진 값 제외
       if (q && c.n.toLowerCase().indexOf(q) < 0) return false;
       return true;
     });
@@ -971,7 +989,7 @@
         '<span class="body" style="flex:1 1 auto;min-width:0">' +
         '<span class="nm">' + esc(c.n) + '</span>' +
         '<span class="meta">' + esc(s.name || c.set) + '<span class="dot">·</span>' + (s.year || '') + '<span class="dot">·</span>#' + esc(c.num) + '</span>' +
-        '<span class="cmp"><span class="lbl">' + esc(t('raw')) + '</span>' + money(c.pc.raw) + '<span class="arw">→</span><span class="lbl">' + esc(t('psa10')) + '</span>' + money(c.pc.psa10) + '</span>' +
+        '<span class="cmp"><span class="lbl">' + esc(t('raw')) + '</span>' + moneyC(c.pc.raw) + '<span class="arw">→</span><span class="lbl">' + esc(t('psa10')) + '</span>' + moneyC(c.pc.psa10) + '</span>' +
         '</span>' +
         '<span class="mult"><b>×' + nf(c._mult, 2) + '</b><span>' + esc(t('mult')) + '</span></span>';
       wrap.appendChild(b);
