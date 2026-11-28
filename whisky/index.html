@@ -189,18 +189,6 @@
   /* panels */
   main{padding:0 16px}
   .panel{padding-top:14px}
-  .hero{
-    background:linear-gradient(160deg,#fffaf1 0%,#fff6e6 100%);
-    border:1px solid #f3e3c8;border-radius:var(--radius);padding:15px 16px 14px;
-  }
-  .hero .k{margin:0;font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--brand)}
-  .hero .big{margin:5px 0 0;font-size:17px;font-weight:800;line-height:1.36;letter-spacing:-.03em}
-  .hero .sub{margin:6px 0 0;font-size:13.5px;line-height:1.62;color:var(--ink-2)}
-  .stats{display:flex;gap:8px;margin-top:12px}
-  .stat{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:9px 10px;text-align:center}
-  .stat b{display:block;font-size:17px;font-weight:800;line-height:1.25;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--brand-2)}
-  .stat span{display:block;font-size:11.5px;color:var(--muted);font-weight:700;margin-top:2px}
-
   .section-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:16px 0 9px}
   .section-title h2{margin:0;font-size:17px;font-weight:800;letter-spacing:-.03em;line-height:1.3}
   .section-title span{font-size:12px;color:var(--muted);font-weight:700;font-variant-numeric:tabular-nums}
@@ -590,22 +578,6 @@
   <main>
     <!-- ============ SHOPS ============ -->
     <section class="panel" id="panel-shops" role="tabpanel" aria-labelledby="tab-shops">
-      <div class="hero">
-        <p class="k" id="heroK">Whisky shop guide</p>
-        <p class="big" id="heroBig">어디서 사야 싸고, 몇 시까지 여나</p>
-        <p class="sub" id="heroSub">도쿄·오사카·후쿠오카 23곳의 영업시간과 역에서 도보 시간, 면세 여부까지 정리했습니다.</p>
-        <div class="stats">
-          <div class="stat"><b id="statShops">23</b><span id="statShopsL">매장</span></div>
-          <div class="stat"><b id="statBottles">24</b><span id="statBottlesL">시세 품목</span></div>
-          <div class="stat"><b id="statLimit">2L</b><span id="statLimitL">면세 한도</span></div>
-        </div>
-      </div>
-
-      <div class="note warm" style="margin-top:12px">
-        <span class="ic" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M12 8v5M12 16.5v.1"/><circle cx="12" cy="12" r="9"/></svg></span>
-        <span id="tfNote"></span>
-      </div>
-
       <div class="filters">
         <label class="search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
@@ -623,11 +595,7 @@
     <!-- ============ PRICES ============ -->
     <section class="panel" id="panel-prices" role="tabpanel" aria-labelledby="tab-prices" hidden>
       <div class="section-title"><h2 id="priceTitle">한·일 시세 비교</h2><span id="priceSub"></span></div>
-      <div class="note">
-        <span class="ic" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M3 17l5-6 4 3 5-7 4 4"/><path d="M3 21h18"/></svg></span>
-        <span id="priceNote"></span>
-      </div>
-      <div class="filters" style="margin-top:11px">
+      <div class="filters" style="margin-top:2px">
         <label class="search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
           <input type="search" id="priceSearch" placeholder="위스키 이름 검색 (예: 야마자키, 響)" autocomplete="off" enterkeyhint="search">
@@ -730,6 +698,7 @@
 
     <footer class="site-foot">
       <p id="footSources"></p>
+      <p id="footHours"></p>
       <p id="footDisclaimer"></p>
       <p><a href="/">jpsave.com</a> · <a href="/Japan-mounjaro-helper/" id="footJmh">일본 마운자로 방문 도우미</a> · <a href="/pokemon-cards/" id="footPk">포켓몬 카드샵 방문 도우미</a></p>
     </footer>
@@ -781,13 +750,7 @@
       qsHome: '홈', qsJmh: '마운자로', qsPk: '포켓몬 카드샵', qsWhisky: '위스키',
       pillDate: '기준',
       pillShops: '매장',
-      heroK: 'Whisky shop guide',
-      heroBig: '어디서 사야 싸고, 몇 시까지 여나',
-      heroSub: '도쿄·오사카·후쿠오카 23곳의 영업시간과 역에서 도보 시간, 면세 여부까지 정리했습니다.',
-      statShopsL: '매장',
-      statBottlesL: '시세 품목',
-      statLimitL: '면세 한도',
-      tfNote: '영업시간은 2026-11-28 Google 지도 기준(다음 7일)입니다. 임시 휴업·단축 영업이 있을 수 있어 출발 전 한 번 더 확인하세요. 면세는 공식·현지 안내로 확인된 매장만 표시했고, 2026-11-01부터는 결제 후 출국 때 돌려받는 리팬드(환급) 방식입니다.',
+      footHours: '영업시간은 2026-11-28 Google 지도 기준(다음 7일)입니다. 임시 휴업·단축 영업이 있을 수 있어 출발 전 한 번 더 확인하세요. 면세는 공식·현지 안내로 확인된 매장만 표시했고, 2026-11-01부터는 결제 후 출국 때 돌려받는 리팬드(환급) 방식입니다.',
       shopSearch: '매장 이름·지역 검색 (예: 긴자, 新宿)',
       affSlimText: '도쿄 위스키 투어 준비 (eSIM · 스카이라이너 · 신주쿠 숙소) · 제휴',
       all: '전체',
@@ -812,7 +775,6 @@
       copied: '일본어 이름을 복사했습니다',
       inStation: '역내',
       priceTitle: '일본 위스키 종류·가격',
-      priceNote: '일본 정가는 메이커 희망소매가(소비세 포함)이고, 실판매는 2026-11 리쿼샵·온라인에서 실제로 본 값입니다. 인기병은 정가로 살 수 없어 실판매가가 정가를 넘고, 반대로 구하기 쉬운 병은 정가 밑으로도 팝니다. 한국 시세는 국내 최저 매물가이고 통화를 바꿔도 원화로 표시합니다.',
       priceSearch: '위스키 이름 검색 (예: 야마자키, 響)',
       sortAria: '가격 정렬',
       sortDefault: '기본순',
@@ -837,7 +799,7 @@
       catImp: '수입·기타',
       catSc: '스카치',
       catTw: '타이완',
-      priceFoot: '정가는 산토리·닛카(아사히)·기린·혼보·벤처위스키 공개 가격(2026-11 기준, 2026-04 인상 반영), 실판매는 2026-10~11 도쿄·오사카 리쿼샵 실측과 라쿠텐·아마존 최저가, 한국 시세는 2026-11-27~28 국내 최저 매물가(위스키핫·데일리샷)입니다. 인기병은 일본에서도 추첨·1인 1병 제한이 붙고, 표시 금액은 환율에 따라 달라집니다. 매장별 실시간 재고는 일본 리쿼샵이 공개하지 않아 ‘주로 파는 곳’과 리쿼샵 탭의 대표 취급 병은 매장 유형에 따른 참고 예시입니다.',
+      priceFoot: '정가는 산토리·닛카(아사히)·기린·혼보·벤처위스키 공개 가격(2026-11 기준, 2026-04 인상 반영), 실판매는 2026-10~11 도쿄·오사카 리쿼샵 실측과 라쿠텐·아마존 최저가, 한국 시세는 2026-11-27~28 국내 최저 매물가(위스키핫·데일리샷)입니다. 인기병은 일본에서도 추첨·1인 1병 제한이 붙고, 표시 금액은 환율에 따라 달라집니다. 매장별 실시간 재고는 일본 리쿼샵이 공개하지 않아 ‘주로 파는 곳’과 리쿼샵 탭의 대표 취급 병은 매장 유형에 따른 참고 예시입니다. 한국 시세는 통화를 바꿔도 원화로 표시합니다.',
       taxTitle: '면세 한도·세금 계산',
       taxNote: '술은 합계 2L 이하이면서 총 US$400 이하일 때 면세입니다. 2025-03-21부터 병수 제한(2병)은 폐지됐고, 일반물품 800달러 면세와는 따로 계산합니다.',
       lbPrice: '병 가격',
@@ -893,13 +855,7 @@
       qsHome: 'Home', qsJmh: 'Mounjaro', qsPk: 'Card Shops', qsWhisky: 'Whisky',
       pillDate: 'Data',
       pillShops: 'Shops',
-      heroK: 'Whisky shop guide',
-      heroBig: 'Where it is cheaper, and how late it is open',
-      heroSub: '23 shops in Tokyo, Osaka and Fukuoka with hours, walk time from the station and whether they run tax-free.',
-      statShopsL: 'shops',
-      statBottlesL: 'bottles',
-      statLimitL: 'duty-free cap',
-      tfNote: 'Hours are from Google Maps as of 2026-11-28 (next 7 days); temporary closures happen, so check once more before you go. Tax-free is shown only where official or local sources confirm it — and since 2026-11-01 Japan refunds the tax after you clear customs, rather than at the register.',
+      footHours: 'Hours are from Google Maps as of 2026-11-28 (next 7 days); temporary closures happen, so check once more before you go. Tax-free is shown only where official or local sources confirm it — and since 2026-11-01 Japan refunds the tax after you clear customs, rather than at the register.',
       shopSearch: 'Search shop or area (e.g. Ginza, 新宿)',
       affSlimText: 'Tokyo whisky trip prep (eSIM · Skyliner · Shinjuku stay) · affiliate',
       all: 'All',
@@ -924,7 +880,6 @@
       copied: 'Japanese name copied',
       inStation: 'in station',
       priceTitle: 'Japanese whisky: styles & prices',
-      priceNote: 'Japan list is the maker’s suggested retail price (tax included) and street is what shops and online sellers actually charged in Nov 2026. Rare bottles sell above list; easy ones can sell below it. Korea is the lowest domestic listing and stays in won whatever currency you pick.',
       priceSearch: 'Search a bottle (e.g. Yamazaki, Hibiki)',
       sortAria: 'Sort by price',
       sortDefault: 'Default',
@@ -949,7 +904,7 @@
       catImp: 'Imported & others',
       catSc: 'Scotch',
       catTw: 'Taiwanese',
-      priceFoot: 'List prices are Suntory, Nikka (Asahi), Kirin, Hombo and Venture Whisky published prices (Nov 2026, after the Apr 2026 rise). Street prices are Tokyo/Osaka shop sightings in Oct–Nov 2026 plus Rakuten/Amazon lows. Korean figures are the lowest domestic listings on 2026-11-27~28 (Whisky Hot, Dailyshot). Rare bottles are lottery or one-per-person even in Japan, and every number moves with the exchange rate. Shops do not publish live stock, so “Where to buy” and the typical bottles on each shop card are the usual shelf for that kind of shop — treat them as a guide.',
+      priceFoot: 'List prices are Suntory, Nikka (Asahi), Kirin, Hombo and Venture Whisky published prices (Nov 2026, after the Apr 2026 rise). Street prices are Tokyo/Osaka shop sightings in Oct–Nov 2026 plus Rakuten/Amazon lows. Korean figures are the lowest domestic listings on 2026-11-27~28 (Whisky Hot, Dailyshot). Rare bottles are lottery or one-per-person even in Japan, and every number moves with the exchange rate. Shops do not publish live stock, so “Where to buy” and the typical bottles on each shop card are the usual shelf for that kind of shop — treat them as a guide. Korean prices stay in won whichever currency you pick.',
       taxTitle: 'Duty-free cap & tax',
       taxNote: 'Liquor is duty-free when the total is 2L or less AND US$400 or less. The two-bottle cap was dropped on 2025-03-21, and this allowance is separate from the US$800 for ordinary goods.',
       lbPrice: 'Bottle price',
@@ -1437,7 +1392,6 @@
     }).join('');
     if (!rows.length) box.innerHTML = '<p class="empty">' + esc(t('emptyShops')) + '</p>';
     $('shopCount').textContent = (q ? t('countShopsFound', rows.length) : t('countShops', rows.length));
-    $('statShops').textContent = String(SHOPS.length);
   }
 
   function renderCityChips() {
@@ -1554,7 +1508,6 @@
     $('brandSub').textContent = ko
       ? ('리쿼샵 ' + SHOPS.length + '곳 · 위스키 ' + jp + '종 · 면세 계산')
       : (SHOPS.length + ' shops · ' + jp + ' whiskies · duty-free calc');
-    $('statBottles').textContent = String(PRICES.length);
     document.title = ko
       ? ('일본 위스키 방문 도우미 — 리쿼샵 ' + SHOPS.length + '곳·일본 위스키 ' + jp + '종 가격·면세 계산')
       : ('Japan Whisky Shop Helper — ' + SHOPS.length + ' shops, ' + jp + ' Japanese whiskies, duty-free math');
@@ -1692,11 +1645,10 @@
     lang = l;
     document.documentElement.lang = l;
     var d = T[l];
-    var ids = ['brandTitle', 'brandSub', 'heroK', 'heroBig', 'heroSub', 'statShopsL', 'statBottlesL', 'statLimitL',
-      'tfNote', 'affSlimText', 'tabShopsL', 'tabPricesL', 'tabTaxL', 'tabPrepL', 'priceTitle', 'priceNote', 'taxTitle', 'taxNote',
+    var ids = ['brandTitle', 'brandSub', 'affSlimText', 'tabShopsL', 'tabPricesL', 'tabTaxL', 'tabPrepL', 'priceTitle', 'taxTitle', 'taxNote',
       'lbPrice', 'lbVol', 'lbQty', 'addBtn', 'tipTitle', 'prepTitle', 'affTitle', 'affNotice', 'affEsimName', 'affEsimSub',
       'affSkylinerName', 'affSkylinerSub', 'affHotelName', 'affHotelSub', 'affFoot', 'ruleTitle', 'crossKicker', 'crossTitle',
-      'footSources', 'footDisclaimer', 'footJmh', 'footPk'];
+      'footSources', 'footHours', 'footDisclaimer', 'footJmh', 'footPk'];
     ids.forEach(function (id) { var el = $(id); if (el && d[id]) el.textContent = d[id]; });
     syncQs(l);
     $('tabShopsL').textContent = d.tabShops;
@@ -1710,7 +1662,6 @@
     $('shopReset').textContent = t('reset');
     $('priceReset').textContent = t('reset');
     $('priceSub').textContent = (l === 'ko' ? '100엔 = ₩' : '100 JPY = ₩') + fmt(rate.KRW / rate.JPY * 100);
-    $('statLimit').textContent = '2L';
     $('bzoom').setAttribute('aria-label', t('zoomAria'));
     $('bzoomClose').setAttribute('aria-label', t('zoomClose'));
     $('bzoomHint').textContent = t('zoomHint');
