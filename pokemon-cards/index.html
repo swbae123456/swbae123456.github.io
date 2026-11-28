@@ -697,7 +697,7 @@
       countShops: function (n) { return n + '곳'; },
       emptyShops: '조건에 맞는 매장이 없습니다. 지역이나 검색어를 바꿔 보세요.',
       walk: function (n) { return '도보 ' + n + '분'; },
-      hAll: '매일', hWeekday: '평일', hWeekend: '토·일·공휴일', hSat: '토', hSun: '일',
+      hAll: '매일', hWeekday: '평일', hWeekend: '토·일·공휴일', hSat: '토', hSun: '일', hExThu: '목요일 제외',
       daythu: '목요일', openDaily: '연중무휴', closedOn: function (d) { return d + ' 휴무'; }
     },
     en: {
@@ -765,7 +765,7 @@
       countShops: function (n) { return n + ' shops'; },
       emptyShops: 'No shops match. Try another city or keyword.',
       walk: function (n) { return n + ' min walk'; },
-      hAll: 'Daily', hWeekday: 'Weekdays', hWeekend: 'Sat–Sun & holidays', hSat: 'Sat', hSun: 'Sun',
+      hAll: 'Daily', hWeekday: 'Weekdays', hWeekend: 'Sat–Sun & holidays', hSat: 'Sat', hSun: 'Sun', hExThu: 'except Thu',
       daythu: 'Thu', openDaily: 'Open daily', closedOn: function (d) { return 'Closed ' + d; }
     }
   };
@@ -1286,7 +1286,7 @@
     nagoya: { ko: '나고야', en: 'Nagoya' }
   };
   var TAGLBL = {
-    pokemon: { ko: '포켓몬 전문', en: 'Pokémon focus' },
+    pokemon: { ko: '포켓몬 카드', en: 'Pokémon cards' },
     singles: { ko: '싱글', en: 'Singles' },
     oripa: { ko: '오리파', en: 'Oripa' },
     gacha: { ko: '가챠·자판기', en: 'Gacha' },
@@ -1315,13 +1315,13 @@
     {"id": "dragoon_hakata", "ko": "도라고운 하카타", "ja": "ドラグーン 博多", "city": "fukuoka", "area": {"ko": "하카타", "en": "Hakata"}, "st": {"ko": "JR 하카타역", "en": "JR Hakata Sta."}, "walk": 5, "hours": [["weekday", "12:00–22:00"], ["weekend", "10:00–22:00"]], "closed": null, "tags": ["pokemon", "gacha", "play"], "url": "https://koplus-dragoon.com/", "pid": "ChIJK7CzixCRQTURIoJBhZsnk04"},
     {"id": "torekadouraku_tenjin", "ko": "트레카도라쿠 후쿠오카 텐진점", "ja": "トレカ道楽 福岡天神店", "city": "fukuoka", "area": {"ko": "텐진", "en": "Tenjin"}, "st": {"ko": "니시테쓰 후쿠오카(텐진)역", "en": "Nishitetsu Fukuoka (Tenjin) Sta."}, "walk": 7, "hours": [["weekday", "13:00–22:00"], ["sat", "11:00–22:00"], ["sun", "11:00–20:00"]], "closed": null, "tags": ["pokemon", "singles", "oripa"], "url": "https://x.com/dourakuhukuoka", "pid": "ChIJrfQyUVqRQTURpFFCSGT3a6A"},
     {"id": "magi_tenjin", "ko": "magi 후쿠오카 텐진점", "ja": "magi 福岡天神店", "city": "fukuoka", "area": {"ko": "텐진", "en": "Tenjin"}, "st": {"ko": "후쿠오카시영지하철 텐진역", "en": "Fukuoka City Subway Tenjin Sta."}, "walk": 4, "hours": [["all", "13:00–19:00"]], "closed": null, "tags": ["pokemon", "play"], "url": "https://cardshopmagi.com/shop/magi_tenjin/", "pid": "ChIJ1UTRHRyRQTURdov8NYrCF4s"},
-    {"id": "torecacamp_osu", "ko": "트레카캠프 오스점", "ja": "トレカキャンプ 大須店", "city": "nagoya", "area": {"ko": "오스", "en": "Osu"}, "st": {"ko": "나고야시영지하철 마에바시역", "en": "Nagoya City Subway Kamimaezu Sta."}, "walk": 2, "hours": [["all", "10:00–22:00"]], "closed": "thu", "tags": ["pokemon", "singles", "graded", "play"], "url": "https://torecacamp-pokemon.com/pages/osu-shop", "pid": "ChIJ37oXnNxxA2ARLVy7CqGgrxA"},
-    {"id": "kaizokudan_osu", "ko": "트레카카이조쿠단 오스 본점", "ja": "トレカ海賊団 大須本店", "city": "nagoya", "area": {"ko": "오스", "en": "Osu"}, "st": {"ko": "나고야시영지하철 마에바시역", "en": "Nagoya City Subway Kamimaezu Sta."}, "walk": 4, "hours": [["all", "12:00–20:00"]], "closed": null, "tags": ["pokemon", "singles", "oripa", "play"], "url": "https://x.com/toreka_pirates", "pid": "ChIJ1byS5zpxA2AROcHNCQYCdMM"},
-    {"id": "legend_osu", "ko": "LEGEND 오스점", "ja": "LEGEND 大須店", "city": "nagoya", "area": {"ko": "오스", "en": "Osu"}, "st": {"ko": "나고야시영지하철 마에바시역", "en": "Nagoya City Subway Kamimaezu Sta."}, "walk": 8, "hours": [["all", "12:00–20:00"]], "closed": null, "tags": ["pokemon", "singles", "graded"], "url": "https://legend-osu.com/", "pid": "ChIJU7WOsTJxA2ARxAJtFhrUEGI"}
+    {"id": "torecacamp_osu", "ko": "트레카캠프 오스점", "ja": "トレカキャンプ 大須店", "city": "nagoya", "area": {"ko": "오스", "en": "Osu"}, "st": {"ko": "나고야시영지하철 가미마에즈역(上前津)", "en": "Nagoya City Subway Kamimaezu Sta."}, "walk": 2, "hours": [["exthu", "10:00–22:00"]], "closed": "thu", "tags": ["pokemon", "singles", "graded", "play"], "url": "https://torecacamp-pokemon.com/pages/osu-shop", "pid": "ChIJ37oXnNxxA2ARLVy7CqGgrxA"},
+    {"id": "kaizokudan_osu", "ko": "트레카카이조쿠단 오스 본점", "ja": "トレカ海賊団 大須本店", "city": "nagoya", "area": {"ko": "오스", "en": "Osu"}, "st": {"ko": "나고야시영지하철 가미마에즈역(上前津)", "en": "Nagoya City Subway Kamimaezu Sta."}, "walk": 4, "hours": [["all", "12:00–20:00"]], "closed": null, "tags": ["pokemon", "singles", "oripa", "play"], "url": "https://x.com/toreka_pirates", "pid": "ChIJ1byS5zpxA2AROcHNCQYCdMM"},
+    {"id": "legend_osu", "ko": "LEGEND 오스점", "ja": "LEGEND 大須店", "city": "nagoya", "area": {"ko": "오스", "en": "Osu"}, "st": {"ko": "나고야시영지하철 가미마에즈역(上前津)", "en": "Nagoya City Subway Kamimaezu Sta."}, "walk": 8, "hours": [["all", "12:00–20:00"]], "closed": null, "tags": ["pokemon", "singles", "graded"], "url": "https://legend-osu.com/", "pid": "ChIJU7WOsTJxA2ARxAJtFhrUEGI"}
   ];
 
   function shopHoursLabel(k) {
-    return k === 'all' ? t('hAll') : k === 'weekday' ? t('hWeekday') : k === 'weekend' ? t('hWeekend') : k === 'sat' ? t('hSat') : t('hSun');
+    return k === 'all' ? t('hAll') : k === 'weekday' ? t('hWeekday') : k === 'weekend' ? t('hWeekend') : k === 'sat' ? t('hSat') : k === 'exthu' ? t('hExThu') : t('hSun');
   }
   function shopMaps(s) { return 'https://www.google.com/maps/place/?q=place_id:' + encodeURIComponent(s.pid); }
   function shopHay(s) {
