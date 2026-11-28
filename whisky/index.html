@@ -249,37 +249,6 @@
   }
   .aff-slim .go{margin-left:auto;color:var(--gold);font-weight:800;flex:0 0 auto}
 
-  /* shop-type comparison (계열별 취급 주종·가격) */
-  .cmp{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin:0 0 10px;overflow:hidden}
-  .cmp>summary{display:flex;align-items:center;gap:9px;padding:12px 13px;cursor:pointer;list-style:none;background:linear-gradient(160deg,#fffaf1 0%,#fff6e6 100%)}
-  .cmp>summary::-webkit-details-marker{display:none}
-  .cmp>summary:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
-  .cmp-kico{flex:0 0 auto;width:27px;height:27px;border-radius:9px;background:#f3e3c8;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1}
-  .cmp-sumtxt{flex:1 1 auto;min-width:0}
-  .cmp-sumtxt b{display:block;font-size:14px;font-weight:800;letter-spacing:-.03em;line-height:1.32}
-  .cmp-sumtxt span{display:block;font-size:11.5px;font-weight:700;color:#8a6a3a;margin-top:1px}
-  .cmp-chev{flex:0 0 auto;color:#a98a5c;display:block;transition:transform .2s}
-  .cmp[open] .cmp-chev{transform:rotate(180deg)}
-  .cmp-body{padding:0 11px 11px;border-top:1px solid #f3e3c8}
-  .cmp-lead{margin:10px 2px 9px;font-size:12.5px;line-height:1.55;color:var(--muted);font-weight:600}
-  .cmp-list{display:flex;flex-direction:column;gap:7px}
-  .cmp-row{background:#fcfaf5;border:1px solid var(--line-2);border-radius:12px;padding:8px 10px 9px}
-  .cmp-top{display:flex;flex-wrap:wrap;align-items:center;gap:4px 5px}
-  .cmp-name{font-size:13.5px;font-weight:800;letter-spacing:-.028em;line-height:1.3;margin-right:1px}
-  .cbadge{display:inline-flex;align-items:center;font-size:10.5px;font-weight:800;line-height:1.35;border-radius:999px;padding:1px 6px;border:1px solid var(--line-2);background:#f7f4ee;color:var(--ink-2);letter-spacing:-.01em;white-space:nowrap}
-  .cbadge.msrp{background:var(--green-soft);color:#166534;border-color:#cfe7d6}
-  .cbadge.market{background:var(--brand-soft);color:#8a4b0a;border-color:#f3ddba}
-  .cbadge.spec{background:#eef4fb;color:#1e4d7b;border-color:#d6e4f3}
-  .cbadge.sake{background:#f6f1fb;color:#5b3f86;border-color:#e4d9f4}
-  .cbadge.tf{background:#fff;color:var(--green);border-color:#cfe7d6}
-  .cbadge.tfm{background:#fff;color:#8a5a12;border-color:#f0dcbb}
-  .cbadge.tfx{background:#f5f5f4;color:var(--muted);border-color:#e7e5e4}
-  .cbadge.hrs{background:#fff;color:var(--ink-2);border-color:var(--line)}
-  .cmp-line{margin:6px 0 0;font-size:12.5px;line-height:1.55;color:var(--ink-2)}
-  .cmp-line .lb{font-weight:800;color:#8a6a3a;font-size:11px;margin-right:4px}
-  .cmp-cnt{margin-left:auto;flex:0 0 auto;font-size:11px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:-.01em;white-space:nowrap}
-  .cmp-foot{margin:9px 2px 0;font-size:11.5px;line-height:1.55;color:var(--muted)}
-
   /* shop cards */
   .shop-list{display:flex;flex-direction:column;gap:10px}
   .shop{
@@ -311,8 +280,15 @@
   .shop-hours .vv{font-variant-numeric:tabular-nums}
   .shop-hl{margin:7px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink-2)}
   .shop-hl::before{content:"· ";color:var(--gold);font-weight:800}
-  .shop-goods{margin:8px 0 0;font-size:12.5px;line-height:1.58;color:var(--ink-2)}
-  .shop-goods .lb{display:inline-block;font-size:11px;font-weight:800;color:#8a6a3a;background:#fdf0dc;border:1px solid #f3ddba;border-radius:999px;padding:1px 7px;line-height:1.6;margin-right:5px;white-space:nowrap;overflow-wrap:normal;word-break:keep-all;vertical-align:1px}
+  /* 대표 취급 위스키 · 대략가 칩 */
+  .shop-btl{margin:9px 0 0}
+  .shop-btl-lb{display:flex;align-items:center;gap:5px;margin:0 0 6px;font-size:11px;font-weight:800;color:#8a6a3a;letter-spacing:-.01em;line-height:1.3}
+  .shop-btl-lb::before{content:"";flex:0 0 auto;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+  .btl-chips{display:flex;flex-wrap:wrap;gap:5px}
+  .btl-chip{display:inline-flex;align-items:baseline;gap:5px;max-width:100%;background:#fffdf8;border:1px solid #f0e2c8;border-radius:999px;padding:4px 9px 4px 10px;font-size:12px;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-.02em;white-space:nowrap}
+  .btl-chip .bp{font-family:var(--num);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;font-weight:800;font-size:11.5px;color:var(--brand-2);letter-spacing:-.01em}
+  .btl-chip.txt{background:#f8f5ef;border-color:var(--line-2);border-style:dashed;color:var(--muted);font-size:11.5px}
+  .shop-btl-note{margin:6px 0 0;font-size:10.5px;line-height:1.45;color:#a8a29e;letter-spacing:-.01em}
   .shop-actions{display:flex;gap:7px;margin-top:11px}
   .btn{
     flex:1 1 0;display:inline-flex;align-items:center;justify-content:center;gap:5px;
@@ -558,7 +534,6 @@
       </div>
       <div class="chips" id="shopCityChips"></div>
       <div class="count-line"><span id="shopCount"></span><button type="button" id="shopReset">초기화</button></div>
-      <div id="shopCompare"></div>
       <a class="aff-slim" id="affSlimCta" href="https://3ha.in/r/973283" target="_blank" rel="noopener noreferrer sponsored">
         <span aria-hidden="true">✈️</span><span id="affSlimText">도쿄 위스키 투어 준비 (eSIM · 스카이라이너 · 신주쿠 숙소) · 제휴</span><span class="go" aria-hidden="true">→</span>
       </a>
@@ -730,13 +705,8 @@
       countShops: '매장 {n}곳',
       countShopsFound: '검색 결과 {n}곳',
       emptyShops: '조건에 맞는 매장이 없습니다. 검색어나 지역을 바꿔 보세요.',
-      cmpTitle: '계열별 취급 주종·가격',
-      cmpSub: '23곳을 6계열로 · 정가권 vs 시세형',
-      cmpLead: '같은 병이라도 계열에 따라 값이 다릅니다. 매장보다 계열을 먼저 고르세요.',
-      cmpLineupL: '취급',
-      cmpShopsU: '곳',
-      cmpFoot: '실시간 재고는 리쿼샵이 공개하지 않아 그날 입고에 따라 달라집니다. 기대치로만 보세요.',
-      shopGoodsL: '잘 찾는 술',
+      shopBtlL: '대표 취급 위스키 · 대략가',
+      shopBtlNote: '취급 예시·참고가 기준 · 실시간 재고는 매장 확인',
       whereL: '주로 파는 곳',
       hoursL: '영업',
       walk: '도보',
@@ -768,7 +738,7 @@
       catImp: '수입·기타',
       catSc: '스카치',
       catTw: '타이완',
-      priceFoot: '정가는 산토리·닛카(아사히)·기린·혼보·벤처위스키 공개 가격(2026-11 기준, 2026-04 인상 반영), 실판매는 2026-10~11 도쿄·오사카 리쿼샵 실측과 라쿠텐·아마존 최저가, 한국 시세는 2026-11-27~28 국내 최저 매물가(위스키핫·데일리샷)입니다. 인기병은 일본에서도 추첨·1인 1병 제한이 붙고, 표시 금액은 환율에 따라 달라집니다. 매장별 실시간 재고는 일본 리쿼샵이 공개하지 않아 ‘주로 파는 곳’은 계열 경향입니다. 참고용으로 보세요.',
+      priceFoot: '정가는 산토리·닛카(아사히)·기린·혼보·벤처위스키 공개 가격(2026-11 기준, 2026-04 인상 반영), 실판매는 2026-10~11 도쿄·오사카 리쿼샵 실측과 라쿠텐·아마존 최저가, 한국 시세는 2026-11-27~28 국내 최저 매물가(위스키핫·데일리샷)입니다. 인기병은 일본에서도 추첨·1인 1병 제한이 붙고, 표시 금액은 환율에 따라 달라집니다. 매장별 실시간 재고는 일본 리쿼샵이 공개하지 않아 ‘주로 파는 곳’과 리쿼샵 탭의 대표 취급 병은 매장 유형에 따른 참고 예시입니다.',
       taxTitle: '면세 한도·세금 계산',
       taxNote: '술은 합계 2L 이하이면서 총 US$400 이하일 때 면세입니다. 2025-03-21부터 병수 제한(2병)은 폐지됐고, 일반물품 800달러 면세와는 따로 계산합니다.',
       lbPrice: '병 가격',
@@ -838,13 +808,8 @@
       countShops: '{n} shops',
       countShopsFound: '{n} found',
       emptyShops: 'No shop matches. Try another word or city.',
-      cmpTitle: 'Shop types: bottles & price style',
-      cmpSub: '23 shops in 6 types · list price vs street',
-      cmpLead: 'The same bottle costs different money by shop type. Pick the type before the branch.',
-      cmpLineupL: 'Shelf',
-      cmpShopsU: '',
-      cmpFoot: 'Shops do not publish live stock, so it changes with each delivery — treat this as what to expect on the shelf.',
-      shopGoodsL: 'Typical shelf',
+      shopBtlL: 'Typical bottles · street price',
+      shopBtlNote: 'Example shelf and rough price · confirm live stock at the shop',
       whereL: 'Where to buy',
       hoursL: 'Hours',
       walk: 'Walk',
@@ -876,7 +841,7 @@
       catImp: 'Imported & others',
       catSc: 'Scotch',
       catTw: 'Taiwanese',
-      priceFoot: 'List prices are Suntory, Nikka (Asahi), Kirin, Hombo and Venture Whisky published prices (Nov 2026, after the Apr 2026 rise). Street prices are Tokyo/Osaka shop sightings in Oct–Nov 2026 plus Rakuten/Amazon lows. Korean figures are the lowest domestic listings on 2026-11-27~28 (Whisky Hot, Dailyshot). Rare bottles are lottery or one-per-person even in Japan, and every number moves with the exchange rate. Shops do not publish live stock, so “Where to buy” shows the kind of shop that usually carries it — treat them as a guide.',
+      priceFoot: 'List prices are Suntory, Nikka (Asahi), Kirin, Hombo and Venture Whisky published prices (Nov 2026, after the Apr 2026 rise). Street prices are Tokyo/Osaka shop sightings in Oct–Nov 2026 plus Rakuten/Amazon lows. Korean figures are the lowest domestic listings on 2026-11-27~28 (Whisky Hot, Dailyshot). Rare bottles are lottery or one-per-person even in Japan, and every number moves with the exchange rate. Shops do not publish live stock, so “Where to buy” and the typical bottles on each shop card are the usual shelf for that kind of shop — treat them as a guide.',
       taxTitle: 'Duty-free cap & tax',
       taxNote: 'Liquor is duty-free when the total is 2L or less AND US$400 or less. The two-bottle cap was dropped on 2025-03-21, and this allowance is separate from the US$800 for ordinary goods.',
       lbPrice: 'Bottle price',
@@ -934,123 +899,95 @@
     {city:'도쿄', cityEn:'Tokyo', ja:'リカーマウンテン銀座777', ko:'리카마운틴 긴자777', en:'Liquor Mountain Ginza 777',
      st:'銀座駅', stEn:'Ginza St.', w:5, h:'월–금 11:00–02:00 · 토 11:00–22:00 · 일 11:00–20:00', hEn:'Mon–Fri 11:00–02:00 · Sat 11:00–22:00 · Sun 11:00–20:00',
      tf:1, hl:'위스키·스피리츠 약 1,000종, 10ml 계량 판매(유료 시음)까지 되는 긴자 플래그십', hlEn:'Flagship in Ginza: about 1,000 whiskies, with paid 10ml pours',
-     pid:'ChIJRwJjl-iLGGARbex9j-urMuE', ty:'lm', goods:'야마자키·히비키·하쿠슈 등 프리미엄 시세가', goodsEn:'Yamazaki, Hibiki, Hakushu and other premium bottles at street price'},
+     pid:'ChIJRwJjl-iLGGARbex9j-urMuE', btl:[["야마자키 12","Yamazaki 12",23000],["히비키 블초","Hibiki Blender's Choice",17500],["이치로스","Ichiro's Malt",4048],["10ml 유료 시음","paid 10ml pours",0]]},
     {city:'도쿄', cityEn:'Tokyo', ja:'リカーマウンテン SHIBUYA313', ko:'리카마운틴 시부야313', en:'Liquor Mountain SHIBUYA313',
      st:'渋谷駅', stEn:'Shibuya St.', w:4, h:'월–목 11:00–02:00 · 금–토 11:00–05:00 · 일 11:00–23:00', hEn:'Mon–Thu 11:00–02:00 · Fri–Sat 11:00–05:00 · Sun 11:00–23:00',
      tf:1, hl:'시부야 한복판, 금·토는 새벽 5시까지', hlEn:'Central Shibuya; open until 05:00 on Fri–Sat',
-     pid:'ChIJB7Q2xtSNGGARhRYbkLzhI4Q', ty:'lm', goods:'프리미엄·희귀 위스키 시세가', goodsEn:'Premium and rare whisky at street price'},
+     pid:'ChIJB7Q2xtSNGGARhRYbkLzhI4Q', btl:[["야마자키 12","Yamazaki 12",23000],["히비키 블초","Hibiki Blender's Choice",17500],["이치로스","Ichiro's Malt",4048]]},
     {city:'도쿄', cityEn:'Tokyo', ja:'リカーマウンテン 新宿歌舞伎町', ko:'리카마운틴 신주쿠 가부키초', en:'Liquor Mountain Kabukicho',
      st:'新宿駅', stEn:'Shinjuku St.', w:8, h:'월–토 16:00–04:00 · 일 휴무', hEn:'Mon–Sat 16:00–04:00 · closed Sun',
      tf:0, hl:'가부키초 심야 리커숍, 낮에는 닫혀 있음', hlEn:'Late-night Kabukicho shop — shut in the daytime',
-     pid:'ChIJ0SeQE9mMGGARq3z8mFC5F0w', ty:'lm', goods:'심야 위스키 시세가, 프리미엄·희귀병', goodsEn:'Late-night street prices on premium and rare bottles'},
+     pid:'ChIJ0SeQE9mMGGARq3z8mFC5F0w', btl:[["야마자키 18","Yamazaki 18",105000],["히비키 21","Hibiki 21",79000],["이치로스","Ichiro's Malt",4048]]},
     {city:'도쿄', cityEn:'Tokyo', ja:'信濃屋 新宿店', ko:'시나노야 신주쿠', en:'Shinanoya Shinjuku',
      st:'新宿駅', stEn:'Shinjuku St.', w:6, h:'월–토 11:00–23:00 · 일 11:00–21:00', hEn:'Mon–Sat 11:00–23:00 · Sun 11:00–21:00',
      tf:0, hl:'위스키·사케를 고르는 전문점, 희귀병이 붙는 날이 있음', hlEn:'Specialist with a deep whisky and sake shelf',
-     pid:'ChIJo-IBSNiMGGARu9wykXE5U3A', ty:'sn', goods:'이치로스·싱글몰트·희귀 스카치', goodsEn:'Ichiro’s, single malts, rare Scotch'},
+     pid:'ChIJo-IBSNiMGGARu9wykXE5U3A', btl:[["이치로스","Ichiro's Malt",4048],["야마자키 18","Yamazaki 18",105000],["히비키 21","Hibiki 21",79000],["싱글몰트·희귀 스카치","single malts, rare Scotch",0]]},
     {city:'도쿄', cityEn:'Tokyo', ja:'信濃屋 銀座店', ko:'시나노야 긴자', en:'Shinanoya Ginza',
      st:'銀座駅', stEn:'Ginza St.', w:7, h:'월–목 12:00–22:00 · 금 12:00–23:00 · 토 11:00–20:00 · 일 11:00–19:00', hEn:'Mon–Thu 12:00–22:00 · Fri 12:00–23:00 · Sat 11:00–20:00 · Sun 11:00–19:00',
      tf:0, hl:'긴자 프리미엄 위스키, 저녁 마감이 이른 편', hlEn:'Premium bottles in Ginza; closes earlier than bars',
-     pid:'ChIJgx486OiLGGARV0l2XszTYOU', ty:'sn', goods:'프리미엄 위스키·독립병입 병', goodsEn:'Premium whisky and independent bottlings'},
+     pid:'ChIJgx486OiLGGARV0l2XszTYOU', btl:[["이치로스","Ichiro's Malt",4048],["히비키 블초","Hibiki Blender's Choice",17500],["카발란 솔리스트","Kavalan Solist",18843],["독립병입","independent bottlings",0]]},
     {city:'도쿄', cityEn:'Tokyo', ja:'ビックカメラ 有楽町店', ko:'빅카메라 유라쿠초', en:'BicCamera Yurakucho',
      st:'有楽町駅', stEn:'Yurakucho St.', w:1, h:'매일 10:00–22:00', hEn:'Daily 10:00–22:00',
      tf:1, hl:'역 앞 가전 양판점의 주류 코너, 사케·위스키를 함께', hlEn:'Liquor floor inside a station-front electronics store',
-     pid:'ChIJ0dtyq_qLGGARUzYbCCXz1Ic', ty:'bic', goods:'가쿠빈·아오·치타·요이치 정가권, 사케 함께', goodsEn:'List-price Kakubin, Ao, Chita, Yoichi; sake too'},
+     pid:'ChIJ0dtyq_qLGGARUzYbCCXz1Ic', btl:[["가쿠빈","Kakubin",1672],["아오","Ao",3880],["요이치","Yoichi",7560],["야마자키·하쿠슈 추첨","Yamazaki, Hakushu by lottery",0]]},
     {city:'도쿄', cityEn:'Tokyo', ja:'ビックカメラ 新宿西口店', ko:'빅카메라 신주쿠 니시구치', en:'BicCamera Shinjuku West',
      st:'新宿駅', stEn:'Shinjuku St.', w:5, h:'월–토 10:00–20:30 · 일 10:00–20:00', hEn:'Mon–Sat 10:00–20:30 · Sun 10:00–20:00',
      tf:1, hl:'2~6층 규모, 주류 매대가 넓은 편', hlEn:'Six floors; a wide liquor section',
-     pid:'ChIJ6Vvm5NaMGGARHb48ajBLxrE', ty:'bic', goods:'정가권 위스키·사케 매대가 넓은 편', goodsEn:'Wide list-price whisky and sake floor'},
+     pid:'ChIJ6Vvm5NaMGGARHb48ajBLxrE', btl:[["가쿠빈","Kakubin",1672],["발베니 12","Balvenie 12",7255],["맥캘란 12 더블캐스크","Macallan 12 Double Cask",8998],["야마자키·하쿠슈 추첨","Yamazaki, Hakushu by lottery",0]]},
     {city:'도쿄', cityEn:'Tokyo', ja:'はせがわ酒店 グランスタ東京店', ko:'하세가와 사케텐 그란스타 도쿄', en:'Hasegawa Saketen Gransta Tokyo',
      st:'東京駅', stEn:'Tokyo St.', w:0, h:'월–토 7:00–22:00 · 일·공휴일 7:00–21:00', hEn:'Mon–Sat 7:00–22:00 · Sun/hol 7:00–21:00',
      tf:0, hl:'도쿄역 개찰 안 B1(입장권 필요). 일본주 중심 + 서서 마시는 시음 바', hlEn:'Inside Tokyo Station gates, B1 (needs a platform ticket). Sake-led, with a standing tasting bar',
-     pid:'ChIJtxODuv6LGGARvMytdxU4gXs', ty:'sk', goods:'니혼슈·사케 중심, 위스키는 일부', goodsEn:'Sake-led; only a few whiskies'},
+     pid:'ChIJtxODuv6LGGARvMytdxU4gXs', btl:[["니혼슈·사케 중심","nihonshu-led",0],["크래프트 위스키 일부","a few craft whiskies",0]]},
     {city:'도쿄', cityEn:'Tokyo', ja:'やまや 新宿店', ko:'야마야 신주쿠', en:'Yamaya Shinjuku',
      st:'新宿駅', stEn:'Shinjuku St.', w:5, h:'매일 10:00–22:00', hEn:'Daily 10:00–22:00',
      tf:1, hl:'대형 리커 할인점, 같은 병을 가장 싸게 만나기 쉬움', hlEn:'Big liquor discounter — often the lowest shelf price',
-     pid:'ChIJRUGK_9KMGGARhjYrFzvGX9w', ty:'ym', goods:'가쿠빈·블랙닉카·버번·스카치 정가권', goodsEn:'List-price Kakubin, Black Nikka, bourbon, Scotch'},
+     pid:'ChIJRUGK_9KMGGARhjYrFzvGX9w', btl:[["가쿠빈","Kakubin",1672],["블랙닉카","Black Nikka",1449],["프롬 더 배럴","From the Barrel",4220]]},
     {city:'도쿄', cityEn:'Tokyo', ja:'MEGAドン・キホーテ 渋谷本店', ko:'MEGA 돈키호테 시부야', en:'MEGA Don Quijote Shibuya',
      st:'渋谷駅', stEn:'Shibuya St.', w:2, h:'24시간', hEn:'Open 24 hours',
      tf:1, hl:'24시간, 관광객이 몰려 인기 병은 아침에 사라짐', hlEn:'24 hours; popular bottles go by morning',
-     pid:'ChIJr4J6pKmMGGARdQLOgrzToH4', ty:'dq', goods:'입문 위스키·가쿠빈, 인기병은 아침에 사라짐', goodsEn:'Entry whisky and Kakubin; popular bottles go by morning'},
+     pid:'ChIJr4J6pKmMGGARdQLOgrzToH4', btl:[["가쿠빈","Kakubin",1672],["블랙닉카","Black Nikka",1449],["아오","Ao",3880]]},
     {city:'도쿄', cityEn:'Tokyo', ja:'ヨドバシAkiba', ko:'요도바시 아키바', en:'Yodobashi Akiba',
      st:'秋葉原駅', stEn:'Akihabara St.', w:3, h:'매일 9:30–22:00', hEn:'Daily 9:30–22:00',
      tf:1, hl:'아키하바라 역 앞 대형 양판점, 주류 코너 있음', hlEn:'Big store by Akihabara Station, with a liquor floor',
-     pid:'ChIJGU_M2aeOGGARdnOLcMYXuXs', ty:'bic', goods:'가쿠빈·아오·치타 정가권, 주류 코너', goodsEn:'List-price Kakubin, Ao, Chita on the liquor floor'},
+     pid:'ChIJGU_M2aeOGGARdnOLcMYXuXs', btl:[["가쿠빈","Kakubin",1672],["아오","Ao",3880],["요이치","Yoichi",7560],["야마자키·하쿠슈 추첨","Yamazaki, Hakushu by lottery",0]]},
     {city:'도쿄', cityEn:'Tokyo', ja:'ドン・キホーテ 秋葉原店', ko:'돈키호테 아키하바라', en:'Don Quijote Akihabara',
      st:'秋葉原駅', stEn:'Akihabara St.', w:5, h:'24시간', hEn:'Open 24 hours',
      tf:1, hl:'24시간, 심야·새벽에 들르기 좋음', hlEn:'24 hours — handy late at night',
-     pid:'ChIJ7S15lB2MGGARvsUPQb9by7c', ty:'dq', goods:'입문 위스키·가쿠빈, 24시간', goodsEn:'Entry whisky and Kakubin, 24 hours'},
+     pid:'ChIJ7S15lB2MGGARvsUPQb9by7c', btl:[["가쿠빈","Kakubin",1672],["블랙닉카","Black Nikka",1449],["아오","Ao",3880]]},
     {city:'오사카', cityEn:'Osaka', ja:'リカーマウンテン 宗右衛門町', ko:'리카마운틴 소우에몬초', en:'Liquor Mountain Suomachi',
      st:'なんば駅', stEn:'Namba St.', w:12, h:'월–토 12:00–05:00 · 일 12:00–03:00', hEn:'Mon–Sat 12:00–05:00 · Sun 12:00–03:00',
      tf:0, hl:'도톤보리 옆, 새벽까지 여는 심야 매장', hlEn:'Beside Dotonbori, open into the small hours',
-     pid:'ChIJQa4G2hXnAGAR5uYZThPPb0Q', ty:'lm', goods:'프리미엄·희귀 위스키 시세가', goodsEn:'Premium and rare whisky at street price'},
+     pid:'ChIJQa4G2hXnAGAR5uYZThPPb0Q', btl:[["야마자키 12","Yamazaki 12",23000],["히비키 블초","Hibiki Blender's Choice",17500],["이치로스","Ichiro's Malt",4048]]},
     {city:'오사카', cityEn:'Osaka', ja:'リカーマウンテン 畳屋町', ko:'리카마운틴 타타미야마치', en:'Liquor Mountain Tatamiyamachi',
      st:'心斎橋駅', stEn:'Shinsaibashi St.', w:8, h:'월–토 17:00–04:00 · 일 휴무', hEn:'Mon–Sat 17:00–04:00 · closed Sun',
      tf:0, hl:'저녁에 여는 심사이바시 매장, 낮 방문은 피하기', hlEn:'Evening-only Shinsaibashi shop — skip it at midday',
-     pid:'ChIJH21iTRTnAGARo9NzyNmPM8E', ty:'lm', goods:'위스키 시세가, 저녁 영업', goodsEn:'Street-priced whisky, evening hours'},
+     pid:'ChIJH21iTRTnAGARo9NzyNmPM8E', btl:[["야마자키 12","Yamazaki 12",23000],["히비키 21","Hibiki 21",79000],["이치로스","Ichiro's Malt",4048]]},
     {city:'오사카', cityEn:'Osaka', ja:'リカーマウンテン 梅田', ko:'리카마운틴 우메다', en:'Liquor Mountain Umeda',
      st:'大阪梅田駅', stEn:'Osaka-Umeda St.', w:12, h:'월–금 11:00–01:00 · 토 11:00–22:00 · 일 11:00–20:00', hEn:'Mon–Fri 11:00–01:00 · Sat 11:00–22:00 · Sun 11:00–20:00',
      tf:0, hl:'우메다·기타신치 쪽, 평일 늦게까지', hlEn:'Umeda side; late on weekdays',
-     pid:'ChIJjS9n8_jnAGARw0jgohzWnjk', ty:'lm', goods:'프리미엄·희귀 위스키 시세가', goodsEn:'Premium and rare whisky at street price'},
+     pid:'ChIJjS9n8_jnAGARw0jgohzWnjk', btl:[["가쿠빈","Kakubin",1672],["야마자키 12","Yamazaki 12",23000],["히비키 블초","Hibiki Blender's Choice",17500]]},
     {city:'오사카', cityEn:'Osaka', ja:'ビックカメラ なんば店', ko:'빅카메라 난바', en:'BicCamera Namba',
      st:'なんば駅', stEn:'Namba St.', w:3, h:'매일 10:00–22:00', hEn:'Daily 10:00–22:00',
      tf:1, hl:'주류 매장이 따로 있고, 술은 3% 할인 쿠폰이 붙음', hlEn:'Separate liquor shop; a 3% coupon applies to alcohol',
-     pid:'ChIJddTF62nnAGARhhyQ-LE9AgM', ty:'bic', goods:'가쿠빈·맥캘란·발베니 정가권, 주류 3% 쿠폰', goodsEn:'List-price Kakubin, Macallan, Balvenie; 3% liquor coupon'},
+     pid:'ChIJddTF62nnAGARhhyQ-LE9AgM', btl:[["가쿠빈","Kakubin",1672],["맥캘란 12 셰리오크","Macallan 12 Sherry Oak",13500],["발베니 12","Balvenie 12",7255],["주류 3% 쿠폰","3% liquor coupon",0]]},
     {city:'오사카', cityEn:'Osaka', ja:'ドン・キホーテ 道頓堀店', ko:'돈키호테 도톤보리', en:'Don Quijote Dotonbori',
      st:'なんば駅', stEn:'Namba St.', w:5, h:'24시간', hEn:'Open 24 hours',
      tf:1, hl:'도톤보리 한복판 24시간 매장', hlEn:'24 hours, right in Dotonbori',
-     pid:'ChIJzTcpYBTnAGARRj0CBKJJsSY', ty:'dq', goods:'입문 위스키·가쿠빈, 24시간', goodsEn:'Entry whisky and Kakubin, 24 hours'},
+     pid:'ChIJzTcpYBTnAGARRj0CBKJJsSY', btl:[["가쿠빈","Kakubin",1672],["블랙닉카","Black Nikka",1449],["아오","Ao",3880]]},
     {city:'오사카', cityEn:'Osaka', ja:'やまや 長堀橋店', ko:'야마야 나가호리바시', en:'Yamaya Nagahoribashi',
      st:'長堀橋駅', stEn:'Nagahoribashi St.', w:3, h:'매일 10:00–22:00', hEn:'Daily 10:00–22:00',
      tf:1, hl:'역에서 3분, 사케·위스키를 싸게', hlEn:'Three minutes from the station; keen prices',
-     pid:'ChIJ-R970RfnAGARh_oakra-aeI', ty:'ym', goods:'가쿠빈·블랙닉카·사케 정가권', goodsEn:'List-price Kakubin, Black Nikka, sake'},
+     pid:'ChIJ-R970RfnAGARh_oakra-aeI', btl:[["가쿠빈","Kakubin",1672],["블랙닉카","Black Nikka",1449],["프롬 더 배럴","From the Barrel",4220]]},
     {city:'후쿠오카', cityEn:'Fukuoka', ja:'リカーマウンテン 中洲国体道路', ko:'리카마운틴 나카스 코쿠타이도', en:'Liquor Mountain Nakasu',
      st:'中洲川端駅', stEn:'Nakasu-Kawabata St.', w:7, h:'월–토 16:00–02:00 · 일 휴무', hEn:'Mon–Sat 16:00–02:00 · closed Sun',
      tf:1, hl:'재패니즈 위스키·샴페인·사케 진열이 두터운 후쿠오카 매장', hlEn:'Deep Japanese whisky, champagne and sake shelves',
-     pid:'ChIJXa6YCJWRQTURXxJ7UF31l54', ty:'lm', goods:'재패니즈 위스키·샴페인·사케 시세가', goodsEn:'Japanese whisky, champagne and sake at street price'},
+     pid:'ChIJXa6YCJWRQTURXxJ7UF31l54', btl:[["야마자키 12","Yamazaki 12",23000],["히비키 블초","Hibiki Blender's Choice",17500],["카발란 솔리스트","Kavalan Solist",18843]]},
     {city:'후쿠오카', cityEn:'Fukuoka', ja:'ビックカメラ 天神2号館', ko:'빅카메라 텐진 2호관', en:'BIC CAMERA Tenjin 2nd',
      st:'天神駅', stEn:'Tenjin St.', w:8, h:'매일 10:00–21:00', hEn:'Daily 10:00–21:00',
      tf:1, hl:'텐진 중심가, 주류 매대 있음', hlEn:'Central Tenjin, with a liquor section',
-     pid:'ChIJUf5hcYWRQTUR_MUxO9bD0FE', ty:'bic', goods:'정가권 위스키·사케', goodsEn:'List-price whisky and sake'},
+     pid:'ChIJUf5hcYWRQTUR_MUxO9bD0FE', btl:[["가쿠빈","Kakubin",1672],["아오","Ao",3880],["요이치","Yoichi",7560]]},
     {city:'후쿠오카', cityEn:'Fukuoka', ja:'ドン・キホーテ 天神店', ko:'돈키호테 텐진', en:'Don Quijote Tenjin',
      st:'天神駅', stEn:'Tenjin St.', w:11, h:'24시간', hEn:'Open 24 hours',
      tf:1, hl:'24시간, 야마야·빅카메라와 도보 5~8분 거리', hlEn:'24 hours; 5–8 min from Yamaya and BicCamera',
-     pid:'ChIJj9iUqoWRQTURWnFERWGSVHg', ty:'dq', goods:'입문 위스키·가쿠빈, 24시간', goodsEn:'Entry whisky and Kakubin, 24 hours'},
+     pid:'ChIJj9iUqoWRQTURWnFERWGSVHg', btl:[["가쿠빈","Kakubin",1672],["블랙닉카","Black Nikka",1449],["아오","Ao",3880]]},
     {city:'후쿠오카', cityEn:'Fukuoka', ja:'やまや 大名店', ko:'야마야 다이묘', en:'Yamaya Daimyo',
      st:'天神駅', stEn:'Tenjin St.', w:15, h:'매일 10:00–22:00', hEn:'Daily 10:00–22:00',
      tf:1, hl:'가격표에 면세가를 함께 적어 두는 대형점', hlEn:'Big store that prints tax-free prices on the shelf tag',
-     pid:'ChIJk4amzYaRQTURgQNdavhpJek', ty:'ym', goods:'가쿠빈·블랙닉카·버번 정가권, 면세가 표기', goodsEn:'List-price Kakubin, Black Nikka, bourbon; tax-free tag'},
+     pid:'ChIJk4amzYaRQTURgQNdavhpJek', btl:[["가쿠빈","Kakubin",1672],["블랙닉카","Black Nikka",1449],["프롬 더 배럴","From the Barrel",4220],["면세가 표기","tax-free price on tag",0]]},
     {city:'후쿠오카', cityEn:'Fukuoka', ja:'住吉酒販 博多駅店', ko:'스미요시 슈한 하카타역', en:'Sumiyoshi Shuhan Hakata',
      st:'博多駅', stEn:'Hakata St.', w:1, h:'매일 9:00–21:00', hEn:'Daily 9:00–21:00',
      tf:0, hl:'하카타역 미야게몬 시장 안, 출국 전 마지막 한 병', hlEn:'Inside Hakata Station’s souvenir market — last bottle before you fly',
-     pid:'ChIJJZ8gdsiRQTURSu8cFJMZzPE', ty:'sk', goods:'사케·미야게 중심, 위스키 일부', goodsEn:'Sake and souvenirs; a few whiskies'}
-  ];
-
-  /* 23곳을 6계열로 묶은 비교 기준 — 가격 정책은 계열 공통, 입고는 지점·그날에 따라 다름 */
-  var SHOP_TYPES = [
-    {id:'bic', name:{ko:'빅카메라 · 요도바시', en:'BicCamera · Yodobashi'},
-     badges:[{c:'msrp', t:{ko:'정가권', en:'List price'}}, {c:'tf', t:{ko:'면세 O', en:'Tax-free'}}],
-     line:{ko:'가쿠빈·아오·치타·요이치·발베니·맥캘란 12년은 상시. 야마자키·히비키는 추첨·게릴라.',
-           en:'Kakubin, Ao, Chita, Yoichi, Balvenie and Macallan 12 stay on the shelf; Yamazaki and Hibiki come by lottery or the odd drop.'}},
-    {id:'ym', name:{ko:'야마야 Yamaya', en:'Yamaya'},
-     badges:[{c:'msrp', t:{ko:'정가권', en:'List price'}}, {c:'tf', t:{ko:'면세 O', en:'Tax-free'}}],
-     line:{ko:'가쿠빈·블랙닉카·프롬 더 배럴 등 데일리 병과 버번·스카치. 같은 병이 가장 싼 계열.',
-           en:'Daily bottles — Kakubin, Black Nikka, From the Barrel — a wide bourbon and Scotch shelf, often the lowest price.'}},
-    {id:'lm', name:{ko:'리카마운틴 Liquor Mountain', en:'Liquor Mountain'},
-     badges:[{c:'market', t:{ko:'시세형', en:'Street price'}}, {c:'tfm', t:{ko:'면세 일부', en:'Tax-free, some shops'}}],
-     line:{ko:'야마자키·히비키·하쿠슈 등 프리미엄·희귀병을 시세가로. 긴자777은 약 1,000종·10ml 유료 시음.',
-           en:'Premium and rare bottles — Yamazaki, Hibiki, Hakushu — at market price. Ginza 777: about 1,000 whiskies and 10ml pours.'}},
-    {id:'sn', name:{ko:'시나노야 Shinanoya', en:'Shinanoya'},
-     badges:[{c:'spec', t:{ko:'매니아·전문', en:'Specialist'}}, {c:'tfx', t:{ko:'면세 미확인', en:'Tax-free unclear'}}],
-     line:{ko:'이치로스 몰트·싱글몰트·희귀 스카치 등 다른 매장에 없는 병. 사케도 두터운 전문점.',
-           en:'Ichiro’s Malt, single malts and rare Scotch other shops do not carry, plus a deep sake shelf.'}},
-    {id:'dq', name:{ko:'돈키호테', en:'Don Quijote'},
-     badges:[{c:'msrp', t:{ko:'정가권 중심', en:'Mostly list price'}}, {c:'tf', t:{ko:'면세 O', en:'Tax-free'}}, {c:'hrs', t:{ko:'24시간', en:'24 hours'}}],
-     line:{ko:'가쿠빈·블랙닉카·입문 위스키 중심. 일부 지점은 프리미엄 병도 시세가.',
-           en:'Kakubin, Black Nikka and entry whisky; a few branches also put premium bottles out at market price.'}},
-    {id:'sk', name:{ko:'하세가와 · 스미요시', en:'Hasegawa · Sumiyoshi'},
-     badges:[{c:'sake', t:{ko:'사케 전문', en:'Sake & craft'}}, {c:'tfx', t:{ko:'면세 미확인', en:'Tax-free unclear'}}],
-     line:{ko:'니혼슈·크래프트 주류 중심, 위스키는 일부. 역 안·미야게 시장의 마지막 한 병.',
-           en:'Nihonshu and craft alcohol lead, with a few whiskies — a last bottle inside the station.'}}
+     pid:'ChIJJZ8gdsiRQTURSu8cFJMZzPE', btl:[["사케·미야게 중심","sake & souvenirs",0],["위스키 일부","a few whiskies",0]]}
   ];
 
   var PRICES = [
@@ -1327,12 +1264,28 @@
   }
 
   /* ------------------------------------------------------------------ shops */
+  /* 매장 카드의 대표 취급 위스키 칩 — 가격은 시세 탭의 실측 참고가(엔) */
+  function btlBlock(s) {
+    if (!s.btl || !s.btl.length) return '';
+    var chips = s.btl.map(function (b) {
+      var name = esc(lang === 'ko' ? b[0] : b[1]);
+      if (!b[2]) return '<span class="btl-chip txt">' + name + '</span>';
+      return '<span class="btl-chip">' + name + '<span class="bp">¥' + fmt(b[2]) + '~</span></span>';
+    }).join('');
+    return '<div class="shop-btl">' +
+      '<p class="shop-btl-lb">' + esc(t('shopBtlL')) + '</p>' +
+      '<div class="btl-chips">' + chips + '</div>' +
+      '<p class="shop-btl-note">' + esc(t('shopBtlNote')) + '</p>' +
+    '</div>';
+  }
+
   function renderShops() {
     var q = ($('shopSearch').value || '').trim().toLowerCase();
     var rows = SHOPS.filter(function (s) {
       if (city !== 'all' && s.city !== city) return false;
       if (!q) return true;
-      var hay = (s.ja + ' ' + s.ko + ' ' + s.en + ' ' + s.st + ' ' + s.city + ' ' + s.cityEn + ' ' + s.hl).toLowerCase();
+      var hay = (s.ja + ' ' + s.ko + ' ' + s.en + ' ' + s.st + ' ' + s.city + ' ' + s.cityEn + ' ' + s.hl + ' ' +
+        s.btl.map(function (b) { return b[0] + ' ' + b[1]; }).join(' ')).toLowerCase();
       return hay.indexOf(q) !== -1;
     });
     var box = $('shopRows');
@@ -1354,7 +1307,7 @@
         '</div>' +
         '<p class="shop-hours"><span class="lb">' + esc(t('hoursL')) + '</span><span class="vv">' + esc(lang === 'ko' ? s.h : s.hEn).split(' · ').map(function (x) { return '<span style="white-space:nowrap">' + x + '</span>'; }).join(' · ') + '</span></p>' +
         '<p class="shop-hl">' + esc(lang === 'ko' ? s.hl : s.hlEn) + '</p>' +
-        (s.goods ? '<p class="shop-goods"><span class="lb">' + esc(t('shopGoodsL')) + '</span> <span>' + esc(lang === 'ko' ? s.goods : s.goodsEn) + '</span></p>' : '') +
+        btlBlock(s) +
         '<div class="shop-actions">' +
           '<button type="button" class="btn" data-copy="' + esc(s.ja) + '">' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 5H6a1 1 0 0 0-1 1v9"/></svg>' +
@@ -1368,34 +1321,6 @@
     if (!rows.length) box.innerHTML = '<p class="empty">' + esc(t('emptyShops')) + '</p>';
     $('shopCount').textContent = (q ? t('countShopsFound', rows.length) : t('countShops', rows.length));
     $('statShops').textContent = String(SHOPS.length);
-  }
-
-  /* 계열별 취급 주종·가격 비교 — 23곳을 6계열로 묶은 카드 (실시간 재고 정보 아님) */
-  function renderShopTypes() {
-    var box = $('shopCompare');
-    if (!box) return;
-    var rows = SHOP_TYPES.map(function (tp) {
-      var shops = SHOPS.filter(function (s) { return s.ty === tp.id; });
-      var badges = tp.badges.map(function (b) {
-        return '<span class="cbadge ' + esc(b.c) + '">' + esc(b.t[lang]) + '</span>';
-      }).join('');
-      return '<div class="cmp-row">' +
-        '<div class="cmp-top"><span class="cmp-name">' + esc(tp.name[lang]) + '</span>' + badges +
-          '<span class="cmp-cnt">' + shops.length + esc(t('cmpShopsU')) + '</span></div>' +
-        '<p class="cmp-line"><span class="lb">' + esc(t('cmpLineupL')) + '</span> ' + esc(tp.line[lang]) + '</p>' +
-      '</div>';
-    }).join('');
-    box.innerHTML = '<details class="cmp" open>' +
-      '<summary><span class="cmp-kico" aria-hidden="true">🏪</span>' +
-        '<span class="cmp-sumtxt"><b>' + esc(t('cmpTitle')) + '</b><span>' + esc(t('cmpSub')) + '</span></span>' +
-        '<svg class="cmp-chev" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>' +
-      '</summary>' +
-      '<div class="cmp-body">' +
-        '<p class="cmp-lead">' + esc(t('cmpLead')) + '</p>' +
-        '<div class="cmp-list">' + rows + '</div>' +
-        '<p class="cmp-foot">' + esc(t('cmpFoot')) + '</p>' +
-      '</div>' +
-    '</details>';
   }
 
   function renderCityChips() {
@@ -1623,7 +1548,6 @@
     $('langKo').classList.toggle('is-active', l === 'ko');
     $('langEn').classList.toggle('is-active', l === 'en');
     renderCityChips();
-    renderShopTypes();
     renderShops();
     renderCatChips();
     renderPrices();
