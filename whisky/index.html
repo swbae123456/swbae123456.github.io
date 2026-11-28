@@ -390,6 +390,44 @@
   }
   .add-calc:active{transform:scale(.995)}
   .pcard-add-hit{display:none}
+  /* 병 사진 썸네일 */
+  .pcard-top{display:flex;align-items:flex-start;gap:11px}
+  .pthumb{
+    position:relative;flex:0 0 auto;width:64px;height:86px;padding:0;margin:0;
+    border:1px solid var(--line-2);border-radius:12px;background:#fff;overflow:hidden;
+    cursor:zoom-in;display:block;-webkit-appearance:none;appearance:none;line-height:0;
+    box-shadow:0 1px 3px rgba(120,72,20,.06);
+  }
+  .pthumb:active{transform:scale(.97)}
+  .pthumb img{width:100%;height:100%;object-fit:contain;display:block;background:#fff}
+  .pthumb::after{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(100deg,#f5efe4 18%,#fdfbf6 44%,#f5efe4 70%);
+    background-size:230% 100%;animation:pshim 1.15s linear infinite;transition:opacity .2s ease;
+  }
+  .pthumb.is-loaded::after,.pthumb.is-failed::after{opacity:0;animation:none}
+  @keyframes pshim{0%{background-position:118% 0}100%{background-position:-118% 0}}
+  @keyframes pfade{from{opacity:.3}to{opacity:1}}
+  .pthumb.is-loaded img{animation:pfade .22s ease}
+  .pthumb.is-failed img{visibility:hidden}
+  .pthumb.is-failed{
+    background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 40'%3E%3Crect x='9' y='1' width='6' height='4' rx='.8' fill='%23cbb79a'/%3E%3Cpath d='M9.6 5h4.8c0 4.2 3.1 5.4 3.1 9.3v21.2c0 1.9-1 2.9-2.9 2.9H9.4c-1.9 0-2.9-1-2.9-2.9V14.3C6.5 10.4 9.6 9.2 9.6 5Z' fill='%23f0e5d2' stroke='%23c9b295' stroke-width='1.1'/%3E%3Crect x='7.6' y='17' width='8.8' height='10' rx='1.2' fill='%23fff' stroke='%23c9b295' stroke-width='1'/%3E%3C/svg%3E") center/34px no-repeat;
+  }
+  .pcard-main{flex:1 1 auto;min-width:0}
+  .pcard-main .pcard-head{gap:7px}
+  .pcard-main .pcard-head b{font-size:15.5px;line-height:1.32}
+  .pcard-main .pcard-tag{margin-top:6px}
+  .pcard-top + .pcard-flags{margin-top:9px}
+
+  /* 병 사진 확대 */
+  .bzoom{position:fixed;inset:0;z-index:90;background:rgba(12,10,8,.94);display:flex;align-items:center;justify-content:center;padding:20px 18px;cursor:zoom-out}
+  .bzoom[hidden]{display:none}
+  .bzoom figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px;max-width:100%;cursor:default}
+  .bzoom img{max-width:min(100%,360px);max-height:70vh;object-fit:contain;border-radius:16px;background:#fff;box-shadow:0 20px 56px rgba(0,0,0,.55)}
+  .bzoom figcaption{color:#fdf3e3;font-size:13.5px;font-weight:800;text-align:center;line-height:1.5;letter-spacing:-.02em}
+  .bzoom figcaption span{display:block;font-size:11.5px;font-weight:700;color:#cbb79a;margin-top:3px;letter-spacing:-.01em}
+  .bzoom-close{position:absolute;top:calc(12px + env(safe-area-inset-top));right:12px;width:38px;height:38px;border-radius:999px;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:var(--font);line-height:1}
+  .bzoom-hint{position:absolute;bottom:calc(12px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:#b9a68d;font-size:11.5px;font-weight:700;pointer-events:none;letter-spacing:-.01em}
 
   /* calculator */
   .calc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
@@ -719,6 +757,15 @@
 
 <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
 
+<div class="bzoom" id="bzoom" hidden role="dialog" aria-modal="true">
+  <button class="bzoom-close" type="button" id="bzoomClose">✕</button>
+  <figure>
+    <img id="bzoomImg" alt="">
+    <figcaption id="bzoomCap"></figcaption>
+  </figure>
+  <p class="bzoom-hint" id="bzoomHint"></p>
+</div>
+
 <script data-goatcounter="https://swbae12345.goatcounter.com/count"
         async src="https://gc.zgo.at/count.js"></script>
 <script>
@@ -751,6 +798,10 @@
       shopBtlL: '대표 취급 위스키 · 대략가',
       shopBtlNote: '취급 예시·참고가 기준 · 실시간 재고는 매장 확인',
       whereL: '주로 파는 곳',
+      thumbAlt: '{n} 병 사진',
+      zoomAria: '병 사진 크게 보기',
+      zoomHint: '사진을 탭하면 크게 볼 수 있어요 · 매장에서 보여주세요',
+      zoomClose: '닫기',
       hoursL: '영업',
       walk: '도보',
       walkMin: '{n}분',
@@ -859,6 +910,10 @@
       shopBtlL: 'Typical bottles · street price',
       shopBtlNote: 'Example shelf and rough price · confirm live stock at the shop',
       whereL: 'Where to buy',
+      thumbAlt: '{n} bottle photo',
+      zoomAria: 'Bottle photo, enlarged',
+      zoomHint: 'Tap the photo to enlarge it · Show it at the shop',
+      zoomClose: 'Close',
       hoursL: 'Hours',
       walk: 'Walk',
       walkMin: '{n} min',
@@ -1045,148 +1100,148 @@
 
   var PRICES = [
     /* ---- 산토리 ---- */
-    {n:'야마자키 12년', nEn:'Yamazaki 12', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
+    {id:'yamazaki12', n:'야마자키 12년', nEn:'Yamazaki 12', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
      msrp:17600, msrpEx:16000, street:23000, kr:379000,
      t:'일본 싱글몰트의 기준. 복숭아·오크에 꿀 단맛', tEn:'The benchmark Japanese single malt — peach, oak, honey',
      m:'도쿄 23,000엔(2026-11) · 오사카 매장 19,500엔 실측. 정가 판매는 추첨',
      mEn:'¥23,000 in Tokyo (Nov 2026), ¥19,500 in Osaka; list price only by lottery',
      where:'빅카메라·야마야(정가·추첨) · 리카마운틴(시세)', whereEn:'BicCamera · Yamaya (list / lottery) · Liquor Mountain (street)'},
-    {n:'야마자키 18년', nEn:'Yamazaki 18', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
+    {id:'yamazaki18', n:'야마자키 18년', nEn:'Yamazaki 18', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
      msrp:67100, msrpEx:61000, street:105000, kr:1250000,
      t:'미즈나라 오크의 대표작. 선물·소장용 최상급', tEn:'Mizunara oak at its best — the gift bottle',
      m:'추첨 정가 67,100엔, 실판매 105,000엔(정가의 1.56배)',
      mEn:'List ¥67,100 by lottery; street ¥105,000 (1.56x)',
      where:'리카마운틴·시나노야(시세) · 빅카메라 추첨', whereEn:'Liquor Mountain · Shinanoya (street); BicCamera by lottery'},
-    {n:'하쿠슈 12년', nEn:'Hakushu 12', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
+    {id:'hakushu12', n:'하쿠슈 12년', nEn:'Hakushu 12', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
      msrp:17600, msrpEx:16000, street:20500, kr:390000,
      t:'숲·민트·청사과. 가벼운 피트향의 산뜻한 싱글몰트', tEn:'Forest, mint, green apple — a light, fresh single malt',
      m:'오사카 20,500엔 실측, 돈키호테 42,900엔까지',
      mEn:'¥20,500 seen in Osaka, up to ¥42,900 at Don Quijote',
      where:'빅카메라·야마야(정가·게릴라) · 리카마운틴(시세)', whereEn:'BicCamera · Yamaya (list / drops) · Liquor Mountain (street)'},
-    {n:'히비키 재패니즈 하모니', nEn:'Hibiki Japanese Harmony', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
+    {id:'hibiki-harmony', n:'히비키 재패니즈 하모니', nEn:'Hibiki Japanese Harmony', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
      msrp:8800, msrpEx:8000, street:6600, kr:158000,
      t:'꽃·꿀·오크의 균형. 24면 병이 상징인 국민 블렌디드', tEn:'Flowers, honey and oak — Japan’s 24-facet classic',
      m:'정가 8,800엔인데 6,600엔에 파는 곳도(0.75배)',
      mEn:'List ¥8,800, though some shops sell it at ¥6,600 (0.75x)',
      where:'빅카메라·야마야·돈키호테(상시)', whereEn:'BicCamera · Yamaya · Don Quijote (usually in stock)'},
-    {n:'히비키 블렌더스 초이스', nEn:"Hibiki Blender's Choice", cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
+    {id:'hibiki-bc', n:'히비키 블렌더스 초이스', nEn:"Hibiki Blender's Choice", cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
      msrp:null, msrpEx:null, street:17500, kr:320000,
      t:'와인 캐스크 숙성. 업장용으로 나온 프리미엄 블렌디드', tEn:'Wine-cask aged — a premium blend made for bars',
      m:'정가 없음(오픈가격), 실판매 17,500엔부터',
      mEn:'No list price (open price); street from ¥17,500',
      where:'리카마운틴·시나노야(시세형)', whereEn:'Liquor Mountain · Shinanoya (street price)'},
-    {n:'히비키 21년', nEn:'Hibiki 21', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
+    {id:'hibiki21', n:'히비키 21년', nEn:'Hibiki 21', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
      msrp:67100, msrpEx:61000, street:79000, kr:910000,
      t:'일본 블렌디드의 정점. 미즈나라 향의 긴 여운', tEn:'The peak of Japanese blending — long mizunara finish',
      m:'정가 67,100엔, 실판매 79,000엔',
      mEn:'List ¥67,100; street ¥79,000',
      where:'리카마운틴·시나노야(시세·추첨)', whereEn:'Liquor Mountain · Shinanoya (street / lottery)'},
-    {n:'치타', nEn:'Chita', cat:'jp', st:'그레인', stEn:'Grain', stc:'grain', vol:'700ml', abv:'43%',
+    {id:'chita', n:'치타', nEn:'Chita', cat:'jp', st:'그레인', stEn:'Grain', stc:'grain', vol:'700ml', abv:'43%',
      msrp:6600, msrpEx:6000, street:4580, kr:94000,
      t:'옥수수 그레인. 하이볼에 가장 부드러운 한 병', tEn:'Corn grain — the softest base for a highball',
      m:'정가 6,600엔, 온라인 4,580엔까지',
      mEn:'List ¥6,600, as low as ¥4,580 online',
      where:'빅카메라·야마야·돈키호테(정가권)', whereEn:'BicCamera · Yamaya · Don Quijote (list price)'},
-    {n:'아오', nEn:'Ao', cat:'jp', st:'월드 블렌디드', stEn:'World blend', stc:'blend', vol:'700ml', abv:'43%',
+    {id:'ao', n:'아오', nEn:'Ao', cat:'jp', st:'월드 블렌디드', stEn:'World blend', stc:'blend', vol:'700ml', abv:'43%',
      msrp:6600, msrpEx:6000, street:3880, kr:105000,
      t:'세계 5대 위스키를 섞은 산토리 월드 블렌디드', tEn:'Suntory’s five-nation world blend',
      m:'정가 6,600엔, 최저 3,880엔 · 간사이공항 면세 5,640엔',
      mEn:'List ¥6,600, from ¥3,880; ¥5,640 at Kansai airport duty-free',
      where:'빅카메라·야마야·돈키호테(정가권) · 공항 면세', whereEn:'BicCamera · Yamaya · Don Quijote (list); airport duty-free'},
-    {n:'가쿠빈', nEn:'Kakubin', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'40%',
+    {id:'kakubin', n:'가쿠빈', nEn:'Kakubin', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'40%',
      msrp:2101, msrpEx:1910, street:1672, kr:31000,
      t:'일본 하이볼의 국민주. 각진 병', tEn:'Japan’s highball staple in the square bottle',
      m:'오사카 리카마운틴 1,672엔 실측(2026-11-28)',
      mEn:'¥1,672 at Liquor Mountain Osaka (2026-11-28)',
      where:'돈키호테·야마야·리카마운틴·마트', whereEn:'Don Quijote · Yamaya · Liquor Mountain · supermarkets'},
-    {n:'산토리 로얄', nEn:'Suntory Royal', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
+    {id:'royal', n:'산토리 로얄', nEn:'Suntory Royal', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
      msrp:4290, msrpEx:3900, street:3696, kr:95900,
      t:'1960년부터 이어진 산토리 클래식 블렌디드', tEn:'The classic Suntory blend since 1960',
      m:'정가 4,290엔, 오사카 3,696엔 실측',
      mEn:'List ¥4,290; ¥3,696 seen in Osaka',
      where:'빅카메라·야마야·돈키호테(정가권)', whereEn:'BicCamera · Yamaya · Don Quijote (list price)'},
     /* ---- 닛카 ---- */
-    {n:'요이치 싱글몰트', nEn:'Yoichi Single Malt', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'45%',
+    {id:'yoichi', n:'요이치 싱글몰트', nEn:'Yoichi Single Malt', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'45%',
      msrp:7700, msrpEx:7000, street:7560, kr:129800,
      t:'피트·바다 향. 닛카 대표 싱글몰트', tEn:'Peat and sea air — Nikka’s flagship single malt',
      m:'정가 7,700엔, 실판매 5,780~7,560엔',
      mEn:'List ¥7,700; street ¥5,780–7,560',
      where:'빅카메라·야마야(정가권) · 돈키호테 일부', whereEn:'BicCamera · Yamaya (list); some Don Quijote'},
-    {n:'미야기쿄 싱글몰트', nEn:'Miyagikyo Single Malt', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'45%',
+    {id:'miyagikyo', n:'미야기쿄 싱글몰트', nEn:'Miyagikyo Single Malt', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'45%',
      msrp:7700, msrpEx:7000, street:6998, kr:129500,
      t:'과일·꽃향의 부드러운 싱글몰트. 요이치와 대조', tEn:'Fruity and floral — the soft counterpart to Yoichi',
      m:'정가 7,700엔, 실판매 5,300~7,000엔',
      mEn:'List ¥7,700; street ¥5,300–7,000',
      where:'빅카메라·야마야(정가권)', whereEn:'BicCamera · Yamaya (list price)'},
-    {n:'타케츠루 퓨어몰트', nEn:'Taketsuru Pure Malt', cat:'jp', st:'퓨어몰트', stEn:'Pure malt', stc:'blend', vol:'700ml', abv:'43%',
+    {id:'taketsuru', n:'타케츠루 퓨어몰트', nEn:'Taketsuru Pure Malt', cat:'jp', st:'퓨어몰트', stEn:'Pure malt', stc:'blend', vol:'700ml', abv:'43%',
      msrp:7700, msrpEx:7000, street:7700, kr:128900,
      t:'요이치+미야기쿄를 섞은 블렌디드 몰트. 창업자 이름', tEn:'Yoichi and Miyagikyo vatted — named for the founder',
      m:'정가 7,700엔, 아마존 6,700~6,930엔',
      mEn:'List ¥7,700; ¥6,700–6,930 on Amazon',
      where:'빅카메라·야마야(정가권)', whereEn:'BicCamera · Yamaya (list price)'},
-    {n:'니카 프롬 더 배럴', nEn:'Nikka From the Barrel', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'500ml', abv:'51%',
+    {id:'ftb', n:'니카 프롬 더 배럴', nEn:'Nikka From the Barrel', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'500ml', abv:'51%',
      msrp:3520, msrpEx:3200, street:4220, kr:55000,
      t:'51도·500ml. 작은 병에 진한 과일·토피', tEn:'51% in a 500ml stubby — big fruit and toffee',
      m:'정가 3,520엔인데 실판매 4,220엔(1.2배)',
      mEn:'List ¥3,520 but street ¥4,220 (1.2x)',
      where:'빅카메라·야마야·돈키호테', whereEn:'BicCamera · Yamaya · Don Quijote'},
-    {n:'슈퍼닛카', nEn:'Super Nikka', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
+    {id:'supernikka', n:'슈퍼닛카', nEn:'Super Nikka', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
      msrp:3520, msrpEx:3200, street:2150, kr:65000,
      t:'1962년부터의 클래식. 꿀·바닐라의 부드러운 블렌디드', tEn:'A 1962 classic — honey and vanilla softness',
      m:'정가 3,520엔, 최저 2,150엔',
      mEn:'List ¥3,520, from ¥2,150',
      where:'돈키호테·야마야·마트·편의점', whereEn:'Don Quijote · Yamaya · supermarkets · convenience stores'},
-    {n:'블랙닉카 스페셜', nEn:'Black Nikka Special', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'720ml', abv:'42%',
+    {id:'blacknikka', n:'블랙닉카 스페셜', nEn:'Black Nikka Special', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'720ml', abv:'42%',
      msrp:1815, msrpEx:1650, street:1449, kr:26500,
      t:'일본 편의점·슈퍼의 스테디셀러 하이볼 주', tEn:'The convenience-store highball standard',
      m:'정가 1,815엔, 실판매 1,449엔',
      mEn:'List ¥1,815; street ¥1,449',
      where:'돈키호테·야마야·편의점·마트', whereEn:'Don Quijote · Yamaya · convenience stores · supermarkets'},
     /* ---- 치치부·기린 ---- */
-    {n:'이치로스 몰트 화이트라벨', nEn:"Ichiro's Malt & Grain White Label", cat:'jp', st:'월드 블렌디드', stEn:'World blend', stc:'blend', vol:'700ml', abv:'46%',
+    {id:'ichiro-white', n:'이치로스 몰트 화이트라벨', nEn:"Ichiro's Malt & Grain White Label", cat:'jp', st:'월드 블렌디드', stEn:'World blend', stc:'blend', vol:'700ml', abv:'46%',
      msrp:4235, msrpEx:3850, street:4048, kr:169000,
      t:'치치부의 입문병. 꿀·시트러스에 하이볼 최적', tEn:'Chichibu’s entry bottle — honey and citrus, built for highballs',
      m:'정가 4,235엔, 실판매 4,048~6,800엔. 국내는 4~5배',
      mEn:'List ¥4,235; street ¥4,048–6,800 — 4–5x in Korea',
      where:'시나노야·리카마운틴(전문점)', whereEn:'Shinanoya · Liquor Mountain (specialists)'},
-    {n:'기린 후지 싱글몰트', nEn:'Kirin Fuji Single Malt', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'46%',
+    {id:'fuji', n:'기린 후지 싱글몰트', nEn:'Kirin Fuji Single Malt', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'46%',
      msrp:8888, msrpEx:8080, street:6138, kr:109000,
      t:'후지산 자락 증류소. 복숭아·바닐라의 부드러움', tEn:'From the foot of Mt Fuji — peach and vanilla',
      m:'정가 8,888엔, 온라인 6,138엔(2026-11-28)',
      mEn:'List ¥8,888; ¥6,138 online (2026-11-28)',
      where:'빅카메라·야마야(정가권) · 리카마운틴', whereEn:'BicCamera · Yamaya (list) · Liquor Mountain'},
     /* ---- 수입·기타 ---- */
-    {n:'맥캘란 12년 셰리오크', nEn:'Macallan 12 Sherry Oak', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'40%',
+    {id:'macallan-sherry', n:'맥캘란 12년 셰리오크', nEn:'Macallan 12 Sherry Oak', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'40%',
      msrp:14850, msrpEx:13500, street:13500, kr:128900,
      t:'셰리 캐스크의 교과서. 건포도·말린 과일', tEn:'The sherry-cask textbook — raisins and dried fruit',
      m:'정가 14,850엔, 빅카메라 난바 13,500엔',
      mEn:'List ¥14,850; ¥13,500 at BicCamera Namba',
      where:'빅카메라·야마야(정가권·면세)', whereEn:'BicCamera · Yamaya (list, tax-free)'},
-    {n:'맥캘란 12년 더블캐스크', nEn:'Macallan 12 Double Cask', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'40%',
+    {id:'macallan-double', n:'맥캘란 12년 더블캐스크', nEn:'Macallan 12 Double Cask', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'40%',
      msrp:10890, msrpEx:9900, street:8998, kr:99900,
      t:'셰리+버번 캐스크. 부드러운 밸런스', tEn:'Sherry and bourbon casks — gentle balance',
      m:'정가 10,890엔, 오사카 8,998엔 실측',
      mEn:'List ¥10,890; ¥8,998 seen in Osaka',
      where:'빅카메라·야마야(정가권)', whereEn:'BicCamera · Yamaya (list price)'},
-    {n:'발베니 12년 더블우드', nEn:'Balvenie 12 DoubleWood', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'40%',
+    {id:'balvenie12', n:'발베니 12년 더블우드', nEn:'Balvenie 12 DoubleWood', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'40%',
      msrp:7370, msrpEx:6700, street:7255, kr:99900,
      t:'꿀·바닐라. 스카치 입문 단골', tEn:'Honey and vanilla — a Scotch starter',
      m:'세전 6,700엔, 빅카메라 난바 면세 7,255엔',
      mEn:'¥6,700 before tax; ¥7,255 tax-free at BicCamera Namba',
      where:'빅카메라·야마야(정가권)', whereEn:'BicCamera · Yamaya (list price)'},
-    {n:'발베니 14년 캐리비안 캐스크', nEn:'Balvenie 14 Caribbean Cask', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
+    {id:'balvenie14', n:'발베니 14년 캐리비안 캐스크', nEn:'Balvenie 14 Caribbean Cask', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
      msrp:12100, msrpEx:11000, street:13490, kr:144000,
      t:'럼 캐스크 피니시. 열대과일·토피', tEn:'Rum-cask finish — tropical fruit and toffee',
      m:'세전 11,000엔, 라쿠텐 최저 13,490엔(2026-11-28)',
      mEn:'¥11,000 list; ¥13,490 lowest on Rakuten (2026-11-28)',
      where:'빅카메라·온라인 · 리카마운틴(시세)', whereEn:'BicCamera · online; Liquor Mountain (street)'},
-    {n:'카발란 솔리스트 비뉴 바리크', nEn:'Kavalan Solist Vinho Barrique', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'',
+    {id:'kavalan-vinho', n:'카발란 솔리스트 비뉴 바리크', nEn:'Kavalan Solist Vinho Barrique', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'',
      msrp:18843, msrpEx:17130, street:18843, kr:310000,
      t:'타이완 카발란의 대표 캐스크 스트렝스', tEn:'Taiwan’s cask-strength flagship',
      m:'700ml 18,843엔, 1L 공항면세 21,850~24,000엔',
      mEn:'700ml ¥18,843; 1L airport duty-free ¥21,850–24,000',
      where:'리카마운틴·시나노야(시세) · 공항 면세 1L', whereEn:'Liquor Mountain · Shinanoya (street); 1L at airport duty-free'},
-    {n:'조니워커 블루 라벨', nEn:'Johnnie Walker Blue Label', cat:'imp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'750ml', abv:'40%',
+    {id:'jw-blue', n:'조니워커 블루 라벨', nEn:'Johnnie Walker Blue Label', cat:'imp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'750ml', abv:'40%',
      msrp:21740, msrpEx:null, street:20780, kr:259000,
      t:'희소 원액 블렌디드. 선물용 스카치', tEn:'A blend of rare casks — the gift Scotch',
      m:'750ml, 오사카 20,780엔 · 아마존 21,740엔(2026-10)',
@@ -1414,9 +1469,9 @@
     else if (sort === 'high') rows.sort(function (a, b) { return jpYen(b) - jpYen(a); });
     else if (sort === 'save') rows.sort(function (a, b) { return savePct(b) - savePct(a); });
     var box = $('priceRows');
-    box.innerHTML = rows.map(function (p, i) {
+    box.innerHTML = rows.map(function (p, index) {
       var idx = PRICES.indexOf(p);
-      var rank = i + 1;
+      var rank = index + 1;
       var rankCls = 'prank' + (sort !== 'default' && rank <= 3 ? ' r' + rank : '');
       var yen = jpYen(p);
       var krw = yen / rate.JPY * rate.KRW;
@@ -1432,9 +1487,19 @@
       var msrpCell = p.msrp
         ? moneyJPY(p.msrp) + (p.msrpEx ? '<em>' + esc(t('beforeTax')) + ' ' + moneyJPY(p.msrpEx) + '</em>' : '')
         : '<em>' + esc(t('openPrice')) + '</em>';
+      var nm = lang === 'ko' ? p.n : p.nEn;
+      var thumb = p.id
+        ? '<button type="button" class="pthumb" data-zoom="img/' + esc(p.id) + '.webp" data-cap="' + esc(nm) + '" data-sub="' + esc(p.vol + (p.abv ? ' · ' + p.abv : '') + ' · ' + (lang === 'ko' ? p.st : p.stEn)) + '" aria-label="' + esc(t('zoomAria')) + '">' +
+          '<img src="img/' + esc(p.id) + '.webp" alt="' + esc(t('thumbAlt', nm)) + '" width="64" height="86" loading="' + (index < 6 ? 'eager' : 'lazy') + '" decoding="async" fetchpriority="' + (index < 6 ? 'high' : 'low') + '">' +
+          '</button>'
+        : '';
       return '<article class="pcard">' +
-        '<div class="pcard-head"><span class="' + rankCls + '">' + rank + '</span><b>' + esc(lang === 'ko' ? p.n : p.nEn) + '</b></div>' +
-        '<p class="pcard-tag">' + esc(lang === 'ko' ? p.t : p.tEn) + '</p>' +
+        '<div class="pcard-top">' + thumb +
+          '<div class="pcard-main">' +
+            '<div class="pcard-head"><span class="' + rankCls + '">' + rank + '</span><b>' + esc(nm) + '</b></div>' +
+            '<p class="pcard-tag">' + esc(lang === 'ko' ? p.t : p.tEn) + '</p>' +
+          '</div>' +
+        '</div>' +
         flags +
         '<div class="pcard-rows">' +
           '<div class="prow jp"><span class="l">' + esc(t('jpMsrp')) + '</span><span class="v">' + msrpCell + '</span></div>' +
@@ -1448,6 +1513,15 @@
       '</article>';
     }).join('');
     if (!rows.length) box.innerHTML = '<p class="empty">' + esc(t('emptyPrices')) + '</p>';
+    /* 썸네일 shimmer → 로드되면 사진, 실패하면 병 SVG */
+    Array.prototype.forEach.call(box.querySelectorAll('.pthumb'), function (b) {
+      var im = b.querySelector('img');
+      if (!im) return;
+      var mark = function (ok) { b.classList.add(ok ? 'is-loaded' : 'is-failed'); };
+      if (im.complete) { mark(im.naturalWidth > 0); return; }
+      im.addEventListener('load', function () { mark(im.naturalWidth > 0); });
+      im.addEventListener('error', function () { mark(false); });
+    });
     $('priceCount').textContent = t('countPrices', rows.length) + (sort === 'default' ? '' : ' · ' + sortLabel());
     updateCounts();
   }
@@ -1637,6 +1711,9 @@
     $('priceReset').textContent = t('reset');
     $('priceSub').textContent = (l === 'ko' ? '100엔 = ₩' : '100 JPY = ₩') + fmt(rate.KRW / rate.JPY * 100);
     $('statLimit').textContent = '2L';
+    $('bzoom').setAttribute('aria-label', t('zoomAria'));
+    $('bzoomClose').setAttribute('aria-label', t('zoomClose'));
+    $('bzoomHint').textContent = t('zoomHint');
     $('langKo').classList.toggle('is-active', l === 'ko');
     $('langEn').classList.toggle('is-active', l === 'en');
     renderCityChips();
@@ -1741,6 +1818,40 @@
     $('inQty').value = '1';
     calc();
   };
+
+  /* 병 사진 크게 보기 — 매장에서 직원에게 보여주는 용도 */
+  function openZoom(src, cap, sub) {
+    var bz = $('bzoom');
+    if (!bz) return;
+    $('bzoomImg').src = src;
+    $('bzoomImg').alt = cap || '';
+    $('bzoomCap').innerHTML = esc(cap || '') + (sub ? '<span>' + esc(sub) + '</span>' : '');
+    bz.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeZoom() {
+    var bz = $('bzoom');
+    if (!bz || bz.hidden) return;
+    bz.hidden = true;
+    $('bzoomImg').removeAttribute('src');
+    document.body.style.overflow = '';
+  }
+
+  $('priceRows').addEventListener('click', function (e) {
+    var t2 = e.target.closest('[data-zoom]');
+    if (!t2) return;
+    e.preventDefault();
+    openZoom(t2.getAttribute('data-zoom'), t2.getAttribute('data-cap'), t2.getAttribute('data-sub'));
+  });
+
+  $('bzoom').addEventListener('click', function (e) {
+    if (e.target.closest('.bzoom figure')) return;
+    closeZoom();
+  });
+  $('bzoomClose').addEventListener('click', closeZoom);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'Esc') closeZoom();
+  });
 
   $('priceRows').addEventListener('click', function (e) {
     var b = e.target.closest('[data-add]');
