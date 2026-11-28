@@ -8,9 +8,10 @@
 <meta name="color-scheme" content="light">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <title>jpsave.com — 일본 마운자로 도우미 · 포켓몬 카드샵 방문 도우미</title>
-<meta name="description" content="일본에서 직접 쓰는 정보 도구 모음. 마운자로 클리닉 11곳 공개가 비교·반입 가이드와 유명 포켓몬 카드숍 23곳 위치·길찾기·팩별 시세·PSA 10 비교를 한곳에 모았습니다.">
+<meta name="description" content="일본 여행·쇼핑, 아는 만큼 아끼세요. 일본에서 직접 쓰는 정보 도구 모음. 마운자로 클리닉 11곳 공개가 비교·반입 가이드와 유명 포켓몬 카드숍 23곳 위치·길찾기·팩별 시세·PSA 10 비교를 한곳에 모았습니다.">
 <link rel="canonical" href="https://jpsave.com/">
 <link rel="alternate" hreflang="ko" href="https://jpsave.com/">
+<link rel="alternate" hreflang="en" href="https://jpsave.com/?lang=en">
 <link rel="alternate" hreflang="x-default" href="https://jpsave.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="jpsave.com">
@@ -18,6 +19,7 @@
 <meta property="og:description" content="일본 마운자로 클리닉 11곳 공개가 비교와 유명 포켓몬 카드숍 23곳 위치·길찾기·팩별 시세·PSA 10 비교. 설치 없이 브라우저에서 무료로.">
 <meta property="og:url" content="https://jpsave.com/">
 <meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jpsave.com — 일본 정보 도구 모음">
 <meta name="twitter:description" content="일본 마운자로 방문 도우미 · 포켓몬 카드샵 방문 도우미. 무료 정보 사이트.">
@@ -59,6 +61,8 @@
     line-height: 1.55;
     letter-spacing: -.01em;
     -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    overflow-wrap: break-word;
     min-height: 100dvh;
     padding: 26px 16px calc(30px + env(safe-area-inset-bottom));
   }
@@ -73,13 +77,34 @@
     color: var(--ink); line-height: 1;
   }
   .brand-name .dot { color: var(--brand); }
+  .lang-switch {
+    margin-left: auto; flex: 0 0 auto; display: flex; gap: 2px;
+    background: #f1f3f9; border: 1px solid var(--line);
+    padding: 3px; border-radius: 999px;
+  }
+  .lang-btn {
+    border: 0; background: transparent; font-family: var(--font);
+    font-size: 11px; font-weight: 800; color: var(--muted);
+    padding: 5px 8px; border-radius: 999px; cursor: pointer;
+    line-height: 1.1; min-width: 34px;
+  }
+  .lang-btn.is-active { background: #fff; color: var(--brand); box-shadow: 0 1px 4px rgba(15, 23, 42, .14); }
+  .lang-btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 1px; }
   .mark {
     display: inline-flex; align-items: center; gap: 7px;
     font-size: 11.5px; font-weight: 800; letter-spacing: .02em;
     color: var(--indigo); background: var(--indigo-soft);
     border: 1px solid #dfe4ff; border-radius: 999px; padding: 6px 12px;
   }
-  h1 { font-size: 27px; line-height: 1.25; letter-spacing: -.035em; margin: 16px 0 8px; }
+  .eyebrow {
+    margin: 15px 0 0; font-size: 10.5px; font-weight: 800;
+    letter-spacing: .15em; text-transform: uppercase; color: var(--brand);
+    line-height: 1.2;
+  }
+  h1 {
+    font-size: 27px; line-height: 1.25; letter-spacing: -.035em; margin: 7px 0 8px;
+    word-break: keep-all; -webkit-text-wrap: balance; text-wrap: balance;
+  }
   h1 .dot { color: var(--indigo); }
   .lead { font-size: 14px; line-height: 1.7; color: var(--ink-2); margin: 0 0 22px; }
   .apps { display: grid; gap: 14px; }
@@ -114,12 +139,14 @@
     content: ""; position: absolute; left: 4px; top: 15px;
     width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .5;
   }
+  html[lang="en"] .app li { letter-spacing: -.015em; font-size: 12.5px; }
   .app .go {
     margin-top: 13px; display: flex; align-items: center; justify-content: space-between;
     font-size: 13px; font-weight: 800; letter-spacing: -.01em;
   }
   .app.teal .go { color: var(--teal); }
   .app.indigo .go { color: var(--indigo); }
+  .app .go b { font-weight: 800; }
   .app .go span {
     font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0;
     word-break: break-all; margin-left: 10px;
@@ -136,13 +163,18 @@
   <header class="brand">
     <img class="brand-logo" src="/jpsave-logo.png" alt="jpsave.com 로고" width="32" height="32" decoding="async">
     <span class="brand-name">jpsave<span class="dot">.com</span></span>
+    <div class="lang-switch" role="group" aria-label="언어 / Language">
+      <button class="lang-btn is-active" id="langKo" type="button" aria-pressed="true">KO</button>
+      <button class="lang-btn" id="langEn" type="button" aria-pressed="false">EN</button>
+    </div>
   </header>
-  <p class="mark">무료 정보 사이트 · 설치 없이 브라우저에서</p>
-  <h1>일본에서 바로 쓰는 도구 두 개<span class="dot">.</span></h1>
-  <p class="lead">마운자로 클리닉 비교와 포켓몬 카드숍 방문 준비. 둘 다 공개된 정보만 모아 정리했고, 숫자는 어디서 가져왔는지 함께 적어 두었습니다.</p>
+  <p class="mark" data-i18n="badge">무료 정보 사이트 · 설치 없이 브라우저에서</p>
+  <p class="eyebrow" data-i18n="kicker">Welcome to JPSAVE</p>
+  <h1><span data-i18n="h1">일본 여행·쇼핑, 아는 만큼 아끼세요</span><span class="dot">.</span></h1>
+  <p class="lead" data-i18n="lead">마운자로 클리닉 11곳 공개가 비교, 포켓몬 카드숍 23곳 위치와 시세. 둘 다 공개된 정보만 모아 출처와 함께 정리했고, 설치 없이 브라우저에서 바로 봅니다.</p>
 
   <div class="apps">
-    <a class="app teal" href="/Japan-mounjaro-helper/">
+    <a class="app teal" id="linkMounjaro" href="/Japan-mounjaro-helper/">
       <div class="top">
         <div class="ico mounjaro" aria-hidden="true">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
@@ -157,41 +189,151 @@
           </svg>
         </div>
         <div>
-          <h2>일본 마운자로 방문 도우미</h2>
-          <p class="kicker">Japan Mounjaro Helper · 한국어 / English</p>
+          <h2 data-i18n="mjTitle">일본 마운자로 방문 도우미</h2>
+          <p class="kicker" data-i18n="mjKicker">Japan Mounjaro Helper · 한국어 / English</p>
         </div>
       </div>
       <ul>
-        <li>도쿄·오사카 등 클리닉 11곳 공개가 비교</li>
-        <li>예약 시 필요한 일본어 문구 생성기 제공</li>
-        <li>출국 기내반입 전 준비물 체크리스트</li>
+        <li data-i18n="mj1">도쿄·오사카 등 클리닉 11곳 공개가 비교</li>
+        <li data-i18n="mj2">예약 시 필요한 일본어 문구 생성기 제공</li>
+        <li data-i18n="mj3">출국 기내반입 전 준비물 체크리스트</li>
       </ul>
-      <div class="go">바로 열기 <span>jpsave.com/Japan-mounjaro-helper/</span></div>
+      <div class="go"><b data-i18n="open">바로 열기</b> <span>jpsave.com/Japan-mounjaro-helper/</span></div>
     </a>
 
-    <a class="app indigo" href="/pokemon-cards/">
+    <a class="app indigo" id="linkPokemon" href="/pokemon-cards/">
       <div class="top">
         <div class="ico pokeball" aria-hidden="true">
           <img src="/pokemon-cards/icon.svg" alt="" width="44" height="44" decoding="async">
         </div>
         <div>
-          <h2>포켓몬 카드샵 방문 도우미</h2>
-          <p class="kicker">Pokémon Card Shop Helper · 한국어 / English</p>
+          <h2 data-i18n="pcTitle">포켓몬 카드샵 방문 도우미</h2>
+          <p class="kicker" data-i18n="pcKicker">Pokémon Card Shop Helper · 한국어 / English</p>
         </div>
       </div>
       <ul>
-        <li>도쿄·오사카 등 유명 카드샵 23곳 위치·길찾기</li>
-        <li>연도·팩별 시세 &amp; PSA 10 vs 미등급</li>
-        <li>내 카드 보관함(기기 저장)</li>
+        <li data-i18n="pc1">도쿄·오사카 등 유명 카드샵 23곳 위치·길찾기</li>
+        <li data-i18n="pc2">연도·팩별 시세 &amp; PSA 10 vs 미등급</li>
+        <li data-i18n="pc3">내 카드 보관함(기기 저장)</li>
       </ul>
-      <div class="go">바로 열기 <span>jpsave.com/pokemon-cards/</span></div>
+      <div class="go"><b data-i18n="open">바로 열기</b> <span>jpsave.com/pokemon-cards/</span></div>
     </a>
   </div>
 
   <footer>
-    <p>두 사이트 모두 판매·중개·의료 알선을 하지 않는 정보 사이트입니다. 시세와 공개가는 조회 시점 기준이며 실제 거래가와 다를 수 있습니다.</p>
-    <p>투약 결정은 반드시 의료진과 상담하세요. 카드 가격은 참고용이며 투자 권유가 아닙니다.</p>
+    <p data-i18n="foot1">두 사이트 모두 판매·중개·의료 알선을 하지 않는 정보 사이트입니다. 시세와 공개가는 조회 시점 기준이며 실제 거래가와 다를 수 있습니다.</p>
+    <p data-i18n="foot2">투약 결정은 반드시 의료진과 상담하세요. 카드 가격은 참고용이며 투자 권유가 아닙니다.</p>
   </footer>
 </div>
+<script>
+(function () {
+  'use strict';
+
+  var I18N = {
+    ko: {
+      title: 'jpsave.com — 일본 마운자로 도우미 · 포켓몬 카드샵 방문 도우미',
+      badge: '무료 정보 사이트 · 설치 없이 브라우저에서',
+      kicker: 'Welcome to JPSAVE',
+      h1: '일본 여행·쇼핑, 아는 만큼 아끼세요',
+      lead: '마운자로 클리닉 11곳 공개가 비교, 포켓몬 카드숍 23곳 위치와 시세. 둘 다 공개된 정보만 모아 출처와 함께 정리했고, 설치 없이 브라우저에서 바로 봅니다.',
+      mjTitle: '일본 마운자로 방문 도우미',
+      mjKicker: 'Japan Mounjaro Helper · 한국어 / English',
+      mj1: '도쿄·오사카 등 클리닉 11곳 공개가 비교',
+      mj2: '예약 시 필요한 일본어 문구 생성기 제공',
+      mj3: '출국 기내반입 전 준비물 체크리스트',
+      pcTitle: '포켓몬 카드샵 방문 도우미',
+      pcKicker: 'Pokémon Card Shop Helper · 한국어 / English',
+      pc1: '도쿄·오사카 등 유명 카드샵 23곳 위치·길찾기',
+      pc2: '연도·팩별 시세 & PSA 10 vs 미등급',
+      pc3: '내 카드 보관함(기기 저장)',
+      open: '바로 열기',
+      foot1: '두 사이트 모두 판매·중개·의료 알선을 하지 않는 정보 사이트입니다. 시세와 공개가는 조회 시점 기준이며 실제 거래가와 다를 수 있습니다.',
+      foot2: '투약 결정은 반드시 의료진과 상담하세요. 카드 가격은 참고용이며 투자 권유가 아닙니다.'
+    },
+    en: {
+      title: 'jpsave.com — Japan Mounjaro Helper · Pokémon card shop helper',
+      badge: 'Free information site · no install, right in your browser',
+      kicker: 'Welcome to JPSAVE',
+      h1: 'Save smarter on Japan travel & shopping',
+      lead: 'Published prices at 11 Mounjaro clinics, plus 23 well-known Pokémon card shops with maps and set prices. Only public information, every number with its source, free in your browser.',
+      mjTitle: 'Japan Mounjaro visit helper',
+      mjKicker: 'Japan Mounjaro Helper · Korean / English',
+      mj1: 'Published prices for 11 clinics in one table',
+      mj2: 'Japanese sentences for your booking notes',
+      mj3: 'Carry-on packing checklist before you fly',
+      pcTitle: 'Pokémon card shop visit helper',
+      pcKicker: 'Pokémon Card Shop Helper · Korean / English',
+      pc1: '23 well-known card shops, maps & directions',
+      pc2: 'Set-by-set prices, PSA 10 vs raw cards',
+      pc3: 'Your card collection, saved on device',
+      open: 'Open',
+      foot1: 'Both sites are informational only — no sales, brokerage or medical referrals. Prices are as published when checked and may differ from what you are charged.',
+      foot2: 'Talk to a doctor before any decision about medication. Card prices are for reference only and are not investment advice.'
+    }
+  };
+
+  var KEY = 'jpsave_lang';
+  var SUB = { mounjaro: '/Japan-mounjaro-helper/', pokemon: '/pokemon-cards/' };
+  var lang = 'ko';
+
+  function $(id) { return document.getElementById(id); }
+
+  function saved() {
+    try {
+      var v = localStorage.getItem(KEY);
+      return v === 'ko' || v === 'en' ? v : null;
+    } catch (e) { return null; }
+  }
+
+  function detect() {
+    var q = null;
+    try { q = new URLSearchParams(location.search).get('lang'); } catch (e) { q = null; }
+    if (q) {
+      q = String(q).toLowerCase();
+      if (q.indexOf('ko') === 0) return 'ko';
+      if (q.indexOf('en') === 0) return 'en';
+    }
+    var s = saved();
+    if (s) return s;
+    var navs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+    for (var i = 0; i < navs.length; i++) {
+      if (String(navs[i] || '').toLowerCase().indexOf('ko') === 0) return 'ko';
+    }
+    return 'en';
+  }
+
+  function apply(l, fromUser) {
+    lang = l;
+    var d = I18N[l];
+    document.documentElement.lang = l;
+    document.title = d.title;
+    var nodes = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < nodes.length; i++) {
+      var k = nodes[i].getAttribute('data-i18n');
+      if (d[k] !== undefined) nodes[i].textContent = d[k];
+    }
+    $('linkMounjaro').href = SUB.mounjaro + '?lang=' + l;
+    $('linkPokemon').href = SUB.pokemon + '?lang=' + l;
+    $('langKo').classList.toggle('is-active', l === 'ko');
+    $('langEn').classList.toggle('is-active', l === 'en');
+    $('langKo').setAttribute('aria-pressed', l === 'ko' ? 'true' : 'false');
+    $('langEn').setAttribute('aria-pressed', l === 'en' ? 'true' : 'false');
+    if (fromUser) {
+      try { localStorage.setItem(KEY, l); } catch (e) { }
+      try {
+        var u = new URL(location.href);
+        if (u.searchParams.get('lang')) {
+          u.searchParams.set('lang', l);
+          history.replaceState(null, '', u.toString());
+        }
+      } catch (e) { }
+    }
+  }
+
+  $('langKo').onclick = function () { apply('ko', true); };
+  $('langEn').onclick = function () { apply('en', true); };
+  apply(detect(), false);
+})();
+</script>
 </body>
 </html>
