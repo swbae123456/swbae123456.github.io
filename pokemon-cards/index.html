@@ -621,13 +621,7 @@
 
     <section class="panel" id="panel-shops" role="tabpanel" aria-labelledby="tab-shops">
       <div class="section-title"><h2 id="shopTitle">일본 포켓몬 카드숍</h2><span id="shopSub"></span></div>
-      <div class="note">
-        <span class="ic" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
-        </span>
-        <span id="shopNote"></span>
-      </div>
-      <div class="filters" style="margin-top:11px">
+      <div class="filters">
         <label class="search">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
           <input type="search" id="shopSearch" placeholder="매장 이름·지역 검색 (예: 하레츠, 秋葉原)" autocomplete="off" enterkeyhint="search">
@@ -791,7 +785,6 @@
       affHotelSub: '신주쿠 도심 거점 숙소 (아고다)',
       affFoot: '링크로 예약·구매해도 결제 금액은 같고, 사이트 운영에 일부 수수료가 돌아옵니다. 필요하지 않으면 건너뛰셔도 됩니다.',
       affSlimCta: '✈️ 도쿄 카드샵 투어 준비 (eSIM · 스카이라이너 · 신주쿠 숙소) · 제휴 →',
-      shopNote: '<b>2026-11-28 확인.</b> Google 지도 영업시간과 매장 공식 사이트를 대조했습니다. 태그는 공식 안내로 확인된 것만 표시했고, 면세 대응은 확인된 매장이 없어 넣지 않았습니다. 휴무·재고는 바뀌니 방문 전 [구글맵 열기]로 당일 영업을 확인하세요.',
       shopSearchPh: '매장 이름·지역 검색 (예: 하레츠, 秋葉原)',
       cityAll: '전체',
       copyJa: '일본어 상호 복사', openMaps: '구글맵 열기', copiedJa: '일본어 상호를 복사했습니다',
@@ -872,7 +865,6 @@
       affHotelSub: 'Shinjuku base hotel (Agoda)',
       affFoot: 'Booking or buying through these links costs you the same and sends a small commission to this site. Skip them if you don\'t need them.',
       affSlimCta: '✈️ Japan card-shop trip prep (eSIM · Skyliner · Shinjuku stay) · affiliate →',
-      shopNote: '<b>Verified 28 Nov 2026.</b> Hours were checked against each shop\'s Google Maps listing and official site. Tags show only what an official listing confirms; no shop confirmed tax-free (免税) service, so none is tagged. Closures and stock change — tap [Open in Google Maps] before you go.',
       shopSearchPh: 'Search shop or area (e.g. Hareruya, 秋葉原)',
       cityAll: 'All',
       copyJa: 'Copy Japanese name', openMaps: 'Open in Google Maps', copiedJa: 'Japanese name copied',
@@ -1024,7 +1016,6 @@
     Array.prototype.forEach.call(document.querySelectorAll('.tab span[data-t]'), function (s) { s.textContent = t(s.getAttribute('data-t')); });
     $('shopTitle').textContent = t('shopTitle');
     $('shopSub').textContent = t('shopSub')(SHOPS.length);
-    $('shopNote').innerHTML = t('shopNote');
     Array.prototype.forEach.call(document.querySelectorAll('#affCard [data-t]'), function (s) {
       s.textContent = t(s.getAttribute('data-t'));
     });
