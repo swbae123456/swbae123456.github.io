@@ -8,14 +8,14 @@
 <meta name="color-scheme" content="light">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <title>jpsave.com — 일본 마운자로 도우미 · 포켓몬 카드샵 방문 도우미</title>
-<meta name="description" content="일본에서 직접 쓰는 정보 도구 모음. 마운자로 클리닉 11곳 공개가 비교·반입 가이드와 포켓몬 카드숍 23곳 안내·팩별 시세·PSA 10 비교·환율 계산기를 한곳에 모았습니다.">
+<meta name="description" content="일본에서 직접 쓰는 정보 도구 모음. 마운자로 클리닉 11곳 공개가 비교·반입 가이드와 유명 포켓몬 카드숍 23곳 위치·길찾기·팩별 시세·PSA 10 비교를 한곳에 모았습니다.">
 <link rel="canonical" href="https://jpsave.com/">
 <link rel="alternate" hreflang="ko" href="https://jpsave.com/">
 <link rel="alternate" hreflang="x-default" href="https://jpsave.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="jpsave.com">
 <meta property="og:title" content="jpsave.com — 일본 마운자로 도우미 · 포켓몬 카드샵 방문 도우미">
-<meta property="og:description" content="일본 마운자로 클리닉 11곳 공개가 비교와 포켓몬 카드숍 23곳 안내·팩별 시세·PSA 10 비교·환율 계산기. 설치 없이 브라우저에서 무료로.">
+<meta property="og:description" content="일본 마운자로 클리닉 11곳 공개가 비교와 유명 포켓몬 카드숍 23곳 위치·길찾기·팩별 시세·PSA 10 비교. 설치 없이 브라우저에서 무료로.">
 <meta property="og:url" content="https://jpsave.com/">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary">
@@ -75,9 +75,14 @@
   .app .ico {
     width: 44px; height: 44px; border-radius: 14px; flex: 0 0 auto;
     display: flex; align-items: center; justify-content: center; color: #fff;
+    overflow: hidden;
   }
+  .app .ico svg { display: block; }
+  .app .ico img { width: 100%; height: 100%; display: block; }
   .app.teal .ico { background: var(--teal); box-shadow: 0 4px 12px rgba(15, 118, 110, .24); }
+  .app.teal .ico.mounjaro { background: linear-gradient(150deg, #14968c 0%, #0d6b64 100%); }
   .app.indigo .ico { background: var(--indigo); box-shadow: 0 4px 12px rgba(67, 56, 202, .24); }
+  .app.indigo .ico.pokeball { background: #fff; box-shadow: 0 3px 10px rgba(67, 56, 202, .18); }
   .app h2 { font-size: 16.5px; margin: 0; letter-spacing: -.03em; line-height: 1.3; }
   .app .kicker { font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: .01em; margin: 3px 0 0; }
   .app ul { list-style: none; margin: 13px 0 0; padding: 0; border-top: 1px solid var(--line); }
@@ -116,9 +121,18 @@
   <div class="apps">
     <a class="app teal" href="/Japan-mounjaro-helper/">
       <div class="top">
-        <div class="ico" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4.2"/>
+        <div class="ico mounjaro" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+            <g transform="rotate(-45 12 12)">
+              <path d="M1.9 12h3" stroke="#fff" stroke-width="1.15" stroke-linecap="round"/>
+              <rect x="4.8" y="11.05" width="1.6" height="1.9" rx="0.5" fill="#fff"/>
+              <rect x="6.3" y="8.9" width="10" height="6.2" rx="1.35" fill="#fff"/>
+              <path d="M7.1 11.2h8.3" stroke="#0d6b64" stroke-width="0.45"/>
+              <rect x="7.1" y="12.35" width="8.3" height="2.15" rx="0.85" fill="#a6e4de"/>
+              <path d="M8.6 9.6v1.4M10.4 9.6v1.4M12.2 9.6v1.4" stroke="#0d6b64" stroke-width="0.55"/>
+              <path d="M16.3 12h2.3" stroke="#fff" stroke-width="1.15" stroke-linecap="round"/>
+              <path d="M18.8 9.6v4.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>
+            </g>
           </svg>
         </div>
         <div>
@@ -127,19 +141,17 @@
         </div>
       </div>
       <ul>
-        <li>도쿄·오사카·후쿠오카·나고야·삿포로 클리닉 11곳 공개가·진찰료 비교</li>
-        <li>기내 반입 100g 보냉 규칙, 800달러 면세 합산 체크</li>
-        <li>카타카나 이름 변환·일본어 비고란 생성·대마도 수령 가이드</li>
+        <li>도쿄·오사카 등 클리닉 11곳 공개가 비교</li>
+        <li>예약·일본어 문구 바로 복사</li>
+        <li>한국 반입 100g 보냉·면세 체크리스트</li>
       </ul>
       <div class="go">바로 열기 <span>jpsave.com/Japan-mounjaro-helper/</span></div>
     </a>
 
     <a class="app indigo" href="/pokemon-cards/">
       <div class="top">
-        <div class="ico" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="8.4"/><path d="M12 3.6a4.4 4.4 0 0 0 0 8.8 4.4 4.4 0 0 1 0 8.8"/><path d="M3.6 12h16.8"/>
-          </svg>
+        <div class="ico pokeball" aria-hidden="true">
+          <img src="/pokemon-cards/icon.svg" alt="" width="44" height="44" decoding="async">
         </div>
         <div>
           <h2>포켓몬 카드샵 방문 도우미</h2>
@@ -147,9 +159,9 @@
         </div>
       </div>
       <ul>
-        <li>도쿄·오사카·후쿠오카·나고야 카드숍 23곳 위치·영업시간·오리파 정보</li>
-        <li>1999~2026 팩 28종 3,750장 시세 랭킹 · PSA 10과 맨카드(Raw) 비교</li>
-        <li>일판·한판·영판 환율 계산기와 내 카드 보관함(기기 저장)</li>
+        <li>도쿄·오사카 등 유명 카드샵 23곳 위치·길찾기</li>
+        <li>연도·팩별 시세 &amp; PSA 10 vs 미등급</li>
+        <li>내 카드 보관함(기기 저장)</li>
       </ul>
       <div class="go">바로 열기 <span>jpsave.com/pokemon-cards/</span></div>
     </a>
