@@ -1437,9 +1437,21 @@
   /* --------------------------------------------------------------- events */
   document.addEventListener('error', function (e) {
     var img = e.target;
-    if (!img || img.tagName !== 'IMG' || img.getAttribute('data-ph') === '1') return;
-    img.setAttribute('data-ph', '1');
-    img.src = IMG_PH;
+    if (!img || img.tagName !== 'IMG') return;
+    var st = img.getAttribute('data-ph');
+    if (st === '1') return;
+    var src = img.getAttribute('src') || '';
+    if (st === 'retry' || !src || src.indexOf('data:') === 0) {
+      img.setAttribute('data-ph', '1');
+      img.src = IMG_PH;
+      return;
+    }
+    /* one quiet retry (mobile networks drop the first request), then the placeholder */
+    img.setAttribute('data-ph', 'retry');
+    var probe = new Image();
+    probe.onload = function () { img.src = src; };
+    probe.onerror = function () { img.setAttribute('data-ph', '1'); img.src = IMG_PH; };
+    setTimeout(function () { probe.src = src; }, 700);
   }, true);
 
   document.addEventListener('click', function (e) {
