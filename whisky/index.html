@@ -6,23 +6,23 @@
 <meta name="theme-color" content="#b45309">
 <meta name="color-scheme" content="light">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<title>일본 위스키 방문 도우미 — 리쿼샵 23곳·한일 시세 15종·면세 계산</title>
-<meta name="description" content="도쿄·오사카·후쿠오카 위스키 리쿼샵 23곳의 영업시간·역에서 도보 시간·면세 여부와, 야마자키·하쿠슈·히비키 등 15종의 일본 정가·실판매가 대비 한국 시세 비교, 2L·$400 주류 면세 한도 계산기까지 한 화면에서.">
+<title>일본 위스키 방문 도우미 — 리쿼샵 23곳·일본 위스키 18종 가격·면세 계산</title>
+<meta name="description" content="도쿄·오사카·후쿠오카 위스키 리쿼샵 23곳의 영업시간·역에서 도보 시간·면세 여부와, 야마자키·하쿠슈·히비키·요이치·이치로스 등 유명 일본 위스키 18종의 종류·일본 정가·리쿼샵 실판매가·한국 시세 비교, 2L·$400 주류 면세 한도 계산기까지 한 화면에서.">
 <link rel="canonical" href="https://jpsave.com/whisky/">
 <link rel="alternate" hreflang="ko" href="https://jpsave.com/whisky/">
 <link rel="alternate" hreflang="en" href="https://jpsave.com/whisky/?lang=en">
 <link rel="alternate" hreflang="x-default" href="https://jpsave.com/whisky/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="일본 위스키 방문 도우미">
-<meta property="og:title" content="일본 위스키 방문 도우미 — 리쿼샵 23곳·한일 시세 15종·면세 계산">
-<meta property="og:description" content="도쿄·오사카·후쿠오카 리쿼샵 23곳 영업시간·도보 시간·면세 여부와 위스키 15종 한일 시세, 2L·$400 면세 계산기.">
+<meta property="og:title" content="일본 위스키 방문 도우미 — 리쿼샵 23곳·일본 위스키 18종 가격·면세 계산">
+<meta property="og:description" content="도쿄·오사카·후쿠오카 리쿼샵 23곳 영업시간·도보 시간·면세 여부와 유명 일본 위스키 18종의 종류별 정가·실판매가·한국 시세, 2L·$400 면세 계산기.">
 <meta property="og:url" content="https://jpsave.com/whisky/">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:image" content="https://jpsave.com/jpsave-logo.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="일본 위스키 방문 도우미 — 리쿼샵 23곳·한일 시세·면세 계산">
-<meta name="twitter:description" content="리쿼샵 23곳 영업시간·도보 시간·면세 여부 · 위스키 15종 한일 시세 · 2L·$400 면세 계산기.">
+<meta name="twitter:title" content="일본 위스키 방문 도우미 — 리쿼샵 23곳·일본 위스키 18종 가격">
+<meta name="twitter:description" content="리쿼샵 23곳 영업시간·도보 시간·면세 여부 · 일본 위스키 18종 종류·정가·실판매가·한국 시세 · 2L·$400 면세 계산기.">
 <meta name="twitter:image" content="https://jpsave.com/jpsave-logo.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -39,7 +39,7 @@
       "name": "일본 위스키 방문 도우미",
       "alternateName": "Japan Whisky Shop Helper",
       "url": "https://jpsave.com/whisky/",
-      "description": "도쿄·오사카·후쿠오카 위스키·리쿼숍 23곳의 영업시간과 역에서 도보 시간, 일본 정가·실판매가 대비 한국 시세 비교, 한국 입국 주류 면세(2L·$400)와 초과 세금 계산을 한 화면에서 보는 무료 정보 도구.",
+      "description": "도쿄·오사카·후쿠오카 위스키·리쿼숍 23곳의 영업시간과 역에서 도보 시간, 유명 일본 위스키 18종의 종류·일본 정가·실판매가·한국 시세 비교, 한국 입국 주류 면세(2L·$400)와 초과 세금 계산을 한 화면에서 보는 무료 정보 도구.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any (web browser)",
       "browserRequirements": "Requires JavaScript",
@@ -305,6 +305,27 @@
   .judge.mid{background:#fef6e7;color:#8a5a12}
   .judge.loss{background:#f5f3f1;color:#57534e}
   .judge b{font-family:var(--num);font-variant-numeric:tabular-nums;font-size:15px;letter-spacing:-.02em}
+  .pcard-flags{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:8px}
+  .pflag{
+    display:inline-flex;align-items:center;font-size:11.5px;font-weight:800;line-height:1.3;
+    border-radius:999px;padding:3px 8px;border:1px solid var(--line-2);background:#f7f4ee;color:var(--ink-2);
+  }
+  .pflag.style{background:#fdf0dc;border-color:#f3ddba;color:#8a4b0a}
+  .pflag.style.malt{background:#eef4fb;border-color:#d6e4f3;color:#1e4d7b}
+  .pflag.style.blend{background:#fdf0dc;border-color:#f3ddba;color:#8a4b0a}
+  .pflag.style.grain{background:#f0f7f0;border-color:#d5e8d5;color:#2b6b3a}
+  .pflag.vol{background:#fff;color:var(--muted);font-family:var(--num);font-variant-numeric:tabular-nums}
+  .pcard-tag{margin:8px 0 0;font-size:13.5px;line-height:1.55;color:var(--ink-2);font-weight:700;letter-spacing:-.015em}
+  .pcard-note{margin:5px 0 0;font-size:11.5px;line-height:1.55;color:var(--muted);letter-spacing:-.005em}
+  .prow.jp .v{font-size:15px}
+  .prow.kr .v{font-size:16px}
+  .prow .v em{font-style:normal;font-family:var(--font);font-weight:700;font-size:11.5px;color:var(--muted);margin-left:4px}
+  .add-calc{
+    width:100%;margin-top:10px;border:1px dashed #e2c79a;background:#fffdf7;color:var(--brand-2);
+    border-radius:11px;padding:10px;font-family:var(--font);font-size:12.5px;font-weight:800;cursor:pointer;line-height:1.2;
+  }
+  .add-calc:active{transform:scale(.995)}
+  .pcard-add-hit{display:none}
 
   /* calculator */
   .calc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
@@ -446,7 +467,7 @@
       </div>
       <div class="brand-text">
         <h1 id="brandTitle">일본 위스키 방문 도우미</h1>
-        <p id="brandSub">리쿼샵 23곳 · 시세 15종 · 면세 계산</p>
+        <p id="brandSub">리쿼샵 23곳 · 위스키 18종 · 면세 계산</p>
       </div>
       <div class="lang-switch" role="group" aria-label="언어">
         <button class="lang-btn is-active" id="langKo" type="button">KO</button>
@@ -473,7 +494,7 @@
         <p class="sub" id="heroSub">도쿄·오사카·후쿠오카 23곳의 영업시간과 역에서 도보 시간, 면세 여부까지 정리했습니다.</p>
         <div class="stats">
           <div class="stat"><b id="statShops">23</b><span id="statShopsL">매장</span></div>
-          <div class="stat"><b id="statBottles">15</b><span id="statBottlesL">시세 품목</span></div>
+          <div class="stat"><b id="statBottles">24</b><span id="statBottlesL">시세 품목</span></div>
           <div class="stat"><b id="statLimit">2L</b><span id="statLimitL">면세 한도</span></div>
         </div>
       </div>
@@ -542,6 +563,7 @@
             <label for="inVol" id="lbVol">용량 ml</label>
             <select id="inVol" aria-label="용량">
               <option value="700">700</option>
+              <option value="720">720</option>
               <option value="750">750</option>
               <option value="500">500</option>
               <option value="1000">1,000</option>
@@ -642,7 +664,7 @@
   var T = {
     ko: {
       brandTitle: '일본 위스키 방문 도우미',
-      brandSub: '리쿼샵 23곳 · 시세 15종 · 면세 계산',
+      brandSub: '리쿼샵 23곳 · 위스키 18종 · 면세 계산',
       pillHome: 'jpsave.com 홈',
       qsHome: '홈', qsJmh: '마운자로', qsPk: '포켓몬 카드샵', qsWhisky: '위스키',
       pillDate: '기준',
@@ -670,8 +692,8 @@
       openMap: '지도 열기',
       copied: '일본어 이름을 복사했습니다',
       inStation: '역내',
-      priceTitle: '한·일 시세 비교',
-      priceNote: '일본은 정가(희망소매가)와 매장 실판매가를, 한국은 국내 최저 시중가를 기준으로 했습니다. 환율이 오르내리므로 결제 전 숫자를 다시 확인하세요.',
+      priceTitle: '일본 위스키 종류·가격',
+      priceNote: '일본 정가는 메이커 희망소매가(소비세 포함)이고, 실판매는 2026-11 리쿼샵·온라인에서 실제로 본 값입니다. 인기병은 정가로 살 수 없어 실판매가가 정가를 넘고, 반대로 구하기 쉬운 병은 정가 밑으로도 팝니다. 한국 시세는 국내 최저 매물가이고 통화를 바꿔도 원화로 표시합니다.',
       priceSearch: '위스키 이름 검색 (예: 야마자키, 響)',
       countPrices: '{n}종',
       emptyPrices: '조건에 맞는 위스키가 없습니다.',
@@ -682,10 +704,16 @@
       saveWord: '절약',
       lossWord: '비쌈',
       perBottle: '700ml 기준',
-      catJp: '재패니즈',
+      beforeTax: '세전',
+      openPrice: '오픈가격(정가 없음)',
+      addCalc: '+ 세금계산기에 담기',
+      addedCalc: '{n} — 세금계산기에 담았어요',
+      noKr: '국내 매물 드묾',
+      catJp: '일본 위스키',
+      catImp: '수입·기타',
       catSc: '스카치',
       catTw: '타이완',
-      priceFoot: '정가·실판매가는 2026-11 기준 공개된 가격이고, 한국 시세는 2026-11-27~28 국내 최저 매물가입니다. 인기 병은 일본에서도 정가로 구하기 어려워 실판매가가 정가의 2~3배까지 붙습니다. 표시 금액은 참고용입니다.',
+      priceFoot: '정가는 산토리·닛카(아사히)·기린·혼보·벤처위스키 공개 가격(2026-11 기준, 2026-04 인상 반영), 실판매는 2026-10~11 도쿄·오사카 리쿼샵 실측과 라쿠텐·아마존 최저가, 한국 시세는 2026-11-27~28 국내 최저 매물가(위스키핫·데일리샷)입니다. 인기병은 일본에서도 추첨·1인 1병 제한이 붙고, 표시 금액은 환율에 따라 달라집니다. 참고용으로 보세요.',
       taxTitle: '면세 한도·세금 계산',
       taxNote: '술은 합계 2L 이하이면서 총 US$400 이하일 때 면세입니다. 2025-03-21부터 병수 제한(2병)은 폐지됐고, 일반물품 800달러 면세와는 따로 계산합니다.',
       lbPrice: '병 가격',
@@ -736,7 +764,7 @@
     },
     en: {
       brandTitle: 'Japan Whisky Shop Helper',
-      brandSub: '23 shops · 15 bottles · duty-free math',
+      brandSub: '23 shops · 18 whiskies · duty-free math',
       pillHome: 'jpsave.com home',
       qsHome: 'Home', qsJmh: 'Mounjaro', qsPk: 'Card Shops', qsWhisky: 'Whisky',
       pillDate: 'Data',
@@ -764,22 +792,28 @@
       openMap: 'Open map',
       copied: 'Japanese name copied',
       inStation: 'in station',
-      priceTitle: 'Japan vs Korea prices',
-      priceNote: 'Japan columns are the maker price and the street price; Korea is the lowest domestic listing. Exchange rates move, so re-check before paying.',
+      priceTitle: 'Japanese whisky: styles & prices',
+      priceNote: 'Japan list is the maker’s suggested retail price (tax included) and street is what shops and online sellers actually charged in Nov 2026. Rare bottles sell above list; easy ones can sell below it. Korea is the lowest domestic listing and stays in won whatever currency you pick.',
       priceSearch: 'Search a bottle (e.g. Yamazaki, Hibiki)',
       countPrices: '{n} bottles',
       emptyPrices: 'No bottle matches.',
-      jpMsrp: 'Japan list price',
+      jpMsrp: 'Japan list',
       jpStreet: 'Japan street',
       krPrice: 'Korea market',
       vsKr: 'vs Korea',
       saveWord: 'cheaper',
       lossWord: 'dearer',
       perBottle: '700ml unless noted',
+      beforeTax: 'before tax',
+      openPrice: 'open price (no list)',
+      addCalc: '+ Add to duty-free calculator',
+      addedCalc: '{n} — added to the calculator',
+      noKr: 'rare in Korea',
       catJp: 'Japanese',
+      catImp: 'Imported & others',
       catSc: 'Scotch',
       catTw: 'Taiwanese',
-      priceFoot: 'List and street prices as published in Nov 2026; Korean figures are the lowest domestic listings on 2026-11-27~28. Rare bottles sell above list in Japan too — often 2~3x. Treat every number as a guide.',
+      priceFoot: 'List prices are Suntory, Nikka (Asahi), Kirin, Hombo and Venture Whisky published prices (Nov 2026, after the Apr 2026 rise). Street prices are Tokyo/Osaka shop sightings in Oct–Nov 2026 plus Rakuten/Amazon lows. Korean figures are the lowest domestic listings on 2026-11-27~28 (Whisky Hot, Dailyshot). Rare bottles are lottery or one-per-person even in Japan, and every number moves with the exchange rate — treat them as a guide.',
       taxTitle: 'Duty-free cap & tax',
       taxNote: 'Liquor is duty-free when the total is 2L or less AND US$400 or less. The two-bottle cap was dropped on 2025-03-21, and this allowance is separate from the US$800 for ordinary goods.',
       lbPrice: 'Bottle price',
@@ -929,43 +963,136 @@
   ];
 
   var PRICES = [
-    {n:'야마자키 12년', nEn:'Yamazaki 12', cat:'jp', vol:'700ml', msrp:17600, street:19500, kr:379000,
-     m:'정가 17,600엔(세전 16,000). 오사카 매장 실측 19,500엔 / 국내 35~38만원대', mEn:'List ¥17,600 (¥16,000 before tax). Seen at ¥19,500 in Osaka'},
-    {n:'하쿠슈 12년', nEn:'Hakushu 12', cat:'jp', vol:'700ml', msrp:17600, street:20500, kr:390000,
-     m:'정가 17,600엔. 오사카 실측 20,500엔, 돈키호테 42,900엔까지', mEn:'List ¥17,600; seen ¥20,500 in Osaka, up to ¥42,900 at Don Quijote'},
-    {n:'히비키 재패니즈 하모니', nEn:'Hibiki Japanese Harmony', cat:'jp', vol:'700ml', msrp:8800, street:17490, kr:158000,
-     m:'정가 8,800엔(2026-04 인상). 매장 실판매는 15,400~17,490엔', mEn:'List ¥8,800; street ¥15,400–17,490'},
-    {n:'히비키 블렌더스 초이스', nEn:"Hibiki Blender's Choice", cat:'jp', vol:'700ml', msrp:17600, street:19800, kr:320000,
-     m:'추첨 정가 17,600엔, 일반 판매 18,700~19,800엔', mEn:'Lottery list ¥17,600; open sale ¥18,700–19,800'},
-    {n:'요이치 싱글몰트', nEn:'Yoichi Single Malt', cat:'jp', vol:'700ml', msrp:7700, street:7700, kr:129800,
-     m:'2024-04 인상 후 정가 7,700엔(세전 7,000)', mEn:'¥7,700 since the Apr 2024 rise'},
-    {n:'미야기쿄 싱글몰트', nEn:'Miyagikyo Single Malt', cat:'jp', vol:'700ml', msrp:7700, street:7700, kr:122600,
-     m:'정가 7,700엔. 국내는 직구 포함세 12만원대', mEn:'¥7,700; about ₩122,600 landed in Korea'},
-    {n:'타케츠루 퓨어몰트', nEn:'Taketsuru Pure Malt', cat:'jp', vol:'700ml', msrp:7700, street:7700, kr:128900,
-     m:'정가 7,700엔(세전 7,000), 아마존 6,930엔인 적도', mEn:'¥7,700 list; has sold at ¥6,930 on Amazon'},
-    {n:'니카 프롬 더 배럴', nEn:'Nikka From the Barrel', cat:'jp', vol:'500ml', msrp:3520, street:3520, kr:55000,
-     m:'500ml·51도, 정가 3,520엔', mEn:'500ml at 51%; list ¥3,520'},
-    {n:'치타', nEn:'Chita', cat:'jp', vol:'700ml', msrp:4400, street:4400, kr:94000,
-     m:'정가 4,400엔(세전 4,000). 2027-04 인상 예고', mEn:'List ¥4,400; another rise is slated for Apr 2027'},
-    {n:'맥캘란 12년 셰리오크', nEn:'Macallan 12 Sherry Oak', cat:'sc', vol:'700ml', msrp:14850, street:14850, kr:128900,
-     m:'정가 14,850엔, 빅카메라 난바 13,500엔. 2027-04 15,620엔 예정', mEn:'List ¥14,850; ¥13,500 at BicCamera Namba; ¥15,620 from Apr 2027'},
-    {n:'맥캘란 12년 더블캐스크', nEn:'Macallan 12 Double Cask', cat:'sc', vol:'700ml', msrp:10890, street:10890, kr:99900,
-     m:'정가 10,890엔, 2027-04 11,440엔 예정', mEn:'List ¥10,890; ¥11,440 from Apr 2027'},
-    {n:'발베니 12년 더블우드', nEn:'Balvenie 12 DoubleWood', cat:'sc', vol:'700ml', msrp:7370, street:7255, kr:99900,
-     m:'세전 정가 6,700엔, 빅카메라 난바 면세가 7,255엔', mEn:'¥6,700 before tax; ¥7,255 tax-free at BicCamera Namba'},
-    {n:'발베니 14년 캐리비안 캐스크', nEn:'Balvenie 14 Caribbean Cask', cat:'sc', vol:'700ml', msrp:12100, street:13490, kr:144000,
-     m:'세전 정가 11,000엔, 라쿠텐 최저 13,490엔(2026-11-28)', mEn:'¥11,000 list; ¥13,490 lowest on Rakuten (2026-11-28)'},
-    {n:'카발란 솔리스트 비뉴 바리크', nEn:'Kavalan Solist Vinho Barrique', cat:'tw', vol:'700ml', msrp:18843, street:18843, kr:310000,
-     m:'700ml 정규품 18,843엔, 1L 공항면세 21,850~24,000엔', mEn:'700ml at ¥18,843; 1L airport duty-free ¥21,850–24,000'},
-    {n:'조니워커 블루 라벨', nEn:'Johnnie Walker Blue Label', cat:'sc', vol:'750ml', msrp:21740, street:21740, kr:259000,
-     m:'750ml, 아마존 실판매 21,740엔(2026-10)', mEn:'750ml; ¥21,740 on Amazon (Oct 2026)'}
+    /* ---- 산토리 ---- */
+    {n:'야마자키 12년', nEn:'Yamazaki 12', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
+     msrp:17600, msrpEx:16000, street:23000, kr:379000,
+     t:'일본 싱글몰트의 기준. 복숭아·오크에 꿀 단맛', tEn:'The benchmark Japanese single malt — peach, oak, honey',
+     m:'도쿄 23,000엔(2026-11) · 오사카 매장 19,500엔 실측. 정가 판매는 추첨',
+     mEn:'¥23,000 in Tokyo (Nov 2026), ¥19,500 in Osaka; list price only by lottery'},
+    {n:'야마자키 18년', nEn:'Yamazaki 18', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
+     msrp:67100, msrpEx:61000, street:105000, kr:1250000,
+     t:'미즈나라 오크의 대표작. 선물·소장용 최상급', tEn:'Mizunara oak at its best — the gift bottle',
+     m:'추첨 정가 67,100엔, 실판매 105,000엔(정가의 1.56배)',
+     mEn:'List ¥67,100 by lottery; street ¥105,000 (1.56x)'},
+    {n:'하쿠슈 12년', nEn:'Hakushu 12', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
+     msrp:17600, msrpEx:16000, street:20500, kr:390000,
+     t:'숲·민트·청사과. 가벼운 피트향의 산뜻한 싱글몰트', tEn:'Forest, mint, green apple — a light, fresh single malt',
+     m:'오사카 20,500엔 실측, 돈키호테 42,900엔까지',
+     mEn:'¥20,500 seen in Osaka, up to ¥42,900 at Don Quijote'},
+    {n:'히비키 재패니즈 하모니', nEn:'Hibiki Japanese Harmony', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
+     msrp:8800, msrpEx:8000, street:6600, kr:158000,
+     t:'꽃·꿀·오크의 균형. 24면 병이 상징인 국민 블렌디드', tEn:'Flowers, honey and oak — Japan’s 24-facet classic',
+     m:'정가 8,800엔인데 6,600엔에 파는 곳도(0.75배)',
+     mEn:'List ¥8,800, though some shops sell it at ¥6,600 (0.75x)'},
+    {n:'히비키 블렌더스 초이스', nEn:"Hibiki Blender's Choice", cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
+     msrp:null, msrpEx:null, street:17500, kr:320000,
+     t:'와인 캐스크 숙성. 업장용으로 나온 프리미엄 블렌디드', tEn:'Wine-cask aged — a premium blend made for bars',
+     m:'정가 없음(오픈가격), 실판매 17,500엔부터',
+     mEn:'No list price (open price); street from ¥17,500'},
+    {n:'히비키 21년', nEn:'Hibiki 21', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
+     msrp:67100, msrpEx:61000, street:79000, kr:910000,
+     t:'일본 블렌디드의 정점. 미즈나라 향의 긴 여운', tEn:'The peak of Japanese blending — long mizunara finish',
+     m:'정가 67,100엔, 실판매 79,000엔',
+     mEn:'List ¥67,100; street ¥79,000'},
+    {n:'치타', nEn:'Chita', cat:'jp', st:'그레인', stEn:'Grain', stc:'grain', vol:'700ml', abv:'43%',
+     msrp:6600, msrpEx:6000, street:4580, kr:94000,
+     t:'옥수수 그레인. 하이볼에 가장 부드러운 한 병', tEn:'Corn grain — the softest base for a highball',
+     m:'정가 6,600엔, 온라인 4,580엔까지',
+     mEn:'List ¥6,600, as low as ¥4,580 online'},
+    {n:'아오', nEn:'Ao', cat:'jp', st:'월드 블렌디드', stEn:'World blend', stc:'blend', vol:'700ml', abv:'43%',
+     msrp:6600, msrpEx:6000, street:3880, kr:105000,
+     t:'세계 5대 위스키를 섞은 산토리 월드 블렌디드', tEn:'Suntory’s five-nation world blend',
+     m:'정가 6,600엔, 최저 3,880엔 · 간사이공항 면세 5,640엔',
+     mEn:'List ¥6,600, from ¥3,880; ¥5,640 at Kansai airport duty-free'},
+    {n:'가쿠빈', nEn:'Kakubin', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'40%',
+     msrp:2101, msrpEx:1910, street:1672, kr:31000,
+     t:'일본 하이볼의 국민주. 각진 병', tEn:'Japan’s highball staple in the square bottle',
+     m:'오사카 리카마운틴 1,672엔 실측(2026-11-28)',
+     mEn:'¥1,672 at Liquor Mountain Osaka (2026-11-28)'},
+    {n:'산토리 로얄', nEn:'Suntory Royal', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
+     msrp:4290, msrpEx:3900, street:3696, kr:95900,
+     t:'1960년부터 이어진 산토리 클래식 블렌디드', tEn:'The classic Suntory blend since 1960',
+     m:'정가 4,290엔, 오사카 3,696엔 실측',
+     mEn:'List ¥4,290; ¥3,696 seen in Osaka'},
+    /* ---- 닛카 ---- */
+    {n:'요이치 싱글몰트', nEn:'Yoichi Single Malt', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'45%',
+     msrp:7700, msrpEx:7000, street:7560, kr:129800,
+     t:'피트·바다 향. 닛카 대표 싱글몰트', tEn:'Peat and sea air — Nikka’s flagship single malt',
+     m:'정가 7,700엔, 실판매 5,780~7,560엔',
+     mEn:'List ¥7,700; street ¥5,780–7,560'},
+    {n:'미야기쿄 싱글몰트', nEn:'Miyagikyo Single Malt', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'45%',
+     msrp:7700, msrpEx:7000, street:6998, kr:129500,
+     t:'과일·꽃향의 부드러운 싱글몰트. 요이치와 대조', tEn:'Fruity and floral — the soft counterpart to Yoichi',
+     m:'정가 7,700엔, 실판매 5,300~7,000엔',
+     mEn:'List ¥7,700; street ¥5,300–7,000'},
+    {n:'타케츠루 퓨어몰트', nEn:'Taketsuru Pure Malt', cat:'jp', st:'퓨어몰트', stEn:'Pure malt', stc:'blend', vol:'700ml', abv:'43%',
+     msrp:7700, msrpEx:7000, street:7700, kr:128900,
+     t:'요이치+미야기쿄를 섞은 블렌디드 몰트. 창업자 이름', tEn:'Yoichi and Miyagikyo vatted — named for the founder',
+     m:'정가 7,700엔, 아마존 6,700~6,930엔',
+     mEn:'List ¥7,700; ¥6,700–6,930 on Amazon'},
+    {n:'니카 프롬 더 배럴', nEn:'Nikka From the Barrel', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'500ml', abv:'51%',
+     msrp:3520, msrpEx:3200, street:4220, kr:55000,
+     t:'51도·500ml. 작은 병에 진한 과일·토피', tEn:'51% in a 500ml stubby — big fruit and toffee',
+     m:'정가 3,520엔인데 실판매 4,220엔(1.2배)',
+     mEn:'List ¥3,520 but street ¥4,220 (1.2x)'},
+    {n:'슈퍼닛카', nEn:'Super Nikka', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'700ml', abv:'43%',
+     msrp:3520, msrpEx:3200, street:2150, kr:65000,
+     t:'1962년부터의 클래식. 꿀·바닐라의 부드러운 블렌디드', tEn:'A 1962 classic — honey and vanilla softness',
+     m:'정가 3,520엔, 최저 2,150엔',
+     mEn:'List ¥3,520, from ¥2,150'},
+    {n:'블랙닉카 스페셜', nEn:'Black Nikka Special', cat:'jp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'720ml', abv:'42%',
+     msrp:1815, msrpEx:1650, street:1449, kr:26500,
+     t:'일본 편의점·슈퍼의 스테디셀러 하이볼 주', tEn:'The convenience-store highball standard',
+     m:'정가 1,815엔, 실판매 1,449엔',
+     mEn:'List ¥1,815; street ¥1,449'},
+    /* ---- 치치부·기린 ---- */
+    {n:'이치로스 몰트 화이트라벨', nEn:"Ichiro's Malt & Grain White Label", cat:'jp', st:'월드 블렌디드', stEn:'World blend', stc:'blend', vol:'700ml', abv:'46%',
+     msrp:4235, msrpEx:3850, street:4048, kr:169000,
+     t:'치치부의 입문병. 꿀·시트러스에 하이볼 최적', tEn:'Chichibu’s entry bottle — honey and citrus, built for highballs',
+     m:'정가 4,235엔, 실판매 4,048~6,800엔. 국내는 4~5배',
+     mEn:'List ¥4,235; street ¥4,048–6,800 — 4–5x in Korea'},
+    {n:'기린 후지 싱글몰트', nEn:'Kirin Fuji Single Malt', cat:'jp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'46%',
+     msrp:8888, msrpEx:8080, street:6138, kr:109000,
+     t:'후지산 자락 증류소. 복숭아·바닐라의 부드러움', tEn:'From the foot of Mt Fuji — peach and vanilla',
+     m:'정가 8,888엔, 온라인 6,138엔(2026-11-28)',
+     mEn:'List ¥8,888; ¥6,138 online (2026-11-28)'},
+    /* ---- 수입·기타 ---- */
+    {n:'맥캘란 12년 셰리오크', nEn:'Macallan 12 Sherry Oak', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'40%',
+     msrp:14850, msrpEx:13500, street:13500, kr:128900,
+     t:'셰리 캐스크의 교과서. 건포도·말린 과일', tEn:'The sherry-cask textbook — raisins and dried fruit',
+     m:'정가 14,850엔, 빅카메라 난바 13,500엔',
+     mEn:'List ¥14,850; ¥13,500 at BicCamera Namba'},
+    {n:'맥캘란 12년 더블캐스크', nEn:'Macallan 12 Double Cask', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'40%',
+     msrp:10890, msrpEx:9900, street:8998, kr:99900,
+     t:'셰리+버번 캐스크. 부드러운 밸런스', tEn:'Sherry and bourbon casks — gentle balance',
+     m:'정가 10,890엔, 오사카 8,998엔 실측',
+     mEn:'List ¥10,890; ¥8,998 seen in Osaka'},
+    {n:'발베니 12년 더블우드', nEn:'Balvenie 12 DoubleWood', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'40%',
+     msrp:7370, msrpEx:6700, street:7255, kr:99900,
+     t:'꿀·바닐라. 스카치 입문 단골', tEn:'Honey and vanilla — a Scotch starter',
+     m:'세전 6,700엔, 빅카메라 난바 면세 7,255엔',
+     mEn:'¥6,700 before tax; ¥7,255 tax-free at BicCamera Namba'},
+    {n:'발베니 14년 캐리비안 캐스크', nEn:'Balvenie 14 Caribbean Cask', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'43%',
+     msrp:12100, msrpEx:11000, street:13490, kr:144000,
+     t:'럼 캐스크 피니시. 열대과일·토피', tEn:'Rum-cask finish — tropical fruit and toffee',
+     m:'세전 11,000엔, 라쿠텐 최저 13,490엔(2026-11-28)',
+     mEn:'¥11,000 list; ¥13,490 lowest on Rakuten (2026-11-28)'},
+    {n:'카발란 솔리스트 비뉴 바리크', nEn:'Kavalan Solist Vinho Barrique', cat:'imp', st:'싱글몰트', stEn:'Single malt', stc:'malt', vol:'700ml', abv:'',
+     msrp:18843, msrpEx:17130, street:18843, kr:310000,
+     t:'타이완 카발란의 대표 캐스크 스트렝스', tEn:'Taiwan’s cask-strength flagship',
+     m:'700ml 18,843엔, 1L 공항면세 21,850~24,000엔',
+     mEn:'700ml ¥18,843; 1L airport duty-free ¥21,850–24,000'},
+    {n:'조니워커 블루 라벨', nEn:'Johnnie Walker Blue Label', cat:'imp', st:'블렌디드', stEn:'Blended', stc:'blend', vol:'750ml', abv:'40%',
+     msrp:21740, msrpEx:null, street:20780, kr:259000,
+     t:'희소 원액 블렌디드. 선물용 스카치', tEn:'A blend of rare casks — the gift Scotch',
+     m:'750ml, 오사카 20,780엔 · 아마존 21,740엔(2026-10)',
+     mEn:'750ml; ¥20,780 in Osaka, ¥21,740 on Amazon (Oct 2026)'}
   ];
 
   var CATS = [
     {id:'all', ko:'전체', en:'All'},
-    {id:'jp', ko:'재패니즈', en:'Japanese'},
-    {id:'sc', ko:'스카치', en:'Scotch'},
-    {id:'tw', ko:'타이완', en:'Taiwanese'}
+    {id:'jp', ko:'일본 위스키', en:'Japanese'},
+    {id:'imp', ko:'수입·기타', en:'Imported'}
   ];
 
   var TIPS = {
@@ -1027,7 +1154,7 @@
   var rate = { KRW: 1335.09, JPY: 159.52 }; /* per 1 USD, refreshed below */
   var RATE_DATE = '2026-11-28';
   var city = 'all';
-  var cat = 'all';
+  var cat = 'jp';
   var bottles = [{ price: 17600, vol: 700, qty: 1, cur: 'JPY' }];
   var inputCur = 'JPY';
 
@@ -1145,36 +1272,58 @@
       return (p.n + ' ' + p.nEn).toLowerCase().indexOf(q) !== -1;
     });
     var box = $('priceRows');
-    box.innerHTML = rows.map(function (p) {
-      var yen = p.street || p.msrp;
+    box.innerHTML = rows.map(function (p, i) {
+      var idx = PRICES.indexOf(p);
+      var yen = p.street || p.msrp || 0;
       var krw = yen / rate.JPY * rate.KRW;
       var diff = p.kr - krw;
       var pct = Math.round(Math.abs(diff) / p.kr * 100);
       var cls = diff > 0 ? 'save' : (pct < 8 ? 'mid' : 'loss');
       var word = diff > 0 ? t('saveWord') : (pct < 8 ? '≈' : t('lossWord'));
-      var msrpLine = p.msrp && p.msrp !== p.street
-        ? '<div class="prow"><span class="l">' + esc(t('jpMsrp')) + '</span><span class="v">¥' + fmt(p.msrp) + '</span></div>' : '';
-      var catLabel = p.cat === 'jp' ? t('catJp') : (p.cat === 'sc' ? t('catSc') : t('catTw'));
+      var flags = '<div class="pcard-flags">' +
+        '<span class="pflag style ' + esc(p.stc || '') + '">' + esc(lang === 'ko' ? p.st : p.stEn) + '</span>' +
+        '<span class="pflag vol">' + esc(p.vol) + (p.abv ? ' · ' + esc(p.abv) : '') + '</span>' +
+        '<span class="pflag">' + esc(p.cat === 'jp' ? t('catJp') : t('catImp')) + '</span>' +
+        '</div>';
+      var msrpCell = p.msrp
+        ? moneyJPY(p.msrp) + (p.msrpEx ? '<em>' + esc(t('beforeTax')) + ' ' + moneyJPY(p.msrpEx) + '</em>' : '')
+        : '<em>' + esc(t('openPrice')) + '</em>';
       return '<article class="pcard">' +
-        '<div class="pcard-head"><b>' + esc(lang === 'ko' ? p.n : p.nEn) + '</b><span class="cat">' + esc(catLabel) + '</span></div>' +
-        '<p class="pcard-sub">' + esc(p.vol) + ' · ' + esc(lang === 'ko' ? p.m : p.mEn) + '</p>' +
+        '<div class="pcard-head"><b>' + esc(lang === 'ko' ? p.n : p.nEn) + '</b></div>' +
+        '<p class="pcard-tag">' + esc(lang === 'ko' ? p.t : p.tEn) + '</p>' +
+        flags +
         '<div class="pcard-rows">' +
-          msrpLine +
-          '<div class="prow jp"><span class="l">' + esc(p.msrp !== p.street ? t('jpStreet') : t('jpMsrp')) + '</span><span class="v">' + moneyJPY(yen) + '</span></div>' +
-          '<div class="prow kr"><span class="l">' + esc(t('krPrice')) + '</span><span class="v">' + moneyKRW(p.kr) + '</span></div>' +
+          '<div class="prow jp"><span class="l">' + esc(t('jpMsrp')) + '</span><span class="v">' + msrpCell + '</span></div>' +
+          '<div class="prow jp"><span class="l">' + esc(t('jpStreet')) + '</span><span class="v">' + moneyJPY(yen) + '</span></div>' +
+          '<div class="prow kr"><span class="l">' + esc(t('krPrice')) + '</span><span class="v">₩' + fmt(p.kr) + '</span></div>' +
         '</div>' +
         '<div class="judge ' + cls + '"><span>' + esc(t('vsKr')) + '</span><span>' + esc(word) + ' <b>' + fmt(pct) + '%</b></span></div>' +
+        '<p class="pcard-note">' + esc(lang === 'ko' ? p.m : p.mEn) + '</p>' +
+        '<button type="button" class="add-calc" data-add="' + idx + '">' + esc(t('addCalc')) + '</button>' +
       '</article>';
     }).join('');
     if (!rows.length) box.innerHTML = '<p class="empty">' + esc(t('emptyPrices')) + '</p>';
     $('priceCount').textContent = t('countPrices', rows.length);
-    $('statBottles').textContent = String(PRICES.length);
+    updateCounts();
   }
 
   function renderCatChips() {
     $('priceCatChips').innerHTML = CATS.map(function (c) {
       return '<button type="button" class="chip' + (cat === c.id ? ' is-active' : '') + '" data-cat="' + c.id + '">' + esc(lang === 'ko' ? c.ko : c.en) + '</button>';
     }).join('');
+  }
+
+  /* 요약 숫자·제목을 실제 데이터 개수에 맞춘다 */
+  function updateCounts() {
+    var jp = PRICES.filter(function (p) { return p.cat === 'jp'; }).length;
+    var ko = lang === 'ko';
+    $('brandSub').textContent = ko
+      ? ('리쿼샵 ' + SHOPS.length + '곳 · 위스키 ' + jp + '종 · 면세 계산')
+      : (SHOPS.length + ' shops · ' + jp + ' whiskies · duty-free calc');
+    $('statBottles').textContent = String(PRICES.length);
+    document.title = ko
+      ? ('일본 위스키 방문 도우미 — 리쿼샵 ' + SHOPS.length + '곳·일본 위스키 ' + jp + '종 가격·면세 계산')
+      : ('Japan Whisky Shop Helper — ' + SHOPS.length + ' shops, ' + jp + ' Japanese whiskies, duty-free math');
   }
 
   /* ------------------------------------------------------------------ tax calculator */
@@ -1308,9 +1457,6 @@
   function applyLang(l, fromUser) {
     lang = l;
     document.documentElement.lang = l;
-    document.title = l === 'ko'
-      ? '일본 위스키 방문 도우미 — 리쿼샵 23곳·한일 시세 15종·면세 계산'
-      : 'Japan Whisky Shop Helper — 23 shops, Japan vs Korea prices, duty-free math';
     var d = T[l];
     var ids = ['brandTitle', 'brandSub', 'heroK', 'heroBig', 'heroSub', 'statShopsL', 'statBottlesL', 'statLimitL',
       'tfNote', 'affSlimText', 'tabShopsL', 'tabPricesL', 'tabTaxL', 'tabPrepL', 'priceTitle', 'priceNote', 'taxTitle', 'taxNote',
@@ -1374,7 +1520,7 @@
   $('shopSearch').addEventListener('input', renderShops);
   $('priceSearch').addEventListener('input', renderPrices);
   $('shopReset').onclick = function () { city = 'all'; $('shopSearch').value = ''; renderCityChips(); renderShops(); };
-  $('priceReset').onclick = function () { cat = 'all'; $('priceSearch').value = ''; renderCatChips(); renderPrices(); };
+  $('priceReset').onclick = function () { cat = 'jp'; $('priceSearch').value = ''; renderCatChips(); renderPrices(); };
 
   $('shopCityChips').addEventListener('click', function (e) {
     var b = e.target.closest('[data-city]');
@@ -1424,6 +1570,21 @@
     $('inQty').value = '1';
     calc();
   };
+
+  $('priceRows').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-add]');
+    if (!b) return;
+    var i = parseInt(b.getAttribute('data-add'), 10);
+    var p = PRICES[i];
+    if (!p) return;
+    var vol = parseInt(String(p.vol).replace(/[^\d]/g, ''), 10) || 700;
+    bottles.push({ price: p.street || p.msrp, vol: vol, qty: 1, cur: 'JPY' });
+    inputCur = 'JPY';
+    var segs = document.querySelectorAll('#curSeg button');
+    for (var k = 0; k < segs.length; k++) segs[k].classList.toggle('is-active', segs[k].getAttribute('data-cur') === 'JPY');
+    calc();
+    toast(t('addedCalc', lang === 'ko' ? p.n : p.nEn));
+  });
 
   $('crowRows').addEventListener('click', function (e) {
     var b = e.target.closest('[data-del]');
