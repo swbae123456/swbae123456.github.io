@@ -21,7 +21,15 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jpsave.com — 일본 정보 도구 모음">
 <meta name="twitter:description" content="일본 마운자로 방문 도우미 · 포켓몬 카드샵 방문 도우미. 무료 정보 사이트.">
-<link rel="icon" href="/pokemon-cards/icon.svg" type="image/svg+xml">
+<meta property="og:image" content="https://jpsave.com/jpsave-logo.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="jpsave.com 로고 — 붉은 원 안의 JP 도장">
+<meta name="twitter:image" content="https://jpsave.com/jpsave-logo.png">
+<meta name="twitter:image:alt" content="jpsave.com 로고 — 붉은 원 안의 JP 도장">
+<link rel="icon" type="image/png" href="/jpsave-logo.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
   :root {
     --bg: #f6f7fb;
@@ -30,6 +38,7 @@
     --ink-2: #334155;
     --muted: #64748b;
     --line: #e3e8f0;
+    --brand: #ec2e16;
     --teal: #0f766e;
     --teal-soft: #e6f4f1;
     --indigo: #4338ca;
@@ -54,6 +63,16 @@
     padding: 26px 16px calc(30px + env(safe-area-inset-bottom));
   }
   .wrap { max-width: 480px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 9px; margin: 0 0 14px; }
+  .brand-logo {
+    width: 32px; height: 32px; border-radius: 9px; flex: 0 0 auto;
+    display: block; box-shadow: 0 2px 8px rgba(236, 46, 22, .18);
+  }
+  .brand-name {
+    font-size: 16px; font-weight: 800; letter-spacing: -.03em;
+    color: var(--ink); line-height: 1;
+  }
+  .brand-name .dot { color: var(--brand); }
   .mark {
     display: inline-flex; align-items: center; gap: 7px;
     font-size: 11.5px; font-weight: 800; letter-spacing: .02em;
@@ -114,6 +133,10 @@
 </head>
 <body>
 <div class="wrap">
+  <header class="brand">
+    <img class="brand-logo" src="/jpsave-logo.png" alt="jpsave.com 로고" width="32" height="32" decoding="async">
+    <span class="brand-name">jpsave<span class="dot">.com</span></span>
+  </header>
   <p class="mark">무료 정보 사이트 · 설치 없이 브라우저에서</p>
   <h1>일본에서 바로 쓰는 도구 두 개<span class="dot">.</span></h1>
   <p class="lead">마운자로 클리닉 비교와 포켓몬 카드숍 방문 준비. 둘 다 공개된 정보만 모아 정리했고, 숫자는 어디서 가져왔는지 함께 적어 두었습니다.</p>
