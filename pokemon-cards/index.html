@@ -1377,7 +1377,7 @@
   function shopHoursLabel(k) {
     return k === 'all' ? t('hAll') : k === 'weekday' ? t('hWeekday') : k === 'weekend' ? t('hWeekend') : k === 'sat' ? t('hSat') : k === 'exthu' ? t('hExThu') : t('hSun');
   }
-  function shopMaps(s) { return 'https://www.google.com/maps/place/?q=place_id:' + encodeURIComponent(s.pid); }
+  function shopMaps(s) { return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.ja) + '&query_place_id=' + encodeURIComponent(s.pid); }
   function shopHay(s) {
     return [s.ko, s.ja, s.area.ko, s.area.en, CITY[s.city].ko, CITY[s.city].en, s.st.ko, s.st.en]
       .join(' ').toLowerCase();
