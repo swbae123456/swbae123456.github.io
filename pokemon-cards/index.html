@@ -74,7 +74,7 @@
     --muted:#64748b;
     --line:#e3e8f0;
     --line-2:#f1f4f9;
-    --qs-h:35px;
+    --qs-h:48px;
     --brand:#4338ca;
     --brand-2:#3730a3;
     --brand-soft:#eef2ff;
@@ -156,23 +156,25 @@
     position:sticky;top:0;z-index:34;
     background:var(--bg);
     border-bottom:1px solid var(--line);
-    padding:calc(5px + env(safe-area-inset-top)) 10px 5px;
+    padding:calc(7px + env(safe-area-inset-top)) 10px 7px;
   }
   .qs-row{
-    display:flex;align-items:center;gap:5px;
+    display:flex;align-items:center;gap:6px;
     overflow-x:auto;overflow-y:hidden;
     scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;
   }
   .qs-row::-webkit-scrollbar{display:none;height:0}
   .qs-pill{
-    flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;
-    height:24px;padding:0 9px;border-radius:999px;
-    font-family:var(--font);font-size:12px;font-weight:800;line-height:1;
+    flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;
+    height:33px;padding:0 10px;border-radius:999px;
+    font-family:var(--font);font-size:13px;font-weight:700;line-height:1;
     letter-spacing:-.02em;white-space:nowrap;text-decoration:none;
     color:var(--ink-2);background:#fff;border:1px solid var(--line);
     transition:background .15s,border-color .15s,color .15s;
   }
-  .qs-ico{font-size:11px;line-height:1;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif}
+  .qs-lbl{white-space:nowrap}
+  .qs-ico{font-size:12px;line-height:1;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif}
+  html[lang="en"] .qs-pill{font-size:12.5px;padding:0 9px;gap:4px}
   .qs-pill:active{transform:scale(.97)}
   .qs-pill:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
   .qs-pill.is-active{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 2px 8px rgba(67,56,202,.22)}
@@ -558,7 +560,7 @@
         <span class="qs-ico" aria-hidden="true">💉</span><span class="qs-lbl" id="qsLblJmh">마운자로</span>
       </a>
       <span class="qs-pill is-active" aria-current="page">
-        <span class="qs-ico" aria-hidden="true">🃏</span><span class="qs-lbl" id="qsLblPk">포켓몬</span>
+        <span class="qs-ico" aria-hidden="true">🃏</span><span class="qs-lbl" id="qsLblPk">포켓몬 카드샵</span>
       </span>
       <a class="qs-pill" href="https://jpsave.com/whisky/" data-qs-href="https://jpsave.com/whisky/">
         <span class="qs-ico" aria-hidden="true">🥃</span><span class="qs-lbl" id="qsLblWhisky">위스키</span>
@@ -799,7 +801,7 @@
       brandTitle: '포켓몬 카드샵 방문 도우미',
       brandSub: '일본 카드숍 23곳 · 팩별 시세 · PSA 10',
       pillHome: 'jpsave.com 홈',
-      qsHome: '홈', qsJmh: '마운자로', qsPk: '포켓몬', qsWhisky: '위스키',
+      qsHome: '홈', qsJmh: '마운자로', qsPk: '포켓몬 카드샵', qsWhisky: '위스키',
       crossKicker: '일본 여행 다른 도우미 · jpsave.com',
       crossTitle: '일본 마운자로 클리닉 11곳 비교 보기 →',
       pillDate: '기준', pillCards: '카드',
@@ -880,7 +882,7 @@
       brandTitle: 'Japan Pokémon Card Shop Helper',
       brandSub: '23 card shops · set prices · PSA 10',
       pillHome: 'jpsave.com',
-      qsHome: 'Home', qsJmh: 'Mounjaro', qsPk: 'Pokémon', qsWhisky: 'Whisky',
+      qsHome: 'Home', qsJmh: 'Mounjaro', qsPk: 'Card Shops', qsWhisky: 'Whisky',
       crossKicker: 'More on jpsave.com',
       crossTitle: 'Japan Mounjaro Visit Helper (11 clinics) →',
       pillDate: 'As of', pillCards: 'Cards',
