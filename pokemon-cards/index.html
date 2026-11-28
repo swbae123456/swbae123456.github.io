@@ -267,10 +267,11 @@
   .psa-row .mult b{display:block;font-size:15.5px;font-weight:800;color:var(--brand-2);letter-spacing:-.02em;line-height:1.25;font-variant-numeric:tabular-nums}
   .psa-row .mult span{display:block;font-size:9.5px;color:var(--muted);font-weight:800;line-height:1.3}
   .psa-row .mult b.thin{font-size:10px;color:#b45309;letter-spacing:0;line-height:1.35}
-  .cmp{display:flex;align-items:center;flex-wrap:wrap;gap:2px 6px;margin-top:5px;font-size:12.5px;font-weight:800;color:var(--ink-2);font-variant-numeric:tabular-nums;letter-spacing:-.01em;line-height:1.35}
-  .cmp .lbl{font-size:10px;color:var(--muted);font-weight:800;letter-spacing:.01em}
-  .cmp .v{font-weight:800;color:var(--ink);letter-spacing:-.02em}
-  .cmp .arw{color:#cbd5e1}
+  .cmp{display:flex;align-items:flex-end;gap:7px;margin-top:4px;color:var(--ink-2);font-variant-numeric:tabular-nums;line-height:1.2}
+  .cmp .cell{display:flex;flex-direction:column;min-width:0}
+  .cmp .lbl{font-size:9.5px;color:var(--muted);font-weight:800;letter-spacing:.01em;line-height:1.1;margin-bottom:1px}
+  .cmp .v{font-size:13px;font-weight:800;color:var(--ink);letter-spacing:-.02em;white-space:nowrap}
+  .cmp .arw{color:#cbd5e1;font-size:11px;padding-bottom:2px}
 
   /* fx */
   .rate-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:11px}
@@ -1122,7 +1123,11 @@
         '<span class="body" style="flex:1 1 auto;min-width:0">' +
         '<span class="nm">' + esc(c.n) + '</span>' +
         '<span class="meta">' + esc(s.name || c.set) + '<span class="dot">·</span>' + (s.year || '') + '<span class="dot">·</span>#' + esc(c.num) + '</span>' +
-        '<span class="cmp"><span class="lbl">' + esc(t('raw')) + '</span><span class="v">' + moneyC(c.pc.raw) + '</span><span class="arw">→</span><span class="lbl">' + esc(t('psa10')) + '</span><span class="v">' + moneyC(c.pc.psa10) + '</span></span>' +
+        '<span class="cmp">' +
+          '<span class="cell"><span class="lbl">' + esc(t('raw')) + '</span><span class="v">' + moneyC(c.pc.raw) + '</span></span>' +
+          '<span class="arw">→</span>' +
+          '<span class="cell"><span class="lbl">' + esc(t('psa10')) + '</span><span class="v">' + moneyC(c.pc.psa10) + '</span></span>' +
+        '</span>' +
         '</span>' +
         '<span class="mult">' + (c._mult <= 30
           ? '<b>×' + nf(c._mult, 2) + '</b><span>' + esc(t('mult')) + '</span>'
