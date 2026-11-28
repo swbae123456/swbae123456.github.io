@@ -204,9 +204,9 @@
   .row .body > span{display:block}
   .psa-row .body > span{display:block}
   .bag-item .nm, .bag-item .sub{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .row .nm{font-size:13.5px;font-weight:800;letter-spacing:-.025em;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .row .meta{font-size:10.5px;color:var(--muted);margin:1px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
-  .row .meta .dot{opacity:.45;margin:0 3px}
+  .row .nm,.psa-row .nm{font-size:13.5px;font-weight:800;letter-spacing:-.025em;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
+  .row .meta,.psa-row .meta{font-size:10.5px;color:var(--muted);margin:1px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;line-height:1.45}
+  .row .meta .dot,.psa-row .meta .dot{opacity:.45;margin:0 3px}
   .row .px{margin:3px 0 0;font-size:14.5px;font-weight:800;letter-spacing:-.02em;line-height:1.25}
   .row .px small{display:block;font-size:12px;color:var(--muted);font-weight:700;letter-spacing:-.01em;line-height:1.35;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .row .right{flex:0 0 auto;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
@@ -262,12 +262,14 @@
     text-align:left;font-family:var(--font);box-shadow:0 1px 2px rgba(15,23,42,.03);display:flex;gap:11px;align-items:flex-start;
   }
   .psa-row .mult{
-    margin-left:auto;flex:0 0 auto;text-align:right;
+    margin-left:auto;flex:0 0 auto;text-align:right;min-width:54px;
   }
   .psa-row .mult b{display:block;font-size:15.5px;font-weight:800;color:var(--brand-2);letter-spacing:-.02em;line-height:1.25;font-variant-numeric:tabular-nums}
-  .psa-row .mult span{font-size:9.5px;color:var(--muted);font-weight:800}
-  .cmp{display:flex;align-items:center;gap:6px;margin-top:5px;font-size:12.5px;font-weight:800;color:var(--ink-2);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-  .cmp .lbl{font-size:9.5px;color:var(--muted);font-weight:800;letter-spacing:.02em}
+  .psa-row .mult span{display:block;font-size:9.5px;color:var(--muted);font-weight:800;line-height:1.3}
+  .psa-row .mult b.thin{font-size:10px;color:#b45309;letter-spacing:0;line-height:1.35}
+  .cmp{display:flex;align-items:center;flex-wrap:wrap;gap:2px 6px;margin-top:5px;font-size:12.5px;font-weight:800;color:var(--ink-2);font-variant-numeric:tabular-nums;letter-spacing:-.01em;line-height:1.35}
+  .cmp .lbl{font-size:10px;color:var(--muted);font-weight:800;letter-spacing:.01em}
+  .cmp .v{font-weight:800;color:var(--ink);letter-spacing:-.02em}
   .cmp .arw{color:#cbd5e1}
 
   /* fx */
@@ -680,7 +682,7 @@
       unitUsd: '달러', unitJpy: '엔', unitKrw: '원',
       fxQuick: '빠른 금액', fxCardTo: '카드 시세 빠른 변환',
       shopTitle: '일본 포켓몬 카드숍', shopSub: function (n) { return n + '곳 · 2026-11-28 확인'; },
-      shopNote: '<b>2026-11-28 확인.</b> Google 지도의 영업 상태·영업시간과 매장 공식 사이트를 대조해 적었습니다. 가격 태그는 공식 안내나 매장 안내로 확인된 것만 붙였습니다. 휴무·임시휴업·재고는 바뀔 수 있으니 방문 전에 [구글맵 열기]로 당일 영업을 확인하세요. 면세(免税) 대응은 확인된 매장이 없어 표시하지 않았습니다(카드숍은 계산대에서 직접 물어보는 편이 확실합니다).',
+      shopNote: '<b>2026-11-28 확인.</b> Google 지도 영업시간과 매장 공식 사이트를 대조했습니다. 태그는 공식 안내로 확인된 것만 표시했고, 면세 대응은 확인된 매장이 없어 넣지 않았습니다. 휴무·재고는 바뀌니 방문 전 [구글맵 열기]로 당일 영업을 확인하세요.',
       shopSearchPh: '매장 이름·지역 검색 (예: 하레츠, 秋葉原)',
       cityAll: '전체',
       copyJa: '일본어 상호 복사', openMaps: '구글맵 열기', copiedJa: '일본어 상호를 복사했습니다',
@@ -748,7 +750,7 @@
       unitUsd: 'USD', unitJpy: 'JPY', unitKrw: 'KRW',
       fxQuick: 'Quick amounts', fxCardTo: 'Convert card prices',
       shopTitle: 'Pokémon card shops in Japan', shopSub: function (n) { return n + ' shops · verified 28 Nov 2026'; },
-      shopNote: '<b>Verified 28 Nov 2026.</b> Opening status and hours were checked against each shop\'s Google Maps listing and official site. Price tags are shown only where an official listing or the shop itself confirms them. Closures, temporary shutdowns and stock change — tap [Open in Google Maps] for the day\'s status before you go. No shop confirmed tax-free (免税) service, so none is tagged; ask at the counter.',
+      shopNote: '<b>Verified 28 Nov 2026.</b> Hours were checked against each shop\'s Google Maps listing and official site. Tags show only what an official listing confirms; no shop confirmed tax-free (免税) service, so none is tagged. Closures and stock change — tap [Open in Google Maps] before you go.',
       shopSearchPh: 'Search shop or area (e.g. Hareruya, 秋葉原)',
       cityAll: 'All',
       copyJa: 'Copy Japanese name', openMaps: 'Open in Google Maps', copiedJa: 'Japanese name copied',
@@ -1120,11 +1122,11 @@
         '<span class="body" style="flex:1 1 auto;min-width:0">' +
         '<span class="nm">' + esc(c.n) + '</span>' +
         '<span class="meta">' + esc(s.name || c.set) + '<span class="dot">·</span>' + (s.year || '') + '<span class="dot">·</span>#' + esc(c.num) + '</span>' +
-        '<span class="cmp"><span class="lbl">' + esc(t('raw')) + '</span>' + moneyC(c.pc.raw) + '<span class="arw">→</span><span class="lbl">' + esc(t('psa10')) + '</span>' + moneyC(c.pc.psa10) + '</span>' +
+        '<span class="cmp"><span class="lbl">' + esc(t('raw')) + '</span><span class="v">' + moneyC(c.pc.raw) + '</span><span class="arw">→</span><span class="lbl">' + esc(t('psa10')) + '</span><span class="v">' + moneyC(c.pc.psa10) + '</span></span>' +
         '</span>' +
         '<span class="mult">' + (c._mult <= 30
           ? '<b>×' + nf(c._mult, 2) + '</b><span>' + esc(t('mult')) + '</span>'
-          : '<b style="font-size:11px;color:#b45309">' + esc(t('thin')) + '</b><span>' + esc(t('mult')) + '</span>') + '</span>';
+          : '<b class="thin">' + esc(t('thin')) + '</b>') + '</span>';
       wrap.appendChild(b);
     });
     var more = $('psaMore');
@@ -1339,7 +1341,7 @@
     var icoPin = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>';
     host.innerHTML = list.map(function (s) {
       var hrs = s.hours.map(function (h) {
-        return '<span class="d">' + esc(shopHoursLabel(h[0])) + '</span>' + esc(h[1]);
+        return '<span class="d">' + esc(shopHoursLabel(h[0])) + '</span> ' + esc(h[1]);
       }).join('<span class="dot">·</span>');
       var closed = !s.closed ? '' : s.closed === 'none'
         ? '<span class="closed">' + esc(t('openDaily')) + '</span>'
@@ -1399,7 +1401,6 @@
   }
   function closeZoom() {
     $('zoom').hidden = true;
-    $('zoomImg').removeAttribute('src');
     if ($('modal').hidden) document.body.style.overflow = '';
   }
 
