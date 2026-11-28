@@ -463,6 +463,10 @@
   .aff-txt span{display:block;font-size:10.5px;color:var(--muted);line-height:1.4;margin-top:1px}
   .aff-go{flex:0 0 auto;color:var(--brand);font-weight:800;font-size:13px}
   .aff-foot{margin:7px 0 0;font-size:10px;color:var(--muted);line-height:1.5}
+  /* 카드숍 탭 맨 위 제휴 슬림 점프 배너(한 줄, 매장 목록 바로 위) */
+  .aff-slim{display:block;width:100%;margin:0 0 9px;padding:9px 11px;border:1px dashed #c7cdf0;border-radius:11px;background:#f7f8ff;color:var(--brand-2);font-family:var(--font);font-size:11.5px;font-weight:700;line-height:1.45;letter-spacing:-.03em;text-align:left;cursor:pointer;transition:background .14s,transform .06s}
+  .aff-slim:active{background:#eef1ff;transform:scale(.995)}
+  .aff-slim:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
 
   .home-banner{display:block;margin:16px 0 0;padding:13px 15px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:var(--shadow);text-decoration:none;color:var(--ink);transition:transform .06s}
   .home-banner-kicker{display:block;font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:-.01em}
@@ -631,6 +635,7 @@
       </div>
       <div class="chips" id="shopCityChips"></div>
       <div class="count-line"><span id="shopCount"></span><button type="button" id="shopReset">초기화</button></div>
+      <button type="button" class="aff-slim" id="affSlimCta" data-affjump="1" data-t="affSlimCta">✈️ 도쿄 카드샵 투어 준비 (eSIM · 스카이라이너 · 신주쿠 숙소) · 제휴 →</button>
       <div class="shop-rows" id="shopRows"></div>
 
       <div class="affbox" id="affCard">
@@ -785,6 +790,7 @@
       affHotelName: 'APA 호텔 신주쿠 가부키초 타워',
       affHotelSub: '신주쿠 도심 거점 숙소 (아고다)',
       affFoot: '링크로 예약·구매해도 결제 금액은 같고, 사이트 운영에 일부 수수료가 돌아옵니다. 필요하지 않으면 건너뛰셔도 됩니다.',
+      affSlimCta: '✈️ 도쿄 카드샵 투어 준비 (eSIM · 스카이라이너 · 신주쿠 숙소) · 제휴 →',
       shopNote: '<b>2026-11-28 확인.</b> Google 지도 영업시간과 매장 공식 사이트를 대조했습니다. 태그는 공식 안내로 확인된 것만 표시했고, 면세 대응은 확인된 매장이 없어 넣지 않았습니다. 휴무·재고는 바뀌니 방문 전 [구글맵 열기]로 당일 영업을 확인하세요.',
       shopSearchPh: '매장 이름·지역 검색 (예: 하레츠, 秋葉原)',
       cityAll: '전체',
@@ -865,6 +871,7 @@
       affHotelName: 'APA Hotel Shinjuku Kabukicho Tower',
       affHotelSub: 'Shinjuku base hotel (Agoda)',
       affFoot: 'Booking or buying through these links costs you the same and sends a small commission to this site. Skip them if you don\'t need them.',
+      affSlimCta: '✈️ Japan card-shop trip prep (eSIM · Skyliner · Shinjuku stay) · affiliate →',
       shopNote: '<b>Verified 28 Nov 2026.</b> Hours were checked against each shop\'s Google Maps listing and official site. Tags show only what an official listing confirms; no shop confirmed tax-free (免税) service, so none is tagged. Closures and stock change — tap [Open in Google Maps] before you go.',
       shopSearchPh: 'Search shop or area (e.g. Hareruya, 秋葉原)',
       cityAll: 'All',
@@ -1021,6 +1028,7 @@
     Array.prototype.forEach.call(document.querySelectorAll('#affCard [data-t]'), function (s) {
       s.textContent = t(s.getAttribute('data-t'));
     });
+    $('affSlimCta').textContent = t('affSlimCta');
     $('shopSearch').placeholder = t('shopSearchPh');
     $('shopReset').textContent = t('reset');
     buildShopChips(); renderShops();
@@ -1578,6 +1586,14 @@
     if (shopCp) { copyShopName(shopCp.getAttribute('data-copyshop')); return; }
     var shopCityBtn = tgt.closest ? tgt.closest('[data-shopcity]') : null;
     if (shopCityBtn) { state.shopCity = shopCityBtn.getAttribute('data-shopcity'); buildShopChips(); renderShops(); return; }
+    var affJump = tgt.closest ? tgt.closest('[data-affjump]') : null;
+    if (affJump) {
+      var affEl = $('affCard');
+      if (affEl && affEl.scrollIntoView) {
+        try { affEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (err) { affEl.scrollIntoView(); }
+      }
+      return;
+    }
     var cardBtn = tgt.closest ? tgt.closest('[data-card]') : null;
     if (cardBtn) { openCard(cardBtn.getAttribute('data-card')); return; }
     var closeBtn = tgt.closest ? tgt.closest('[data-close]') : null;
